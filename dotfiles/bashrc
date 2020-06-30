@@ -1,0 +1,89 @@
+# .bashrc #
+
+# Source global definitions #
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# User specific environment #
+if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# so lean on FZF for better completion #
+source "$(fzf-share)/completion.bash"
+source "$(fzf-share)/key-bindings.bash"
+export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_OPTS='--select-1'
+export FZF_DEFAULT_OPTS='--color=16 --inline-info'
+export FZF_CTRL_T_OPTS='--select-1'
+
+#%%%%%%%%%%%%%%%%%%
+#%%% Functions %%%%
+#%%%%%%%%%%%%%%%%%%
+
+# colored man pages #
+man() { env \
+  LESS_TERMCAP_mb=$'\e[01;31m' \
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  man "$@"
+}
+
+# extract archives #
+extract() {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2) tar -jxvf "$1" ;;
+      *.tar.gz) tar -zxvf "$1" ;;
+      *.bz2) bunzip2 "$1" ;;
+      *.gz) gunzip "$1" ;;
+      *.tar) tar -xvf "$1" ;;
+      *.tbz2) tar -jxvf "$1" ;;
+      *.tgz) tar -zxvf "$1" ;;
+      *.zip) unzip "$1" ;;
+      *.ZIP) unzip "$1" ;;
+      *.Z) uncompress "$1" ;;
+      *.xz) tar -Jxvf "$1" ;;
+      *) echo "{extraction-failed}" ;;
+    esac
+  else echo "{invalid-file}"; fi
+}
+
+#%%%%%%%%%%%%%%%%%%
+#%%%% Aliases %%%%%
+#%%%%%%%%%%%%%%%%%%
+
+# git #
+alias gs='git status'
+alias gaa='git add -A'
+alias ga='git add'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gl='git log --oneline'
+alias gP='git push'
+alias gp='git pull'
+alias gc='git commit'
+
+# bash management #
+alias x='clear'
+alias xx='exit'
+alias nrs='sudo nixos-rebuild switch'
+
+# tmux #
+alias tl='tmux list-sessions'
+alias ta='tmux attach -t '
+alias td='tmux detach'
+alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
+
+#%%%%%%%%%%%%%%%%%%%
+#%%%%  Colors  %%%%%
+#%%%%%%%%%%%%%%%%%%%
+

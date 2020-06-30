@@ -1,0 +1,63 @@
+# remap prefix to grave
+set -g prefix `
+
+# Automatically set window title
+set-window-option -g automatic-rename on
+set-option -g set-titles on
+
+#set -g default-terminal screen-256color
+set -g status-keys vi
+set -g history-limit 10000
+
+setw -g mode-keys vi
+set -g mouse on
+setw -g monitor-activity on
+
+bind-key | split-window -h
+bind-key - split-window -v
+
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key H resize-pane -L 5
+bind-key L resize-pane -R 5
+
+# Vim style pane selection
+bind h select-pane -L
+bind j select-pane -D 
+bind k select-pane -U
+bind l select-pane -R
+
+bind X kill-window
+
+# Switch windows
+bind-key b previous-window
+bind-key e next-window
+
+# No delay for escape key press
+set -sg escape-time 0
+
+# Reload tmux config
+bind r source-file ~/.tmux.conf
+
+# layouts
+bind e select-layout even-vertical
+bind E select-layout even-horizontal
+
+# patches for truecolor and vim
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
+set -sg escape-time 0
+
+# statusbar
+set -g status-interval 1
+set -g status-style "default"
+set -g status-bg colour0
+set -g status-fg colour8
+set -g message-style bg=colour0
+set -g message-style fg=colour1
+set -g status-right '%l:%M'
+set -g status-left ""
+
+# separators
+set -g pane-border-style "fg=colour238,bg=default"
+set -g pane-active-border-style "fg=colour246,bg=default"

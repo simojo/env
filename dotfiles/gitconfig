@@ -1,0 +1,9 @@
+[user]
+  name = Simon Jones
+  email = github@simonjjones.com
+[push]
+  default = simple
+[core]
+  quotepath = false
+[color]
+  ui = true

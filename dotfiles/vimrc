@@ -1,0 +1,353 @@
+
+" must be mapped early.
+let mapleader = ';'
+let g:mapleader = ';'
+
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+"%%%%%%%%%%%  Plugins  %%%%%%%%%%%%%%%%%%%
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+" convenience bindings
+nmap <Leader>ps :source %<cr>
+nmap <Leader>pS :PlugStatus<cr>
+nmap <Leader>pc :PlugClean<cr>
+nmap <Leader>pu :PlugUpgrade<cr>:PlugUpdate<cr>
+
+" automatic plugin installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/vim-plug')
+
+" abbreviations and plugins to automatically complete closing syntaxes.
+" generally a good idea to let Vim do the repetitive typing when possible.
+" occasionally makes trouble when closing braces; just copy another then.
+
+Plug 'alvan/vim-closetag'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
+iab <% <% %><esc>F%hi
+iab <%= <%= %><esc>F%hi
+iab <%# <%# %><esc>F%hi
+
+" indentLine: displays thin vertical lines 
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char='┊'
+autocmd Filetype json let g:indentLine_enabled = 0
+
+" abbreviations and plugins to automatically complete closing syntaxes.
+" generally a good idea to let Vim do the repetitive typing when possible.
+" occasionally makes trouble when closing braces; just copy another then.
+
+Plug 'editorconfig/editorconfig-vim'
+Plug 'conradirwin/vim-bracketed-paste'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-fugitive'
+
+" toggling of comments across languages, an absolute *must*.
+" ;i to toggle comment on line or selected visual block.
+
+Plug 'tpope/vim-commentary'
+nmap <silent> <Leader>i gcc
+vmap <silent> <Leader>i gc
+
+" highlight hex colors
+Plug 'vim-scripts/colorizer'
+
+" improved gitgutter, an absolute *must*.
+" ;sj to jump to the next changed hunk
+" ;sk to jump to the previous changed hunk
+" signature shows marks in the same column.
+
+Plug 'mhinz/vim-signify'
+Plug 'kshenoy/vim-signature'
+let g:signify_vcs_list = ['git']
+let g:signify_sign_show_count = 0
+let g:signify_line_highlight = 0
+nmap <silent> <Leader>sj <plug>(signify-next-hunk)
+nmap <silent> <Leader>sk <plug>(signify-prev-hunk)
+
+" lightline:  A light and configurable statusline/tabline plugin for Vim
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+  \   'colorscheme': 'simpleblack',
+  \   'active': {
+    \   'left':[ [ 'mode', 'paste' ],
+    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \   ]
+  \   },
+	\   'component': {
+	\     'lineinfo': '%3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   },
+      \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+      \ }
+  \ }
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
+let g:lightline.subseparator = {
+	\   'left': '', 'right': ''
+  \}
+
+" jumping around more efficiently, an absolute *must*.
+" ;l to jump by word to anything on the screen.
+" ;j to jump downwards by lines on the screen.
+" ;k to jump upwards by lines on the screen.
+
+Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_verbose = 0
+nmap <silent> <Leader>j <Leader><Leader>j
+nmap <silent> <Leader>k <Leader><Leader>k
+nmap <silent> <Leader>l <Plug>(easymotion-bd-w)
+
+" tab filters through files, gitignoring if appropriate.
+" ;tab filters through ripgrep across the repository files.
+
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+let g:fzf_layout = { 'down': '~25%' }
+nmap <tab> :call Fallback()<cr>
+nmap <Leader><tab> :Rg<cr>
+function! Fallback()
+  execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'
+endfunction
+
+" markdown tweaks to improve folding in large documents with nested headers.
+" also, disable some absurd nonsensical defaults that that plugin ships with.
+
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_new_list_item_indent = 0
+au BufEnter *.md setlocal foldexpr=MarkdownLevel()
+au BufEnter *.md setlocal foldmethod=expr
+function! MarkdownLevel()
+  let h = matchstr(getline(v:lnum), '^#\+')
+  if empty(h)
+    return "="
+  else
+    return ">" . len(h)
+  endif
+endfunction
+
+" nerdtree: a file system explorer for the Vim editor.
+Plug 'preservim/nerdtree'
+let NERDTreeShowHidden=1
+nmap <Leader>t :NERDTreeToggleVCS<cr>:NERDTreeRefreshRoot<cr>
+
+Plug 'reedes/vim-litecorrect'
+au FileType mkd,markdown,tex,html,text call litecorrect#init()
+nmap <silent> <Leader>sc :setlocal spell!<cr>
+
+" supertab: context completion
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menu,longest
+
+" ;d to expand the error details (q to exit).
+" ;n to jump to the next error location.
+" ;N to jump to the previous error location.
+
+" ale: Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
+Plug 'w0rp/ale'
+nmap <Leader>d :ALEDetail<cr>
+nmap <Leader>n :lnext<cr>
+nmap <Leader>N :lprev<cr>
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '▸'
+
+Plug 'elixir-editors/vim-elixir'
+
+call plug#end()
+
+" general interface groundwork settings
+set nocursorline number visualbell signcolumn=yes shortmess=aoO
+
+" things should work as expected elsewhere
+set mouse=a backspace=eol,start,indent linebreak breakindent
+
+" omnicomplete enable and ignore nonsense
+set wildignore+=*.aux,*.out.*.toc
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
+set wildignore+=*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm
+set wildignore+=*.eot,*.otf,*.ttf,*.woff,*.woff2
+set wildignore+=*.doc,*.pdf
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.jar,*.rbc,*.pyc,*.class
+set wildignore+=*.min.*,*-min.*
+set wildignore+=*.swp,.lock,.DS_Store,._*
+set wildignore+=*generated
+set wildignore+=.git/*
+
+" filetype, encoding, backup, undo related
+set autoread noswapfile nobackup undolevels=1000 encoding=utf8 ffs=unix
+
+" searching highlighting and sensitivity
+set hlsearch incsearch smartcase infercase ignorecase wildmenu
+
+" indentation spaces tabs and whitespace nonsense
+set list listchars=tab:\ \ ,trail:␣,extends:»,precedes:«,nbsp:•
+set autoindent smartindent copyindent shiftround smarttab
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" FIXME: shiftwidth always changes to 4 in python and rust
+
+" Don't try to be vi compatible
+set nocompatible
+
+" Turn on syntax highlighting
+syntax on
+
+" Security
+set modelines=0
+
+" Show line numbers
+set number
+
+" Show file stats
+set ruler
+
+" Whitespace
+set wrap
+
+" Cursor motion
+set scrolloff=5
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+nmap j gj
+nmap k gk
+
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Formatting
+map <leader>q gqip
+
+" Save as root
+command! -nargs=0 Sw w !sudo tee % > /dev/null
+
+" Mappings
+nmap J 2<C-E>2j
+nmap K 2<C-Y>2k
+nmap <C-j> zRddp==
+nmap <C-k> zRddkP==
+vmap <C-j> zR:m'>+1<CR>gv=gv
+vmap <C-k> zR:m'<-2<CR>gv=gv
+vnoremap > ><cr>gv
+vnoremap < <<cr>gv
+
+" Colorscheme
+set notermguicolors
+syntax enable
+set synmaxcol=512
+set background=dark
+hi clear
+if exists("syntax_on")
+  syntax reset
+endif
+
+" override various elements to use term colors
+hi! Normal ctermfg=none ctermbg=none cterm=none
+hi! Comment ctermfg=8 ctermbg=none cterm=none
+hi! Underlined ctermfg=none ctermbg=none cterm=underline
+hi! Cursor ctermfg=none ctermbg=none cterm=none
+hi! CursorLine ctermfg=none ctermbg=none cterm=none
+hi! StatusLine ctermfg=7 ctermbg=none cterm=none
+hi! StatusLineNC ctermfg=8 ctermbg=none cterm=none
+hi! Error ctermfg=1 ctermbg=0 cterm=none
+hi! LineNr ctermfg=8 ctermbg=0 cterm=none
+hi! CursorLineNr ctermfg=none ctermbg=none cterm=none
+hi! Directory ctermfg=4 ctermbg=none cterm=none
+hi! Pmenu ctermfg=8 ctermbg=none cterm=none
+hi! PmenuSel ctermfg=none ctermbg=none cterm=none
+hi! WildMenu ctermfg=none ctermbg=0 cterm=underline
+hi! SpellCap ctermfg=1 ctermbg=none cterm=underline
+hi! Visual ctermfg=none ctermbg=none cterm=reverse
+hi! NonText ctermfg=8 ctermbg=none cterm=none
+hi! MatchParen ctermfg=none ctermbg=8 cterm=underline
+hi! Folded ctermfg=7 ctermbg=none cterm=none
+hi! Special ctermfg=none ctermbg=none cterm=none
+hi! Question ctermfg=2 ctermbg=none cterm=none
+hi! MoreMsg ctermfg=14 ctermbg=none cterm=none
+hi! Title ctermfg=12 ctermbg=none cterm=none
+hi! Todo ctermfg=9 ctermbg=none cterm=none
+
+" ditto, but these control the visible majority
+hi! Identifier ctermfg=14 ctermbg=none cterm=none
+hi! Type ctermfg=14 ctermbg=none cterm=none
+hi! Statement ctermfg=4 ctermbg=none cterm=none
+hi! Constant ctermfg=10 ctermbg=none cterm=none
+hi! String ctermfg=10 ctermbg=none cterm=none
+hi! PreProc ctermfg=11 ctermbg=none cterm=none
+
+" prefer non-reverse coloring for diffs
+hi! DiffAdd ctermfg=2 ctermbg=none cterm=none
+hi! DiffChange ctermfg=3 ctermbg=none cterm=none
+hi! DiffDelete ctermfg=1 ctermbg=none cterm=none
+hi! DiffText ctermfg=4 ctermbg=none cterm=none
+
+" prefer uniform coloring for the diff column
+hi! SignifySignAdd ctermfg=15 ctermbg=none cterm=none
+hi! SignifySignDelete ctermfg=15 ctermbg=none cterm=none
+hi! SignifySignChange ctermfg=15 ctermbg=none cterm=none
+hi! SignifySignChangeDelete ctermfg=15 ctermbg=none cterm=none
+
+" simpler to link these
+hi! link Search Visual
+hi! link IncSearch Visual
+hi! link ModeMsg NonText
+hi! link VisualNOS Visual
+hi! link SpellBad Error
+hi! link SpellLocal Normal
+hi! link PmenuSbar Pmenu
+hi! link PmenuThumb Pmenu
+hi! link ColorColumn Normal
+hi! link SignColumn Normal
+hi! link FoldColumn Normal
+hi! link VertSplit StatusLine
+hi! link WarningMsg Error
+hi! link ErrorMsg Error
+hi! link SpecialKey Comment
+
+" highlight easymotion targets clearly
+hi! link EasyMotionTarget SignifySignChange
+hi! link EasyMotionTarget2First SignifySignChange
+hi! link EasyMotionTarget2Second SignifySignChange
+hi! link EasyMotionShade NonText
+
+" distinguish between errors and warnings
+hi ALEWarning ctermfg=11
+hi ALEWarningSign ctermfg=11
+hi ALEStyleWarning ctermfg=11
+hi ALEStyleWarningSign ctermfg=11
+hi ALEInfo ctermfg=11
+hi ALEInfoSign ctermfg=11
+
