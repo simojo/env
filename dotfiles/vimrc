@@ -284,7 +284,7 @@ hi! StatusLine ctermfg=7 ctermbg=none cterm=none
 hi! StatusLineNC ctermfg=8 ctermbg=none cterm=none
 hi! Error ctermfg=1 ctermbg=0 cterm=none
 hi! LineNr ctermfg=8 ctermbg=0 cterm=none
-hi! CursorLineNr ctermfg=none ctermbg=none cterm=none
+hi! CursorLineNr ctermfg=15 ctermbg=none cterm=none
 hi! Directory ctermfg=4 ctermbg=none cterm=none
 hi! Pmenu ctermfg=8 ctermbg=none cterm=none
 hi! PmenuSel ctermfg=none ctermbg=none cterm=none
