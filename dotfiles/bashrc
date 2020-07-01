@@ -109,6 +109,7 @@ alias gc='git commit'
 alias x='clear'
 alias xx='exit'
 alias nrs='sudo nixos-rebuild switch'
+alias ns='nix-shell'
 
 # tmux #
 alias tl='tmux list-sessions'
@@ -116,3 +117,6 @@ alias ta='tmux attach -t '
 alias td='tmux detach'
 alias tn='tmux new -s'
 alias tk='tmux kill-session -t'
+
+# xclip #
+alias xclip='xclip -selection "clipboard"'
