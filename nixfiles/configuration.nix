@@ -107,6 +107,7 @@ in {
       pkgs.tmux
       pkgs.vim
       pkgs.wpa_supplicant
+      pkgs.xclip
       pkgs.zip
       pkgs.zsh
     ];
@@ -120,6 +121,16 @@ in {
     # https://www.latlong.net/
     latitude = 41.646099;
     longitude = -80.147148;
+  };
+
+  services = {
+    openssh = {
+      enable = true;
+      passwordAuthentication = false;
+      challengeResponseAuthentication = false;
+      permitRootLogin = "prohibit-password";
+      ports = [55000];
+    };
   };
 
   time.timeZone = "America/New_York";
