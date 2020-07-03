@@ -71,11 +71,8 @@ in {
     };
     networkmanager.enable = true;
   };
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+
+  nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = [
@@ -88,6 +85,7 @@ in {
       })
       pkgs.acpi
       pkgs.age
+      pkgs.atop
       pkgs.bash
       pkgs.curl
       pkgs.fzf

@@ -148,11 +148,6 @@ function! MarkdownLevel()
   endif
 endfunction
 
-" nerdtree: a file system explorer for the Vim editor.
-Plug 'preservim/nerdtree'
-let NERDTreeShowHidden=1
-nmap <Leader>t :NERDTreeToggleVCS<cr>:NERDTreeRefreshRoot<cr>
-
 Plug 'reedes/vim-litecorrect'
 au FileType mkd,markdown,tex,html,text call litecorrect#init()
 nmap <silent> <Leader>sc :setlocal spell!<cr>
@@ -338,7 +333,7 @@ hi! link ErrorMsg Error
 hi! link SpecialKey Comment
 
 " highlight easymotion targets clearly
-hi! link EasyMotionTarget SignifySignChange
+hi! EasyMotionTarget ctermfg=1
 hi! link EasyMotionTarget2First SignifySignChange
 hi! link EasyMotionTarget2Second SignifySignChange
 hi! link EasyMotionShade NonText

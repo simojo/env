@@ -13,5 +13,3 @@ bspc config gapless_monocle      true
 
 bspc config focused_border_color "#999999"
 bspc config normal_border_color "#222222"
-
-feh --bg-fill /etc/bg.jpg

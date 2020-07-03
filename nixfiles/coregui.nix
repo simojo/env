@@ -13,6 +13,8 @@ in {
   environment = {
     systemPackages = [
       # FIXME: dunst.
+      pkgs.dunst
+      pkgs.polybar
       pkgs.alacritty
       pkgs.bemenu
       pkgs.chromium
@@ -82,6 +84,9 @@ in {
           xset s noblank
           xset s noexpose
           feh --bg-fill /env/imgs/bg/bloom.jpg || hsetroot -solid '#000000'
+          killall -q polybar
+          while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+          polybar -c /env/dotfiles/polybar mybar
         '';
       };
       enable = true;
@@ -96,6 +101,21 @@ in {
         };
       };
       xkbOptions = "caps:escape";
+      xrandrHeads = [
+        "HDMI-0" {
+          output = "DVI-O";
+          primary = true;
+          monitorConfig = ''
+            Option "Rotate" "right"
+          '';
+        }
+        "HDMI-1" {
+          output = "DVI-1";
+          monitorConfig = ''
+            Option "Rotate" "right"
+          '';
+        }
+      ];
     };
   };
 

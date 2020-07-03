@@ -148,31 +148,30 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
-
 colors:
   primary:
     background: '#000000'
-    foreground: '#d8dee9'
+    foreground: '#ced4db'
 
   normal:
     black: '#000000'
-    red: '#ee7674'
-    green: '#60d394'
-    yellow: '#e1cf90'
-    blue: '#a8ebe1'
-    magenta: '#ffadad'
-    cyan: '#5bc0eb'
-    white: '#d8dee9'
+    red: '#a65f69'
+    green: '#3b8563'
+    yellow: '#b39669'
+    blue: '#487799'
+    magenta: '#b9637e'
+    cyan: '#348396'
+    white: '#6f798c'
 
   bright:
-    black: '#6c757d'
-    red: '#ee7674'
-    green: '#60d394'
-    yellow: '#e1cf90'
-    blue: '#a8ebe1'
-    magenta: '#ffadad'
-    cyan: '#5bc0eb'
-    white: '#d8dee9'
+    black: '#6f798c'
+    red: '#a65f69'
+    green: '#3b8563'
+    yellow: '#b39669'
+    blue: '#487799'
+    magenta: '#b9637e'
+    cyan: '#348396'
+    white: '#ced4db'
 
 # Visual Bell
 #
