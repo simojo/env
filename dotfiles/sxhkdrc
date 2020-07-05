@@ -9,7 +9,7 @@ super + shift + Return
 
 # launch web browser
 super + backslash
-  firefox
+  chromium
 
 # launch web browser in private mode
 super + shift + backslash
@@ -44,9 +44,6 @@ super + shift + q
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-
-# FIXME: slock?
-# FIXME: systemctl hibernate?
 # FIXME: bspwm styling/tweaks?
 # FIXME: dmenu styling/tweaks?
 # FIXME: dunst-notifications?

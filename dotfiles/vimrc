@@ -152,10 +152,12 @@ Plug 'reedes/vim-litecorrect'
 au FileType mkd,markdown,tex,html,text call litecorrect#init()
 nmap <silent> <Leader>sc :setlocal spell!<cr>
 
-" supertab: context completion
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menu,longest
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " ;d to expand the error details (q to exit).
 " ;n to jump to the next error location.

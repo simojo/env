@@ -1,18 +1,11 @@
 { config, lib, pkgs, ... }:
 let
 
-  dotfiles = {
-    vimrc = builtins.readFile /env/dotfiles/vimrc;
-    htoprc = builtins.readFile /env/dotfiles/htoprc;
-    bashrc = builtins.readFile /env/dotfiles/bashrc;
-    gitconfig = builtins.readFile /env/dotfiles/gitconfig;
-    tmuxconf = builtins.readFile /env/dotfiles/tmuxconf;
-  };
-
 in {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./coregui.nix
+      ./corecli.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -72,49 +65,6 @@ in {
     networkmanager.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
-
-  environment = {
-    systemPackages = [
-      (with import <nixpkgs> {};
-      vim_configurable.customize {
-        name = "vim";
-        vimrcConfig = {
-          customRC = dotfiles.vimrc;
-        };
-      })
-      pkgs.acpi
-      pkgs.age
-      pkgs.atop
-      pkgs.bash
-      pkgs.curl
-      pkgs.fzf
-      pkgs.git
-      pkgs.gnugrep
-      pkgs.gnumake
-      pkgs.gnupg
-      pkgs.gnused
-      pkgs.gnutar
-      pkgs.htop
-      pkgs.ncdu
-      pkgs.nix
-      pkgs.pinentry
-      pkgs.ripgrep
-      pkgs.rsync
-      pkgs.tig
-      pkgs.tmux
-      pkgs.vim
-      pkgs.wpa_supplicant
-      pkgs.xclip
-      pkgs.zip
-      pkgs.zsh
-    ];
-    etc."bashrc.local".text = dotfiles.bashrc;
-    etc."gitconfig".text = dotfiles.gitconfig;
-    etc."htoprc".text = dotfiles.htoprc;
-    etc."tmux.conf".text = dotfiles.tmuxconf;
-  };
-
   location = {
     # https://www.latlong.net/
     latitude = 41.646099;
@@ -139,10 +89,12 @@ in {
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" ];
+        extraGroups = [ "wheel" "audio" "video" ];
       };
     };
   };
+
+  hardware.bluetooth.enable = true;
 
   system.stateVersion = "20.03";
 

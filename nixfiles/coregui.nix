@@ -6,13 +6,12 @@ let
   bspwmrc = pkgs.writeScript "bspwmrc" "${bspwmrcfile}";
 
 in {
-  # imports = [
-  #   ./chromium.nix
-  # ];
+  imports = [
+    ./chromium.nix
+  ];
 
   environment = {
     systemPackages = [
-      # FIXME: dunst.
       pkgs.dunst
       pkgs.polybar
       pkgs.alacritty
@@ -46,6 +45,8 @@ in {
     latitude = 41.646099;
     longitude = -80.147148;
   };
+
+  programs.light.enable = true;
 
   services = {
     redshift = {
@@ -84,9 +85,7 @@ in {
           xset s noblank
           xset s noexpose
           feh --bg-fill /env/imgs/bg/bloom.jpg || hsetroot -solid '#000000'
-          killall -q polybar
-          while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-          polybar -c /env/dotfiles/polybar mybar
+          light -N 1.0
         '';
       };
       enable = true;
@@ -102,19 +101,27 @@ in {
       };
       xkbOptions = "caps:escape";
       xrandrHeads = [
-        "HDMI-0" {
-          output = "DVI-O";
-          primary = true;
-          monitorConfig = ''
-            Option "Rotate" "right"
-          '';
-        }
-        "HDMI-1" {
-          output = "DVI-1";
-          monitorConfig = ''
-            Option "Rotate" "right"
-          '';
-        }
+        # {
+        #   output = "eDP-1";
+        #   primary = true;
+        #   monitorConfig = ''
+        #     DisplaySize 1920 1080
+        #   '';
+        # }
+        # {
+        #   output = "DP-1";
+        #   monitorConfig = ''
+        #     DisplaySize 3840 2160
+        #     Option "Rotate" "left"
+        #   '';
+        # }
+        # {
+        #   output = "DP-2";
+        #   monitorConfig = ''
+        #     DisplaySize 3840 2160
+        #     Option "Rotate" "left"
+        #   '';
+        # }
       ];
     };
   };

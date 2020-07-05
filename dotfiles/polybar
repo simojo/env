@@ -1,5 +1,5 @@
 [colors]
-background = #000000
+background = #aaa000000
 background-alt = #2D323D
 foreground = #ced4db
 color1 = #6f798c
@@ -17,7 +17,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 fixed-center = true
 width = 100%
-height = 23
+height = 20
 radius = 0.0
 line-size = 0
 line-color = #f00
@@ -26,7 +26,7 @@ offset-x = 0
 
 font-0 = Hack:style=Regular:pixelsize=11;2
 
-modules-right = network alsa backlight cpu battery date
+modules-right = network alsa backlight battery date
 modules-center =
 modules-left =  bspwm
 ; Position of the system tray window
@@ -86,9 +86,9 @@ format-full = BAT <label-full>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 
-label-charging-foreground = ${colors.foreground}
+label-charging-foreground = ${colors.color3}
 label-discharging-foreground = ${colors.foreground}
-label-full-foreground = ${colors.foreground}
+label-full-foreground = ${colors.color3}
 
 format-charging-foreground = ${colors.color2}
 format-discharging-foreground = ${colors.color2}
@@ -122,22 +122,15 @@ format-volume-foreground = ${colors.color5}
 format-volume-padding = 1
 
 [module/backlight]
-type = internal/backlight
-
-card = intel_backlight
-enable-scroll = true
+type = custom/script
+exec = light -G
+scroll-up = light -A 5
+scroll-down = light -U 5
+label = %output%%
+click-left = "light -S 100%"
+interval = .5
 
 format = BL <label>
 format-padding = 1
 format-foreground = ${colors.color6}
-label-foreground = ${colors.foreground}
-label = %percentage%%
-
-[module/cpu]
-type = internal/cpu
-
-format = CPU <label>
-format-foreground = ${colors.color3}
-format-padding = 1
-label = %percentage%%
 label-foreground = ${colors.foreground}
