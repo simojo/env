@@ -107,7 +107,9 @@ dual_monitors() {
       --output DP-2 \
       --off \
       --output eDP-1 \
-      --auto
+      --auto \
+      --output eDP-1 \
+      --dpi 90
     feh --bg-fill /env/imgs/bg/bloom.jpg
     bspc wm -r
     DUAL_MONITORS=false

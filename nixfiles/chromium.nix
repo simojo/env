@@ -48,6 +48,7 @@
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
           { "url" = "https://youtube.com"; name = "YouTube"; }
+          { "url" = "https://hulu.com/my-stuff"; name = "Hulu"; }
         ]; }
         { "name" = "Services"; "children" = [
           { "url" = "https://github.com/"; name = "GitHub"; }
