@@ -22,6 +22,7 @@ in {
       pkgs.feh
       pkgs.hsetroot
       pkgs.minecraft
+      pkgs.neofetch
       pkgs.scrot
       pkgs.slock
       pkgs.xorg.xmodmap

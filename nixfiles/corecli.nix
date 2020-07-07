@@ -23,8 +23,13 @@ in {
       pkgs.age
       pkgs.atop
       pkgs.bash
+      pkgs.bat
       pkgs.curl
+      pkgs.elixir
+      pkgs.entr
+      pkgs.exa
       pkgs.fzf
+      pkgs.fd
       pkgs.git
       pkgs.gnugrep
       pkgs.gnumake
@@ -33,14 +38,19 @@ in {
       pkgs.gnutar
       pkgs.htop
       pkgs.killall
+      pkgs.less
+      pkgs.netcat
       pkgs.ncdu
       pkgs.nix
       pkgs.nodejs
       pkgs.pinentry
+      pkgs.python
+      pkgs.pipenv
       pkgs.ripgrep
       pkgs.rsync
       pkgs.tig
       pkgs.tmux
+      pkgs.tree
       pkgs.vim
       pkgs.wpa_supplicant
       pkgs.xclip
