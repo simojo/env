@@ -85,7 +85,7 @@ in {
           xset s off
           xset s noblank
           xset s noexpose
-          feh --bg-fill /env/imgs/bg/bloom.jpg || hsetroot -solid '#000000'
+          feh --bg-fill /env/imgs/bg/bg.jpg || hsetroot -solid '#000000'
           light -N 1.0
         '';
       };

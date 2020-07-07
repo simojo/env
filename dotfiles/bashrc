@@ -110,7 +110,7 @@ dual_monitors() {
       --auto \
       --output eDP-1 \
       --dpi 90
-    feh --bg-fill /env/imgs/bg/bloom.jpg
+    feh --bg-fill /env/imgs/bg/bg.jpg
     bspc wm -r
     DUAL_MONITORS=false
   else
@@ -132,7 +132,7 @@ dual_monitors() {
       --right-of DP-1 \
       --dpi 140
 
-    feh --bg-fill /env/imgs/bg/bloom.jpg
+    feh --bg-fill /env/imgs/bg/bg.jpg
     bspc wm -r
     DUAL_MONITORS=true
   fi
