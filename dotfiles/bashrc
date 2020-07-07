@@ -20,6 +20,8 @@ export FZF_COMPLETION_OPTS='--select-1'
 export FZF_DEFAULT_OPTS='--color=16 --inline-info'
 export FZF_CTRL_T_OPTS='--select-1'
 
+DUAL_MONITORS=false
+
 ############################################################
 ##########  prompt  ########################################
 ############################################################
@@ -96,6 +98,44 @@ extract() {
   else echo "{invalid-file}"; fi
 }
 
+# enable my dual vert monitors#
+dual_monitors() {
+  if [[ "$DUAL_MONITORS" == "true" ]]; then
+    xrandr \
+      --output DP-1 \
+      --off \
+      --output DP-2 \
+      --off \
+      --output eDP-1 \
+      --auto
+    feh --bg-fill /env/imgs/bg/bloom.jpg
+    bspc wm -r
+    DUAL_MONITORS=false
+  else
+    xrandr \
+      --output eDP-1 \
+      --off \
+      --output DP-1 \
+      --primary \
+      --mode 3840x2160 \
+      -s 3840x2160 \
+      --rate 60.00 \
+      --rotate 'left' \
+      --dpi 140 \
+      --output DP-2 \
+      --mode 3840x2160 \
+      -s 3840x2160 \
+      --rate 60.00 \
+      --rotate 'left' \
+      --right-of DP-1 \
+      --dpi 140
+
+    feh --bg-fill /env/imgs/bg/bloom.jpg
+    bspc wm -r
+    DUAL_MONITORS=true
+  fi
+}
+
 #%%%%%%%%%%%%%%%%%%
 #%%%% Aliases %%%%%
 #%%%%%%%%%%%%%%%%%%
@@ -116,6 +156,46 @@ alias x='clear'
 alias xx='exit'
 alias nrs='sudo nixos-rebuild switch'
 alias ns='nix-shell'
+
+if command -v exa > /dev/null; then
+  # FIXME: waiting on them to implement the following flags,
+  # --no-permissions
+  # --no-user
+  # --no-time
+  # which would get added to `ll` but not `lal`
+
+  alias l="exa --group-directories-first --sort=Name --time-style=iso"
+  alias ls="exa --group-directories-first --sort=Name --time-style=iso"
+  alias la="exa --group-directories-first --sort=Name --time-style=iso --all"
+  # alias ll="exa --group-directories-first --sort=Name --time-style=iso --long"
+  alias ll="exa --group-directories-first --sort=Name --oneline"
+  alias lal="exa --group-directories-first --sort=Name --time-style=iso --all --long"
+
+  alias tree="exa --tree --group-directories-first --sort=Name --git-ignore --ignore-glob=.git"
+  alias treea="exa --tree --group-directories-first --sort=Name --long --all"
+  alias tree1="exa --tree --group-directories-first --sort=Name --all --level=1"
+  alias tree2="exa --tree --group-directories-first --sort=Name --all --level=2"
+  alias tree3="exa --tree --group-directories-first --sort=Name --all --level=3"
+else
+  alias ls="ls -GhF --color=always"
+  alias ll="l -log"
+  alias l="ls"
+  alias la="l -A"
+  alias l.="l -pd .*"
+  alias lal="ll -A"
+  alias l.l="ll -d .*"
+
+  alias tree="tree --dirsfirst --noreport -ACF"
+  alias treed="tree -d"
+  alias tree1="tree -d -L 1"
+  alias tree2="tree -d -L 2"
+  alias treea="tree -a -I '.git'"
+fi
+
+export BAT_THEME="1337"
+alias cat='bat'
+alias find="fd"
+alias grep="rg"
 
 # tmux #
 alias tl='tmux list-sessions'

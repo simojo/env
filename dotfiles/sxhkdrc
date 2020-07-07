@@ -13,7 +13,7 @@ super + backslash
 
 # launch web browser in private mode
 super + shift + backslash
-  firefox --private-window
+  chromium --incognito
 
 # launch program launcher
 super + Tab
