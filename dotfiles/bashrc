@@ -158,12 +158,6 @@ alias nrs='sudo nixos-rebuild switch'
 alias ns='nix-shell'
 
 if command -v exa > /dev/null; then
-  # FIXME: waiting on them to implement the following flags,
-  # --no-permissions
-  # --no-user
-  # --no-time
-  # which would get added to `ll` but not `lal`
-
   alias l="exa --group-directories-first --sort=Name --time-style=iso"
   alias ls="exa --group-directories-first --sort=Name --time-style=iso"
   alias la="exa --group-directories-first --sort=Name --time-style=iso --all"
