@@ -1,8 +1,8 @@
 [colors]
 background = #aaa000000
 background-alt = #2D323D
-foreground = #ced4db
-color1 = #6f798c
+foreground = #909090
+color1 = #121212
 color2 = #a65f69
 color3 = #3b8563
 color4 = #b39669
@@ -11,7 +11,7 @@ color6 = #b9637e
 color8 = #ced4db
 
 [bar/mybar]
-override-redirect = false 
+override-redirect = false
 bottom = false
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -86,13 +86,13 @@ format-full = BAT <label-full>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 
-label-charging-foreground = ${colors.color3}
+label-charging-foreground = ${colors.foreground}
 label-discharging-foreground = ${colors.foreground}
-label-full-foreground = ${colors.color3}
+label-full-foreground = ${colors.foreground}
 
-format-charging-foreground = ${colors.color2}
-format-discharging-foreground = ${colors.color2}
-format-full-foreground = ${colors.color2}
+format-charging-foreground = ${colors.color1}
+format-discharging-foreground = ${colors.color1}
+format-full-foreground = ${colors.color1}
 
 format-charging-padding = 1
 format-discharging-padding = 1
@@ -108,7 +108,7 @@ accumulate-stats = true
 format-connected = WIFI <label-connected>
 label-connected = %essid%
 format-connected-padding = 1
-format-connected-foreground = ${colors.color4}
+format-connected-foreground = ${colors.color1}
 label-connected-foreground = ${colors.foreground}
 
 [module/alsa]
@@ -118,7 +118,7 @@ format-volume = VOL <label-volume>
 label-muted = muted
 label-muted-padding = 1
 label-volume-foreground = ${colors.foreground}
-format-volume-foreground = ${colors.color5}
+format-volume-foreground = ${colors.color1}
 format-volume-padding = 1
 
 [module/backlight]
@@ -132,5 +132,5 @@ interval = .5
 
 format = BL <label>
 format-padding = 1
-format-foreground = ${colors.color6}
+format-foreground = ${colors.color1}
 label-foreground = ${colors.foreground}
