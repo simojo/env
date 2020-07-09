@@ -6,7 +6,7 @@
       "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "hdokiejnpimakedhajhdlcegeplioahd" # LastPass
-      "jjlfmldcaheghnjjpgpoadjfppefjmkj" # Marsala theme
+      "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
     ];
     extraOpts = let

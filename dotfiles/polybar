@@ -1,34 +1,29 @@
 [colors]
 background = #aaa000000
-background-alt = #2D323D
-foreground = #909090
+background-alt = #aa000000
+foreground = #999999
 color1 = #121212
-color2 = #a65f69
-color3 = #3b8563
-color4 = #b39669
-color5 = #487799
-color6 = #b9637e
-color8 = #ced4db
 
 [bar/mybar]
 override-redirect = false
 bottom = false
 background = ${colors.background}
-foreground = ${colors.foreground}
+foreground = ${colors.color1}
 fixed-center = true
 width = 100%
 height = 20
 radius = 0.0
-line-size = 0
+line-size = 2
 line-color = #f00
 offset-y = 0
 offset-x = 0
+separator = |
 
 font-0 = Hack:style=Regular:pixelsize=11;2
 
 modules-right = network alsa backlight battery date
 modules-center =
-modules-left =  bspwm
+modules-left = bspwm
 ; Position of the system tray window
 tray-position = left
 tray-maxsize = 15
@@ -42,8 +37,8 @@ tray-padding = 1
 type = internal/bspwm
 format = <label-state> <label-mode>
 
-label-empty-foreground = ${colors.color8}
-label-focused-background = ${colors.background-alt}
+label-empty-foreground = ${colors.foreground}
+label-focused-background = ${colors.foreground}
 label-focused = %name%
 label-focused-padding = 1
 label-occupied = %name%
@@ -57,7 +52,7 @@ label-floating = F
 label-pseudotiled = P
 
 [settings]
-label-focused-underline= ${colors.background}
+label-focused-underline= ${colors.color1}
 throttle-output = 5
 throttle-output-for = 10
 throttle-input-for = 30
@@ -67,12 +62,13 @@ pseudo-transparency = true
 [module/date]
 type = internal/date
 time = %H:%M:%S
-format = TIME <label>
+date = %b %d
+format = <label>
 #format-background = #55ff3399
-format-foreground = ${colors.color1} 
+format-foreground = ${colors.color1}
 format-padding = 1
-label = %time%
-label-foreground = ${colors.foreground} 
+label = %date% %time%
+label-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -80,9 +76,9 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = BAT <label-charging>
-format-discharging = BAT <label-discharging>
-format-full = BAT <label-full>
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 
@@ -105,7 +101,7 @@ interval = 3.0
 unknown-as-up = true
 accumulate-stats = true
 
-format-connected = WIFI <label-connected>
+format-connected = <label-connected>
 label-connected = %essid%
 format-connected-padding = 1
 format-connected-foreground = ${colors.color1}
@@ -114,7 +110,7 @@ label-connected-foreground = ${colors.foreground}
 [module/alsa]
 type = internal/alsa
 
-format-volume = VOL <label-volume>
+format-volume = <label-volume>
 label-muted = muted
 label-muted-padding = 1
 label-volume-foreground = ${colors.foreground}
@@ -129,8 +125,7 @@ scroll-down = light -U 5
 label = %output%%
 click-left = "light -S 100%"
 interval = .5
-
-format = BL <label>
+format = <label>
 format-padding = 1
 format-foreground = ${colors.color1}
 label-foreground = ${colors.foreground}
