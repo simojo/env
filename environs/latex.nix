@@ -1,4 +1,3 @@
-
 let
   inherit (import <nixpkgs> {}) fetchFromGitHub;
   nixpkgs = fetchFromGitHub {
