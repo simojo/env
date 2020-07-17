@@ -17,6 +17,7 @@ in {
       pkgs.alacritty
       pkgs.bemenu
       pkgs.chromium
+      pkgs.discord
       pkgs.ffmpeg
       pkgs.firefox
       pkgs.feh
@@ -102,29 +103,9 @@ in {
       };
       xkbOptions = "caps:escape";
       xrandrHeads = [
-        # {
-        #   output = "eDP-1";
-        #   primary = true;
-        #   monitorConfig = ''
-        #     DisplaySize 1920 1080
-        #   '';
-        # }
-        # {
-        #   output = "DP-1";
-        #   monitorConfig = ''
-        #     DisplaySize 3840 2160
-        #     Option "Rotate" "left"
-        #   '';
-        # }
-        # {
-        #   output = "DP-2";
-        #   monitorConfig = ''
-        #     DisplaySize 3840 2160
-        #     Option "Rotate" "left"
-        #   '';
-        # }
       ];
     };
+    picom.enable = true;
   };
 
   security = {

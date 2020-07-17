@@ -43,33 +43,32 @@ font:
     x: 0
     y: 0
 
+# Colors (Jellybeans)
 colors:
-  # Default colors
-  primary:
-    background: '#000000'
-    foreground: '#c1cad4'
-
-  # Normal colors
-  normal:
-    black:   '#000000'
-    red:     '#a54242'
-    green:   '#6DA57F'
-    yellow:  '#de935f'
-    blue:    '#5f819d'
-    magenta: '#8c5c6e'
-    cyan:    '#5e8d87'
-    white:   '#6f798c'
-
-  # Bright colors
   bright:
-    black:   '#373b41'
-    red:     '#cc6666'
-    green:   '#9AC398'
-    yellow:  '#f0c674'
-    blue:    '#81a2be'
-    magenta: '#b08b9d'
-    cyan:    '#8abeb7'
-    white:   '#c1cad4'
+    black: '#666666'
+    blue: '#b1d8f6'
+    cyan: '#1ab2a8'
+    green: '#bddeab'
+    magenta: '#fbdaff'
+    red: '#ffa1a1'
+    white: '#ffffff'
+    yellow: '#ffdca0'
+  cursor:
+    cursor: '#ffa560'
+    text: '#ffffff'
+  normal:
+    black: '#121212'
+    blue: '#97bedc'
+    cyan: '#00988e'
+    green: '#94b979'
+    magenta: '#e1c0fa'
+    red: '#e27373'
+    white: '#dedede'
+    yellow: '#ffba7b'
+  primary:
+    background: '#121212'
+    foreground: '#dedede'
 
 background_opacity: 1.00
 
