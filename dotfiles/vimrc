@@ -268,6 +268,10 @@ vmap <C-j> zR:m'>+1<CR>gv=gv
 vmap <C-k> zR:m'<-2<CR>gv=gv
 vnoremap > ><cr>gv
 vnoremap < <<cr>gv
+nmap <Up> <nop>
+nmap <Down> <nop>
+nmap <Left> <nop>
+nmap <Right> <nop>
 
 " Colorscheme
 set notermguicolors
