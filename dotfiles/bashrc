@@ -158,6 +158,8 @@ alias x='clear'
 alias xx='exit'
 alias nrs='sudo nixos-rebuild switch'
 alias ns='nix-shell'
+alias cds='cd /_scratch'
+alias cdp='cd /_projects'
 
 if command -v exa > /dev/null; then
   alias l="exa --group-directories-first --sort=Name --time-style=iso"
