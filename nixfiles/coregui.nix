@@ -21,13 +21,18 @@ in {
       pkgs.ffmpeg
       pkgs.firefox
       pkgs.feh
+      pkgs.ffmpeg
       pkgs.hsetroot
+      pkgs.lmms
       pkgs.minecraft
       pkgs.neofetch
       pkgs.scrot
+      pkgs.shotcut
       pkgs.slock
       pkgs.xorg.xmodmap
       pkgs.xorg.xset
+      pkgs.youtube-dl
+      pkgs.zoom-us
     ];
     etc."sxhkdrc".text = builtins.readFile /env/dotfiles/sxhkdrc;
     etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty;
@@ -64,8 +69,8 @@ in {
     xserver = {
       libinput.enable = true;
       libinput.naturalScrolling = false;
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 20;
+      autoRepeatDelay = 300;
+      autoRepeatInterval = 30;
       desktopManager = {
         xfce = {
           enable = false;

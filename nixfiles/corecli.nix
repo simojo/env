@@ -37,6 +37,7 @@ in {
       pkgs.gnused
       pkgs.gnutar
       pkgs.htop
+      pkgs.jdk11
       pkgs.killall
       pkgs.less
       pkgs.netcat
