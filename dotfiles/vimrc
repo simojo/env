@@ -230,7 +230,7 @@ set number
 set ruler
 
 " Whitespace
-set wrap
+set nowrap
 
 " Cursor motion
 set scrolloff=5
@@ -272,6 +272,9 @@ nmap <Up> <nop>
 nmap <Down> <nop>
 nmap <Left> <nop>
 nmap <Right> <nop>
+noremap h 2zh
+noremap l 2zl
+noremap Y y$
 
 " Colorscheme
 set notermguicolors
