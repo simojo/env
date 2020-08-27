@@ -17,14 +17,12 @@ in {
       pkgs.alacritty
       pkgs.bemenu
       pkgs.chromium
-      pkgs.discord
       pkgs.ffmpeg
       pkgs.firefox
       pkgs.feh
       pkgs.ffmpeg
       pkgs.hsetroot
       pkgs.lmms
-      pkgs.minecraft
       pkgs.neofetch
       pkgs.scrot
       pkgs.shotcut
