@@ -37,7 +37,6 @@ in {
       pkgs.gnused
       pkgs.gnutar
       pkgs.htop
-      pkgs.jdk11
       pkgs.killall
       pkgs.less
       pkgs.netcat
@@ -45,8 +44,6 @@ in {
       pkgs.nix
       pkgs.nodejs
       pkgs.pinentry
-      pkgs.python
-      pkgs.pipenv
       pkgs.ripgrep
       pkgs.rsync
       pkgs.tig

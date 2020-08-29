@@ -22,6 +22,7 @@ in {
       pkgs.feh
       pkgs.ffmpeg
       pkgs.hsetroot
+      pkgs.libvirt
       pkgs.lmms
       pkgs.neofetch
       pkgs.scrot
