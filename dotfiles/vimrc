@@ -272,8 +272,8 @@ nmap <Up> <nop>
 nmap <Down> <nop>
 nmap <Left> <nop>
 nmap <Right> <nop>
-noremap h 2zh
-noremap l 2zl
+noremap h gT
+noremap l gt
 noremap Y y$
 
 " Colorscheme

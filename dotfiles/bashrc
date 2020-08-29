@@ -204,3 +204,8 @@ alias tk='tmux kill-session -t'
 
 # xclip #
 alias xclip='xclip -selection "clipboard"'
+
+# vim #
+alias vim='vim -p'
+alias vi='vim'
+alias vmi='vim'
