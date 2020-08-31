@@ -102,6 +102,9 @@
           { "url" = "https://docs.oracle.com/cd/E26505_01/html/E37384/"; name = "zfs-oracle"; }
           { "url" = "https://old.reddit.com/r/zfs/"; name = "zfs-reddit"; }
         ]; }
+        { "name" = "Git"; "children" = [
+          { "url" = "https://docs.github.com/en/enterprise/2.15/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"; name = "ssh-key-gen"; }
+        ]; }
       ];
 
     };
