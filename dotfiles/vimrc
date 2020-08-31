@@ -230,7 +230,7 @@ set number
 set ruler
 
 " Whitespace
-set nowrap
+set wrap
 
 " Cursor motion
 set scrolloff=5
