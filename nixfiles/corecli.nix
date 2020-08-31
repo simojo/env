@@ -47,6 +47,7 @@ in {
       pkgs.ripgrep
       pkgs.rsync
       pkgs.tig
+      pkgs.tldr
       pkgs.tmux
       pkgs.tree
       pkgs.vim
