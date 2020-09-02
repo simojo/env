@@ -125,11 +125,8 @@ nmap <silent> <Leader>l <Plug>(easymotion-bd-w)
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '~25%' }
-nmap <tab> :call Fallback()<cr>
+nmap <tab> :Files<cr>
 nmap <Leader><tab> :Rg<cr>
-function! Fallback()
-  execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files'
-endfunction
 
 " markdown tweaks to improve folding in large documents with nested headers.
 " also, disable some absurd nonsensical defaults that that plugin ships with.
