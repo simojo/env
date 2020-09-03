@@ -42,10 +42,16 @@
       # bookmarks management
       # when needing to browse through, use Ctrl+Shift+O.
       # otherwise, these are here for auto-complete purposes.
-      "BookmarkBarEnabled" = false;
+      "BookmarkBarEnabled" = true;
       "ShowAppsShortcutInBookmarkBar" = false;
       "ManagedBookmarks" = [
         { "toplevel_name" = "Managed Bookmarks"; }
+        { "name" = "Daily"; "children" = [
+          { "url" = "https://calendar.google.com/calendar/r"; name = "Calendar"; }
+          { "url" = "https://gmail.com/"; name = "Mail"; }
+          { "url" = "https://app.slack.com/"; name = "Slack"; }
+          { "url" = "https://allegheny.infrastructure.com"; name = "Infra"; }
+        ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
           { "url" = "https://youtube.com"; name = "YouTube"; }

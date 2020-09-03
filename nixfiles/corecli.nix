@@ -25,6 +25,7 @@ in {
       pkgs.bash
       pkgs.bat
       pkgs.curl
+      pkgs.docker
       pkgs.elixir
       pkgs.entr
       pkgs.exa
