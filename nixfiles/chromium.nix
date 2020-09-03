@@ -50,7 +50,7 @@
           { "url" = "https://calendar.google.com/calendar/r"; name = "Calendar"; }
           { "url" = "https://gmail.com/"; name = "Mail"; }
           { "url" = "https://app.slack.com/"; name = "Slack"; }
-          { "url" = "https://allegheny.infrastructure.com"; name = "Infra"; }
+          { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
           { "url" = "https://github.com/"; name = "GitHub"; }
         ]; }
