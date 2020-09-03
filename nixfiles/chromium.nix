@@ -53,6 +53,7 @@
           { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
           { "url" = "https://github.com/"; name = "GitHub"; }
+          { "url" = "https://allegheny.zoom.us/"; name = "Allegheny Zoom"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
