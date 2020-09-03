@@ -52,6 +52,7 @@
           { "url" = "https://app.slack.com/"; name = "Slack"; }
           { "url" = "https://allegheny.infrastructure.com"; name = "Infra"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
+          { "url" = "https://github.com/"; name = "GitHub"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
@@ -66,6 +67,7 @@
           { "url" = "https://linkedin.com/"; name = "LinkedIn"; }
           { "url" = "https://amazon.com/"; name = "Amazon"; }
           { "url" = "https://newegg.com/"; name = "Newegg"; }
+          { "url" = "https://ebay.com/"; name = "eBay"; }
         ]; }
         { "name" = "Nix"; "children" = [
           { "url" = "https://nixos.org/nix/manual/"; name = "nix-manual"; }
