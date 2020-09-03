@@ -51,6 +51,7 @@
           { "url" = "https://gmail.com/"; name = "Mail"; }
           { "url" = "https://app.slack.com/"; name = "Slack"; }
           { "url" = "https://allegheny.infrastructure.com"; name = "Infra"; }
+          { "url" = "https://airtable.com"; name = "Airtable"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
