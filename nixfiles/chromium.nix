@@ -50,10 +50,10 @@
           { "url" = "https://calendar.google.com/calendar/r"; name = "Calendar"; }
           { "url" = "https://gmail.com/"; name = "Mail"; }
           { "url" = "https://app.slack.com/"; name = "Slack"; }
+          { "url" = "jupyter.cs.allegheny.edu"; name = "Jupyter"; }
           { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
-          { "url" = "https://github.com/"; name = "GitHub"; }
-          { "url" = "https://allegheny.zoom.us/"; name = "Allegheny Zoom"; }
+          { "url" = "https://github.com/simojo"; name = "GitHub"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
