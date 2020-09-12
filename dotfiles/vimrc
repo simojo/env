@@ -240,8 +240,6 @@ set scrolloff=5
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
-nmap j gj
-nmap k gk
 
 " Allow hidden buffers
 set hidden
@@ -263,6 +261,10 @@ map <leader>q gqip
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 
 " Mappings
+map j gj
+map k gk
+map 0 g0
+map $ g$
 nmap J 2<C-E>2j
 nmap K 2<C-Y>2k
 nmap <C-j> zRddp==
