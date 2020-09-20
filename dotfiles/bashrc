@@ -20,7 +20,6 @@ export FZF_COMPLETION_OPTS='--select-1'
 export FZF_DEFAULT_OPTS='--color=16 --inline-info'
 export FZF_CTRL_T_OPTS='--select-1'
 
-DUAL_MONITORS=false
 
 ############################################################
 ##########  prompt  ########################################
@@ -98,6 +97,9 @@ extract() {
   else echo "{invalid-file}"; fi
 }
 
+DUAL_MONITORS=false
+SINGLE_MONITOR=false
+
 # enable my dual vert monitors#
 dual_monitors() {
   if [[ "$DUAL_MONITORS" == "true" ]]; then
@@ -135,6 +137,38 @@ dual_monitors() {
     feh --bg-fill /env/imgs/bg/bg.jpg
     bspc wm -r
     DUAL_MONITORS=true
+  fi
+}
+
+# enable my single pano monitor #
+single_monitor() {
+  if [[ "$SINGLE_MONITOR" == "true" ]]; then
+    xrandr \
+      --output DP-1 \
+      --off \
+      --output DP-2 \
+      --off \
+      --output eDP-1 \
+      --auto \
+      --output eDP-1 \
+      --dpi 90
+    feh --bg-fill /env/imgs/bg/bg.jpg
+    bspc wm -r
+    SINGLE_MONITOR=false
+  else
+    xrandr \
+      --output eDP-1 \
+      --off \
+      --output DP-1 \
+      --primary \
+      --mode 1920x1080 \
+      -s 1920x1080 \
+      --rate 60.00 \
+      --dpi 140 \
+
+    feh --bg-fill /env/imgs/bg/bg.jpg
+    bspc wm -r
+    SINGLE_MONITOR=true
   fi
 }
 
