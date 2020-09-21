@@ -11,3 +11,8 @@
 **Term**: [Alacritty](https://github.com/alacritty/alacritty)  
 **HotKeys**: [sxhkd](https://github.com/baskerville/sxhkd)  
 **Shell**: [bash](https://www.gnu.org/software/bash/)  
+
+### Inspiration
+
+[Jesse Del Greco](https://github.com/delgrecoj)  
+[Colton J. McCurdy](https://github.com/mccurdyc)  
