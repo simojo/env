@@ -155,20 +155,8 @@ au FileType mkd,markdown,tex,html,text call litecorrect#init()
 au FileType mkd,markdown,tex,html,text nmap \ :Goyo<CR>:Limelight<CR>
 nmap <silent> <Leader>sc :setlocal spell!<cr>
 
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-" Use tab and shift-tab to navigate
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 
 " ;d to expand the error details (q to exit).
 " ;n to jump to the next error location.
