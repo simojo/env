@@ -89,7 +89,7 @@ in {
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" "video" ];
+        extraGroups = [ "wheel" "audio" "video" "libvirt" ];
       };
     };
   };

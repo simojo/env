@@ -44,7 +44,9 @@ in {
       pkgs.ncdu
       pkgs.nix
       pkgs.nodejs
+      pkgs.nmap
       pkgs.pinentry
+      pkgs.python38 # FIXME: nix shell
       pkgs.ripgrep
       pkgs.rsync
       pkgs.tig

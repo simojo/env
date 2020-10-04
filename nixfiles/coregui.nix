@@ -12,7 +12,6 @@ in {
 
   environment = {
     systemPackages = [
-      pkgs.dunst
       pkgs.polybar
       pkgs.alacritty
       pkgs.bemenu
@@ -20,7 +19,6 @@ in {
       pkgs.ffmpeg
       pkgs.firefox
       pkgs.feh
-      pkgs.ffmpeg
       pkgs.hsetroot
       pkgs.libvirt
       pkgs.lmms
