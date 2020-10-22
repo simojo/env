@@ -1,4 +1,7 @@
 # .bashrc #
+# defaults apps #
+export EDITOR='vim'
+export VISUAL='vim'
 
 # Source global definitions #
 if [ -f /etc/bashrc ]; then

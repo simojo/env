@@ -17,7 +17,6 @@ in {
       pkgs.bemenu
       pkgs.chromium
       pkgs.ffmpeg
-      pkgs.firefox
       pkgs.feh
       pkgs.hsetroot
       pkgs.libvirt
