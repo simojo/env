@@ -16,6 +16,7 @@ in {
       pkgs.alacritty
       pkgs.bemenu
       pkgs.chromium
+      pkgs.discord
       pkgs.ffmpeg
       pkgs.feh
       pkgs.hsetroot
