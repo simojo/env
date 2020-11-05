@@ -36,7 +36,9 @@ iab <%# <%# %><esc>F%hi
 " indentLine: displays thin vertical lines 
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char='┊'
-autocmd Filetype json let g:indentLine_enabled = 0
+" autocmd Filetype json let g:indentLine_enabled = 0
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
 
 " abbreviations and plugins to automatically complete closing syntaxes.
 " generally a good idea to let Vim do the repetitive typing when possible.

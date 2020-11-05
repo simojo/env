@@ -1,4 +1,5 @@
 # .bashrc #
+
 # defaults apps #
 export EDITOR='vim'
 export VISUAL='vim'
@@ -41,13 +42,13 @@ prompt_command() {
   fi
 
   if [[ $RETC == 0 ]]; then
-    RETC=""
+    RETC="\[\e[90m-\]"
   else
-    RETC="$RETC "
+    RETC="\[\e[31m$RETC\]"
   fi
 
   # prompt showing the user, hostname, cwd, and return codes.
-  PS1="\[\e[90m\]\u@\h \e[1m\e[32m\w\e[36m$NS\e[39m$RETC\]\e[90m\]\n- \e[0m\]"
+  PS1="\[\e[90m\u\]@\[\h\e[1m\e[32m \w\e[36m\]$NS$RETC\[\e[90m\e[0m \]"
 
   # append each line to history individually.
   history -a
@@ -227,10 +228,18 @@ else
   alias treea="tree -a -I '.git'"
 fi
 
-export BAT_THEME="1337"
-alias cat='bat'
+if command -v bat > /dev/null; then
+  export BAT_THEME="1337"
+  alias cat='bat'
+fi
+
+if command -v fd > /dev/null; then
 alias find="fd"
+fi
+
+if command -v rg > /dev/null; then
 alias grep="rg"
+fi
 
 # tmux #
 alias tl='tmux list-sessions'
