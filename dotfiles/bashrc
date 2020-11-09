@@ -17,12 +17,14 @@ fi
 export PATH
 
 # so lean on FZF for better completion #
-source "$(fzf-share)/completion.bash"
-source "$(fzf-share)/key-bindings.bash"
-export FZF_COMPLETION_TRIGGER=''
-export FZF_COMPLETION_OPTS='--select-1'
-export FZF_DEFAULT_OPTS='--color=16 --inline-info'
-export FZF_CTRL_T_OPTS='--select-1'
+if command -v > /dev/null; then
+  source "$(fzf-share)/completion.bash"
+  source "$(fzf-share)/key-bindings.bash"
+  export FZF_COMPLETION_TRIGGER=''
+  export FZF_COMPLETION_OPTS='--select-1'
+  export FZF_DEFAULT_OPTS='--color=16 --inline-info'
+  export FZF_CTRL_T_OPTS='--select-1'
+fi
 
 
 ############################################################

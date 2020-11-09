@@ -109,7 +109,6 @@ label-connected-foreground = ${colors.foreground}
 
 [module/alsa]
 type = internal/alsa
-
 format-volume = <label-volume>
 label-muted = muted
 label-muted-padding = 1
