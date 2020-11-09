@@ -17,7 +17,7 @@ fi
 export PATH
 
 # so lean on FZF for better completion #
-if command -v > /dev/null; then
+if command -v fzf > /dev/null; then
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
   export FZF_COMPLETION_TRIGGER=''
