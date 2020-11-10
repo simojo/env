@@ -3,6 +3,9 @@
 let mapleader = ';'
 let g:mapleader = ';'
 
+" set working dir
+cd %:p:h
+
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 "%%%%%%%%%%%  Plugins  %%%%%%%%%%%%%%%%%%%
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,8 +130,16 @@ nmap <silent> <Leader>l <Plug>(easymotion-bd-w)
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '~25%' }
+command! -bang -nargs=? -complete=dir Files call 
+      \ fzf#vim#files(<q-args>, {'sink': 'tabedit'}, <bang>0)
+" FIXME: Rg pipes in q-args when I need it to access the file name for `sink`
+" in order to tabedit. Possibly create a function for this
+" command! -bang -nargs=* Rg call
+"       \ fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+"       \ fzf#vim#with_preview({'sink': 'tabedit' + split(<q-args> , ':')[0]}), <bang>0)
 nmap <tab> :Files<cr>
 nmap <Leader><tab> :Rg<cr>
+
 
 " markdown tweaks to improve folding in large documents with nested headers.
 " also, disable some absurd nonsensical defaults that that plugin ships with.
