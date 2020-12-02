@@ -184,6 +184,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '▸'
 
 Plug 'elixir-editors/vim-elixir'
+Plug 'zah/nim.vim'
 
 call plug#end()
 
