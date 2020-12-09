@@ -1,9 +1,5 @@
 # .bashrc #
 
-# defaults apps #
-export EDITOR='vim'
-export VISUAL='vim'
-
 # Source global definitions #
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
@@ -16,7 +12,17 @@ then
 fi
 export PATH
 
-# so lean on FZF for better completion #
+#%%%%%%%%%%%%%%%%
+#%%% exports %%%%
+#%%%%%%%%%%%%%%%%
+
+# defaults #
+export EDITOR='vim'
+export VISUAL='vim'
+export BROWSER='chromium'
+export TERMINAL='alacritty'
+
+# lean on FZF for better completion #
 if command -v fzf > /dev/null; then
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
@@ -26,10 +32,9 @@ if command -v fzf > /dev/null; then
   export FZF_CTRL_T_OPTS='--select-1'
 fi
 
-
-############################################################
-##########  prompt  ########################################
-############################################################
+#%%%%%%%%%%%%%%%
+#%%% prompt %%%%
+#%%%%%%%%%%%%%%%
 
 prompt_command() {
   # store last return code, as subsequent commands will overwrite it.
@@ -103,79 +108,59 @@ extract() {
   else echo "{invalid-file}"; fi
 }
 
-DUAL_MONITORS=false
-SINGLE_MONITOR=false
-
-# enable my dual vert monitors#
-dual_monitors() {
-  if [[ "$DUAL_MONITORS" == "true" ]]; then
-    xrandr \
-      --output DP-1 \
-      --off \
-      --output DP-2 \
-      --off \
-      --output eDP-1 \
-      --auto \
-      --output eDP-1 \
-      --dpi 90
-    feh --bg-fill /env/imgs/bg/bg.jpg
-    bspc wm -r
-    DUAL_MONITORS=false
-  else
-    xrandr \
-      --output eDP-1 \
-      --off \
-      --output DP-1 \
-      --primary \
-      --mode 3840x2160 \
-      -s 3840x2160 \
-      --rate 60.00 \
-      --rotate 'left' \
-      --dpi 140 \
-      --output DP-2 \
-      --mode 3840x2160 \
-      -s 3840x2160 \
-      --rate 60.00 \
-      --rotate 'left' \
-      --right-of DP-1 \
-      --dpi 140
-
-    feh --bg-fill /env/imgs/bg/bg.jpg
-    bspc wm -r
-    DUAL_MONITORS=true
-  fi
+# restart window manager #
+wm_restart() {
+  feh --bg-fill /env/imgs/bg/bg.jpg
+  bspc wm -r
 }
 
-# enable my single pano monitor #
-single_monitor() {
-  if [[ "$SINGLE_MONITOR" == "true" ]]; then
-    xrandr \
-      --output DP-1 \
-      --off \
-      --output DP-2 \
-      --off \
-      --output eDP-1 \
-      --auto \
-      --output eDP-1 \
-      --dpi 90
-    feh --bg-fill /env/imgs/bg/bg.jpg
-    bspc wm -r
-    SINGLE_MONITOR=false
-  else
-    xrandr \
-      --output eDP-1 \
-      --off \
-      --output DP-1 \
-      --primary \
-      --mode 1920x1080 \
-      -s 1920x1080 \
-      --rate 60.00 \
-      --dpi 140 \
+# FIXME: bspwm doesn't enjoy managing desktops after changing monitor outputs
+# https://linuxconfig.org/how-to-configure-your-monitors-with-xrandr-in-linux
+# enable only the default monitor #
+default_monitor() {
+  xrandr \
+    --output DP-1 \
+    --off \
+    --output DP-2 \
+    --off \
+    --output eDP-1 \
+    --auto \
+    --output eDP-1 \
+    --dpi 100
+  wm_restart
+}
 
-    feh --bg-fill /env/imgs/bg/bg.jpg
-    bspc wm -r
-    SINGLE_MONITOR=true
-  fi
+# enable the dual vert monitors#
+dual_monitors() {
+  xrandr \
+    --output eDP-1 \
+    --off \
+    --output DP-1 \
+    --primary \
+    --mode 3840x2160 \
+    --rate 60.00 \
+    --rotate 'left' \
+    --dpi 140 \
+    --output DP-2 \
+    --mode 3840x2160 \
+    --rate 60.00 \
+    --rotate 'left' \
+    --right-of DP-1 \
+    --dpi 140
+  wm_restart
+}
+
+# enable the single panoramic monitor #
+single_monitor() {
+  xrandr \
+    --output eDP-1 \
+    --off \
+    --output DP-1 \
+    --primary \
+    --mode 1920x1080 \
+    --rate 60.00 \
+    --dpi 140 \
+  wm_restart
 }
 
 #%%%%%%%%%%%%%%%%%%

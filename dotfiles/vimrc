@@ -185,6 +185,7 @@ let g:ale_sign_warning = '▸'
 
 Plug 'elixir-editors/vim-elixir'
 Plug 'zah/nim.vim'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
