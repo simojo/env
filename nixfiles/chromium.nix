@@ -49,9 +49,10 @@
         { "name" = "Daily"; "children" = [
           { "url" = "https://calendar.google.com/calendar/r"; name = "Calendar"; }
           { "url" = "https://gmail.com/"; name = "Mail"; }
+          { "url" = "drive.google.com/drive/u/0/my-drive"; name = "Drive"; }
+          { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
           { "url" = "https://app.slack.com/"; name = "Slack"; }
           { "url" = "jupyter.cs.allegheny.edu"; name = "Jupyter"; }
-          { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
           { "url" = "https://github.com/simojo"; name = "GitHub"; }
         ]; }

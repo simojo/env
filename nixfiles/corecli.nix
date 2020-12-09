@@ -26,11 +26,13 @@ in {
       pkgs.bat
       pkgs.curl
       pkgs.docker
+      pkgs.eidolon
       pkgs.elixir
       pkgs.entr
       pkgs.exa
-      pkgs.fzf
       pkgs.fd
+      pkgs.file
+      pkgs.fzf
       pkgs.git
       pkgs.gnugrep
       pkgs.gnumake
@@ -40,19 +42,24 @@ in {
       pkgs.htop
       pkgs.killall
       pkgs.less
-      pkgs.netcat
       pkgs.ncdu
+      pkgs.netcat
+      pkgs.nim
       pkgs.nix
-      pkgs.nodejs
       pkgs.nmap
+      pkgs.nodejs
+      pkgs.objconv
+      pkgs.openvpn
+      pkgs.pandoc
       pkgs.pinentry
-      pkgs.python38 # FIXME: nix shell
       pkgs.ripgrep
       pkgs.rsync
+      pkgs.rustup
       pkgs.tig
       pkgs.tldr
       pkgs.tmux
       pkgs.tree
+      pkgs.unzip
       pkgs.vim
       pkgs.wpa_supplicant
       pkgs.xclip

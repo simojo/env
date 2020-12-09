@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-
-in {
+{
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
       ./coregui.nix
@@ -89,14 +87,14 @@ in {
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" "video" "libvirt" ];
+        extraGroups = [ "wheel" "audio" "video" "libvirtd" ];
       };
     };
   };
 
+  virtualisation.libvirtd.enable = true;
+
   hardware.bluetooth.enable = true;
 
-  system.stateVersion = "20.03";
-
+  system.stateVersion = "20.09";
 }
-

@@ -12,24 +12,26 @@ in {
 
   environment = {
     systemPackages = [
-      pkgs.polybar
       pkgs.alacritty
       pkgs.bemenu
+      pkgs.cairo
+      pkgs.cairomm
       pkgs.chromium
-      pkgs.discord
-      pkgs.ffmpeg
       pkgs.feh
+      pkgs.ffmpeg
+      pkgs.guile-cairo
       pkgs.hsetroot
+      pkgs.libguestfs
       pkgs.libvirt
       pkgs.lmms
       pkgs.neofetch
+      pkgs.polybar
       pkgs.scrot
       pkgs.shotcut
       pkgs.slock
+      pkgs.virt-manager
       pkgs.xorg.xmodmap
       pkgs.xorg.xset
-      pkgs.youtube-dl
-      pkgs.zoom-us
     ];
     etc."sxhkdrc".text = builtins.readFile /env/dotfiles/sxhkdrc;
     etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty;
@@ -89,7 +91,6 @@ in {
           xset s noblank
           xset s noexpose
           feh --bg-fill /env/imgs/bg/bg.jpg || hsetroot -solid '#000000'
-          hsetroot -solid '#000000'
           light -N 1.0
         '';
       };
