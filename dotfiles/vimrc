@@ -48,7 +48,7 @@ iab <% <% %><esc>F%hi
 iab <%= <%= %><esc>F%hi
 iab <%# <%# %><esc>F%hi
 
-" indentLine: displays thin vertical lines 
+" indentLine: displays thin vertical lines
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char='┊'
 " autocmd Filetype json let g:indentLine_enabled = 0
@@ -142,7 +142,7 @@ nmap <silent> <Leader>l <Plug>(easymotion-bd-w)
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '~25%' }
-command! -bang -nargs=? -complete=dir Files call 
+command! -bang -nargs=? -complete=dir Files call
       \ fzf#vim#files(<q-args>, {'sink': 'tabedit'}, <bang>0)
 " FIXME: Rg pipes in q-args when I need it to access the file name for `sink`
 " in order to tabedit. Possibly create a function for this
@@ -230,7 +230,6 @@ set hlsearch incsearch smartcase infercase ignorecase wildmenu
 set list listchars=tab:\ \ ,trail:␣,extends:»,precedes:«,nbsp:•
 set autoindent smartindent copyindent shiftround smarttab
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-" FIXME: shiftwidth always changes to 4 in python and rust
 
 " Don't try to be vi compatible
 set nocompatible
