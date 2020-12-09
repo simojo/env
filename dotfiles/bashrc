@@ -114,7 +114,13 @@ wm_restart() {
   bspc wm -r
 }
 
-# FIXME: bspwm doesn't enjoy managing desktops after changing monitor outputs
+# remove monitor from bspwm #
+remove_monitor() {
+  if [[ $(xrandr --listactivemonitors) == *"$1"* ]]; then
+    bspc monitor $1 -r
+  fi
+}
+
 # https://linuxconfig.org/how-to-configure-your-monitors-with-xrandr-in-linux
 # enable only the default monitor #
 default_monitor() {
@@ -126,7 +132,10 @@ default_monitor() {
     --output eDP-1 \
     --auto \
     --output eDP-1 \
-    --dpi 100
+    --primary \
+    --dpi 90
+  remove_monitor DP-1
+  remove_monitor DP-2
   wm_restart
 }
 
@@ -140,13 +149,14 @@ dual_monitors() {
     --mode 3840x2160 \
     --rate 60.00 \
     --rotate 'left' \
-    --dpi 140 \
+    --dpi 120 \
     --output DP-2 \
     --mode 3840x2160 \
     --rate 60.00 \
     --rotate 'left' \
     --right-of DP-1 \
-    --dpi 140
+    --dpi 120
+  remove_monitor eDP-1
   wm_restart
 }
 
@@ -159,7 +169,8 @@ single_monitor() {
     --primary \
     --mode 1920x1080 \
     --rate 60.00 \
-    --dpi 140 \
+    --dpi 120
+  remove_monitor eDP-1
   wm_restart
 }
 
@@ -190,7 +201,6 @@ if command -v exa > /dev/null; then
   alias l="exa --group-directories-first --sort=Name --time-style=iso"
   alias ls="exa --group-directories-first --sort=Name --time-style=iso"
   alias la="exa --group-directories-first --sort=Name --time-style=iso --all"
-  # alias ll="exa --group-directories-first --sort=Name --time-style=iso --long"
   alias ll="exa --group-directories-first --sort=Name --oneline"
   alias lal="exa --group-directories-first --sort=Name --time-style=iso --all --long"
 
@@ -221,11 +231,11 @@ if command -v bat > /dev/null; then
 fi
 
 if command -v fd > /dev/null; then
-alias find="fd"
+  alias find="fd"
 fi
 
 if command -v rg > /dev/null; then
-alias grep="rg"
+  alias grep="rg"
 fi
 
 # tmux #
@@ -242,3 +252,4 @@ alias xclip='xclip -selection "clipboard"'
 alias vim='vim -p'
 alias vi='vim'
 alias vmi='vim'
+alias v='vim'
