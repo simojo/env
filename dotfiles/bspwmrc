@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+#   _
+#  | |
+#  | |__  ___ _ ____      ___ __ ___  _ __ ___
+#  | '_ \/ __| '_ \ \ /\ / / '_ ` _ \| '__/ __|
+#  | |_) \__ \ |_) \ V  V /| | | | | | | | (__
+#  |_.__/|___/ .__/ \_/\_/ |_| |_| |_|_|  \___|
+#            | |
+#            |_|
+
 # does not kickoff sxhkd, as the bspwm Nix derivation does already.
 
 bspc monitor primary -d I II III IV V
