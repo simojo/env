@@ -44,10 +44,6 @@ super + shift + q
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-# FIXME: bspwm styling/tweaks?
-# FIXME: dmenu styling/tweaks?
-# FIXME: dunst-notifications?
-
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
@@ -86,3 +82,15 @@ super + {Left,Down,Up,Right}
 
 control + semicolon
   slock
+
+# https://wiki.linuxquestions.org/wiki/XF86_keyboard_symbols
+
+XF86AudioRaiseVolume
+  amixer set Master 1%+
+
+XF86AudioLowerVolume
+  amixer set Master 1%-
+
+XF86AudioMute
+  amixer set Master toggle
+

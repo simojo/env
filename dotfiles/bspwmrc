@@ -11,7 +11,7 @@
 
 # does not kickoff sxhkd, as the bspwm Nix derivation does already.
 
-bspc monitor primary -d I II III IV V
+bspc monitor primary -d I II III IV V VI VII VIII IX X
 
 bspc config border_width            1
 bspc config window_gap              6
