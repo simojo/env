@@ -54,7 +54,6 @@ in {
       pkgs.pinentry
       pkgs.ripgrep
       pkgs.rsync
-      pkgs.rustup
       pkgs.tig
       pkgs.tldr
       pkgs.tmux
