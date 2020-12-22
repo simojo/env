@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+# enable the dual vert monitors#
+dual_monitors() {
+  xrandr \
+    --output eDP-1 \
+    --off \
+    --output DP-1 \
+    --primary \
+    --mode 3840x2160 \
+    --rate 60.00 \
+    --rotate 'left' \
+    --dpi 120 \
+    --output DP-2 \
+    --mode 3840x2160 \
+    --rate 60.00 \
+    --rotate 'left' \
+    --right-of DP-1 \
+    --dpi 120
+  remove_monitor eDP-1
+  wm_restart
+}

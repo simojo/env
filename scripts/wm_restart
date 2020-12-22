@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# restart window manager #
+wm_restart() {
+  feh --bg-fill /env/imgs/bg/bg.jpg
+  bspc wm -r
+}
+

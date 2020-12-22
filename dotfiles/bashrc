@@ -20,6 +20,8 @@ if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+# Add custom scripts to path #
+PATH = "$PATH:/env/scripts"
 export PATH
 
 # defaults #
@@ -112,73 +114,6 @@ extract() {
       *) echo "{extraction-failed}" ;;
     esac
   else echo "{invalid-file}"; fi
-}
-
-# restart window manager #
-wm_restart() {
-  feh --bg-fill /env/imgs/bg/bg.jpg
-  bspc wm -r
-}
-
-# remove monitor from bspwm #
-remove_monitor() {
-  # NOTE: xrandr --listactivemonitors also looks for existing monitors
-  if [[ $(bspc query -M --names) == *"$1"* ]]; then
-    bspc monitor $1 -r
-  fi
-}
-
-# https://linuxconfig.org/how-to-configure-your-monitors-with-xrandr-in-linux
-# enable only the default monitor #
-default_monitor() {
-  xrandr \
-    --output DP-1 \
-    --off \
-    --output DP-2 \
-    --off \
-    --output eDP-1 \
-    --auto \
-    --output eDP-1 \
-    --primary \
-    --dpi 90
-  remove_monitor DP-1
-  remove_monitor DP-2
-  wm_restart
-}
-
-# enable the dual vert monitors#
-dual_monitors() {
-  xrandr \
-    --output eDP-1 \
-    --off \
-    --output DP-1 \
-    --primary \
-    --mode 3840x2160 \
-    --rate 60.00 \
-    --rotate 'left' \
-    --dpi 120 \
-    --output DP-2 \
-    --mode 3840x2160 \
-    --rate 60.00 \
-    --rotate 'left' \
-    --right-of DP-1 \
-    --dpi 120
-  remove_monitor eDP-1
-  wm_restart
-}
-
-# enable the single panoramic monitor #
-single_monitor() {
-  xrandr \
-    --output eDP-1 \
-    --off \
-    --output DP-1 \
-    --primary \
-    --mode 1920x1080 \
-    --rate 60.00 \
-    --dpi 120
-  remove_monitor eDP-1
-  wm_restart
 }
 
 #%%%%%%%%%%%%%%%%%%

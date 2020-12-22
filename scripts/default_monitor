@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# https://linuxconfig.org/how-to-configure-your-monitors-with-xrandr-in-linux
+# enable only the default monitor #
+
+default_monitor() {
+  xrandr \
+    --output DP-1 \
+    --off \
+    --output DP-2 \
+    --off \
+    --output eDP-1 \
+    --auto \
+    --output eDP-1 \
+    --primary \
+    --dpi 90
+  remove_monitor DP-1
+  remove_monitor DP-2
+  wm_restart
+}
