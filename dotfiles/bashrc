@@ -21,7 +21,7 @@ then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 # Add custom scripts to path #
-PATH = "$PATH:/env/scripts"
+PATH="$PATH:/env/scripts"
 export PATH
 
 # defaults #

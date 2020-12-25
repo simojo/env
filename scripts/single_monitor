@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # enable the single panoramic monitor #
-single_monitor() {
+run() {
   xrandr \
     --output eDP-1 \
     --off \
@@ -13,3 +13,5 @@ single_monitor() {
   remove_monitor eDP-1
   wm_restart
 }
+
+run

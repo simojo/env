@@ -3,7 +3,7 @@
 # https://linuxconfig.org/how-to-configure-your-monitors-with-xrandr-in-linux
 # enable only the default monitor #
 
-default_monitor() {
+run() {
   xrandr \
     --output DP-1 \
     --off \
@@ -18,3 +18,5 @@ default_monitor() {
   remove_monitor DP-2
   wm_restart
 }
+
+run
