@@ -22,6 +22,8 @@ then
 fi
 # Add custom scripts to path #
 PATH="$PATH:/env/scripts"
+# Add cargo binaries to path #
+PATH="$PATH:$HOME/.cargo/bin"
 export PATH
 
 # defaults #
