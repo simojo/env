@@ -2,7 +2,7 @@
 
 # restart window manager #
 run() {
-  feh --bg-fill /env/imgs/bg/bg.jpg
+  feh --bg-fill --no-xinerama /env/imgs/bg/bg.jpg
   bspc wm -r
 }
 
