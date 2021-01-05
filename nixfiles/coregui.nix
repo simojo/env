@@ -14,12 +14,12 @@ in {
     systemPackages = [
       pkgs.alacritty
       pkgs.bemenu
-      pkgs.cairo
-      pkgs.cairomm
-      pkgs.chromium
+      pkgs.unstable.cairo
+      pkgs.unstable.cairomm
+      pkgs.unstable.chromium
       pkgs.feh
       pkgs.ffmpeg
-      pkgs.guile-cairo
+      pkgs.unstable.guile-cairo
       pkgs.hsetroot
       pkgs.libguestfs
       pkgs.libvirt

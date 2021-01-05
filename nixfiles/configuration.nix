@@ -1,4 +1,9 @@
 { config, lib, pkgs, ... }:
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -89,6 +94,14 @@
         isNormalUser = true;
         home = "/home/simon" ;
         extraGroups = [ "wheel" "audio" "video" "libvirtd" ];
+      };
+    };
+  };
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
       };
     };
   };

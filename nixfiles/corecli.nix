@@ -44,10 +44,10 @@ in {
       pkgs.less
       pkgs.ncdu
       pkgs.netcat
-      pkgs.nim
+      pkgs.unstable.nim
       pkgs.nix
       pkgs.nmap
-      pkgs.nodejs
+      pkgs.unstable.nodejs
       pkgs.objconv
       pkgs.openvpn
       pkgs.pandoc
