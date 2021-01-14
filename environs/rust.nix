@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <unstable> {} }:
 
 let
   shellname = "rust";
