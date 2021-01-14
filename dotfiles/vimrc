@@ -375,10 +375,10 @@ hi! link EasyMotionTarget2Second SignifySignChange
 hi! link EasyMotionShade NonText
 
 " distinguish between errors and warnings
-hi ALEWarning ctermfg=11
-hi ALEWarningSign ctermfg=11
-hi ALEStyleWarning ctermfg=11
-hi ALEStyleWarningSign ctermfg=11
-hi ALEInfo ctermfg=11
-hi ALEInfoSign ctermfg=11
+hi ALEWarning ctermbg=none cterm=underline
+hi ALEWarningSign ctermbg=none cterm=underline
+hi ALEStyleWarning ctermbg=none cterm=underline
+hi ALEStyleWarningSign ctermbg=none cterm=underline
+hi ALEInfo ctermbg=none cterm=underline
+hi ALEInfoSign ctermbg=none cterm=underline
 
