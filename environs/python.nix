@@ -1,21 +1,21 @@
 { pkgs ? import <unstable> {} }:
 
 let
-  shellname = "python";
   # NOTE: backup if nix's packaging doesn't work
-  mach-nix = import (
-  builtins.fetchGit {
-      url = "https://github.com/DavHau/mach-nix/";
-      ref = "2.0.0";
-    }
-  );
-  mods = mach-nix.mkPython {
-    python = pkgs.python37;
-    requirements = ''
-      flake8
-      pydocstyle
-    '';
-  };
+  # mach-nix = import (
+  # builtins.fetchGit {
+  #     url = "https://github.com/DavHau/mach-nix/";
+  #     ref = "2.0.0";
+  #   }
+  # );
+  # mods = mach-nix.mkPython {
+  #   python = pkgs.python37;
+  #   requirements = ''
+  #     flake8
+  #     pydocstyle
+  #   '';
+  # };
+  shellname = "python";
   myPython = with pkgs; [
     python38Full
     python38Packages.pylint
@@ -26,13 +26,13 @@ let
     python38Packages.flake8
     python38Packages.pytestcov
     python38Packages.pytest-sugar
-    # python38Packages.neovim
+    # python38Packages.neovim <- doesn't work
     python38Packages.bandit
-    # python38Packages.codacy-coverage
+    # python38Packages.codacy-coverage <- doesn't work
     python38Packages.pydocstyle
-    # python38Packages.radon
-    # python38Packages.xenon
-    # python38Packages.snoop
+    # python38Packages.radon <- doesn't work
+    # python38Packages.xenon <- doesn't work
+    # python38Packages.snoop <- doesn't work
     elixir
   ];
 in
