@@ -53,7 +53,7 @@ font:
     x: 0
     y: 0
 
-# # Colors (Jellybeans)
+# Colors (Jellybeans)
 colors:
   bright:
     black: '#666666'   # 8
@@ -80,7 +80,7 @@ colors:
     background: '#121212'
     foreground: '#dedede'
 
-# Colors (Gruvbox Dark)
+# # Colors (Gruvbox Dark)
 # colors:
 #   bright:
 #     black: '#7f7061'
@@ -110,7 +110,7 @@ colors:
 #     background: '#e6d4a3'
 #     text: '#534a42'
 
-# Colors (Credit: exelotl)
+# # Colors (Credit: exelotl)
 # colors:
 #   bright:
 #     black: '#6c7985'
