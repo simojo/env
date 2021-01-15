@@ -191,9 +191,6 @@ nmap <Leader>N :lprev<cr>
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '▸'
 
-Plug 'elixir-editors/vim-elixir'
-Plug 'zah/nim.vim'
-Plug 'rust-lang/rust.vim'
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
@@ -294,6 +291,19 @@ noremap Y y$
 "%%%%%%%%%  Colorscheme  %%%%%%%%%%
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+" ----------------------------
+" |%%%%%%%%%| Dark  |  Light |
+" ----------------------------
+" | Black   |   0   |   8    |
+" | Red     |   1   |   9    |
+" | Green   |   2   |   10   |
+" | Yellow  |   3   |   11   |
+" | Blue    |   4   |   12   |
+" | Magenta |   5   |   13   |
+" | Cyan    |   6   |   14   |
+" | White   |   7   |   15   |
+" ----------------------------
+
 syntax enable
 set background=dark
 if exists("syntax_on")
@@ -379,7 +389,7 @@ hi! Comment                ctermfg=8     ctermbg=none  cterm=none
 hi! Constant               ctermfg=3     ctermbg=none  cterm=none
 hi! Identifier             ctermfg=14    ctermbg=none  cterm=none
 hi! Statement              ctermfg=2     ctermbg=none  cterm=none
-hi! PreProc                ctermfg=8     ctermbg=none  cterm=none
+hi! PreProc                ctermfg=5     ctermbg=none  cterm=none
 hi! Type                   ctermfg=4     ctermbg=none  cterm=none
 hi! Special                ctermfg=13    ctermbg=none  cterm=none
 hi! Underlined             ctermfg=4     ctermbg=none  cterm=underline
@@ -395,3 +405,32 @@ hi! Function               ctermfg=4     ctermbg=none  cterm=none
 hi! Number                 ctermfg=10     ctermbg=none  cterm=none
 hi! link Operator          Delimiter
 
+
+"%%%%% EasyMotion %%%%%
+hi! EasyMotionTarget             ctermfg=1 ctermbg=none cterm=none
+hi! EasyMotionTarget2First       ctermfg=15 ctermbg=none cterm=none
+hi! EasyMotionTarget2Second      ctermfg=15 ctermbg=none cterm=none
+hi! link EasyMotionShade NonText
+
+
+"%%%%% Diff %%%%%
+hi! link diffAdded  DiffAdd
+hi! link diffRemoved  DiffDelete
+hi! link diffFile  PreProc
+hi! link diffLine  Title
+
+
+"%%%%% Vim help %%%%%
+hi! link helpExample         String
+hi! link helpHeadline        Title
+hi! link helpSectionDelim    Comment
+hi! link helpHyperTextEntry  Statement
+hi! link helpHyperTextJump   Underlined
+hi! link helpURL             Underlined
+
+
+"%%%%% Signify %%%%%
+hi! link SignifySignAdd DiffAdd
+hi! link SignifySignDelete DiffDelete
+hi! link SignifySignChange DiffChange
+hi! link SignifySignChangeDelete DiffDelete
