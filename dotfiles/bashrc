@@ -65,7 +65,7 @@ prompt_command() {
   fi
 
   # prompt showing the user, hostname, cwd, and return codes.
-  PS1="\[\e[90m\u\]@\[\h\e[1m\e[32m \w\e[36m\]$NS$RETC\[\e[90m\e[0m \]"
+  PS1="\[\e[90m\u\]@\[\h\e[1m\e[90m \w\e[36m\]$NS$RETC\[\e[90m\e[0m \]"
 
   # append each line to history individually.
   history -a
