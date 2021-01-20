@@ -26,7 +26,6 @@ let
     python38Packages.flake8
     python38Packages.pytestcov
     python38Packages.pytest-sugar
-    # python38Packages.neovim <- doesn't work
     python38Packages.bandit
     # python38Packages.codacy-coverage <- doesn't work
     python38Packages.pydocstyle
