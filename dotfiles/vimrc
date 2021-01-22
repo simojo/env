@@ -230,7 +230,7 @@ set autoindent smartindent copyindent shiftround smarttab
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " show editing mode among other useful things
-set showmode, showcmd
+set showmode showcmd
 
 " Don't try to be vi compatible
 set nocompatible
