@@ -52,7 +52,7 @@ iab <%# <%# %><esc>F%hi
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char='┊'
 " autocmd Filetype json let g:indentLine_enabled = 0
-let g:vim_json_syntax_conceal = 0
+let g:vim_json_syntax_conceal=0
 
 " abbreviations and plugins to automatically complete closing syntaxes.
 " generally a good idea to let Vim do the repetitive typing when possible.
@@ -73,7 +73,10 @@ nmap <silent> <Leader>i gcc
 vmap <silent> <Leader>i gc
 
 " highlight hex colors
+" ;c to toggle hex highlighting
+
 Plug 'vim-scripts/colorizer'
+nmap <silent> <Leader>c :ColorToggle<cr>
 
 " improved gitgutter, an absolute *must*.
 " ;sj to jump to the next changed hunk
@@ -191,6 +194,7 @@ nmap <Leader>N :lprev<cr>
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '▸'
 
+" polyglot: syntax highlighting/formatting across nearly every language
 Plug 'sheerun/vim-polyglot'
 
 call plug#end()
@@ -225,6 +229,9 @@ set list listchars=tab:\ \ ,trail:␣,extends:»,precedes:«,nbsp:•
 set autoindent smartindent copyindent shiftround smarttab
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
+" show editing mode among other useful things
+set showmode, showcmd
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -258,34 +265,43 @@ set ttyfast
 " Status bar
 set laststatus=2
 
-" Last line
-set showmode
-set showcmd
-
-" Formatting
-map <leader>q gqip
 
 " Save as root
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 
-" Mappings
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+"%%%%%%%%  Mappings  %%%%%%%%%
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+" move across editor lines
 map j gj
 map k gk
+noremap h gT
+noremap l gt
+noremap Y y$
+
+" faster navigation
 nmap J 2<C-E>2j
 nmap K 2<C-Y>2k
+
+" literally move a line
 nmap <C-j> zRddp==
 nmap <C-k> zRddkP==
+
+" literally move a visual block
 vmap <C-j> zR:m'>+1<CR>gv=gv
 vmap <C-k> zR:m'<-2<CR>gv=gv
 vnoremap > ><cr>gv
 vnoremap < <<cr>gv
+
+" disable arrow keys
 nmap <Up> <nop>
 nmap <Down> <nop>
 nmap <Left> <nop>
 nmap <Right> <nop>
-noremap h gT
-noremap l gt
-noremap Y y$
+
+" Formatting
+map <leader>q gqip
 
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 "%%%%%%%%%  Colorscheme  %%%%%%%%%%
@@ -304,6 +320,7 @@ noremap Y y$
 " | White   |   7   |   15   |
 " ----------------------------
 
+" setup
 syntax enable
 set background=dark
 if exists("syntax_on")
@@ -323,7 +340,6 @@ hi! DiffChange             ctermfg=3     ctermbg=none  cterm=none
 hi! DiffDelete             ctermfg=1     ctermbg=none  cterm=none
 hi! DiffText               ctermfg=8     ctermbg=none  cterm=bold
 hi! Directory              ctermfg=12    ctermbg=none  cterm=none
-hi! ErrorMsg               ctermfg=1     ctermbg=none  cterm=none
 hi! Folded                 ctermfg=7     ctermbg=none  cterm=none
 hi! LineNr                 ctermfg=8     ctermbg=none  cterm=none
 hi! MatchParen             ctermfg=7     ctermbg=none  cterm=underline
@@ -341,15 +357,15 @@ hi! StatusLineNC           ctermfg=8     ctermbg=none  cterm=none
 hi! TabLine                ctermfg=8     ctermbg=none  cterm=bold
 hi! TabLineSel             ctermfg=7     ctermbg=none  cterm=bold
 hi! Title                  ctermfg=7     ctermbg=none  cterm=bold
-hi! User1                  ctermfg=1     ctermbg=0     cterm=none
-hi! User2                  ctermfg=4     ctermbg=0     cterm=none
-hi! User3                  ctermfg=2     ctermbg=0     cterm=none
-hi! User4                  ctermfg=3     ctermbg=0     cterm=none
-hi! User5                  ctermfg=5     ctermbg=0     cterm=none
-hi! User6                  ctermfg=6     ctermbg=0     cterm=none
-hi! User7                  ctermfg=7     ctermbg=0     cterm=none
-hi! User8                  ctermfg=8     ctermbg=0     cterm=none
-hi! User9                  ctermfg=15    ctermbg=5     cterm=none
+hi! User1                  ctermfg=1     ctermbg=none  cterm=none
+hi! User2                  ctermfg=4     ctermbg=none  cterm=none
+hi! User3                  ctermfg=2     ctermbg=none  cterm=none
+hi! User4                  ctermfg=3     ctermbg=none  cterm=none
+hi! User5                  ctermfg=5     ctermbg=none  cterm=none
+hi! User6                  ctermfg=6     ctermbg=none  cterm=none
+hi! User7                  ctermfg=7     ctermbg=none  cterm=none
+hi! User8                  ctermfg=8     ctermbg=none  cterm=none
+hi! User9                  ctermfg=15    ctermbg=none  cterm=none
 hi! VertSplit              ctermfg=8     ctermbg=none  cterm=none
 hi! Visual                 ctermfg=none  ctermbg=none  cterm=reverse
 
@@ -366,7 +382,6 @@ hi! link SignColumn Normal
 hi! link FoldColumn Normal
 hi! link VertSplit StatusLine
 hi! link WarningMsg Error
-hi! link ErrorMsg Error
 hi! link SpecialKey Comment
 
 hi! link CursorColumn CursorLine
@@ -404,6 +419,15 @@ hi! Keyword                ctermfg=1     ctermbg=none  cterm=none
 hi! Function               ctermfg=4     ctermbg=none  cterm=none
 hi! Number                 ctermfg=10     ctermbg=none  cterm=none
 hi! link Operator          Delimiter
+
+
+"%%%%% EasyMotion %%%%%
+hi! ALEWarning              ctermfg=2 ctermbg=none cterm=none
+hi! link ALEWarningSign ALEWarning
+hi! link ALEStyleWarning ALEWarning
+hi! link ALEStyleWarningSign ALEWarning
+hi! ALEInfo               ctermfg=15 ctermbg=none cterm=none
+hi! ALEInfoSign           ctermfg=15 ctermbg=none cterm=none
 
 
 "%%%%% EasyMotion %%%%%
