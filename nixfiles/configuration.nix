@@ -1,9 +1,5 @@
+# https://nixos.wiki/wiki/Cheatsheet
 { config, lib, pkgs, ... }:
-let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-in
 {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -99,8 +95,9 @@ in
   };
 
   nixpkgs.config = {
+    allowUnfree = true;
     packageOverrides = pkgs: {
-      unstable = import unstableTarball {
+      unstable = import <unstable> {
         config = config.nixpkgs.config;
       };
     };

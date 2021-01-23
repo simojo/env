@@ -5,9 +5,11 @@
       unstable.aseprite
       unstable.discord
       unstable.godot
+      unstable.lmms
       unstable.minecraft
-      unstable.zoom-us
+      unstable.shotcut
       unstable.steam
+      unstable.zoom-us
       youtube-dl
     ];
   };

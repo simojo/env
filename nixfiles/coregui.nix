@@ -1,10 +1,8 @@
 # core GUI environment; strictly non-machine-specific things that do not work from a TTY.
 { config, lib, pkgs, ... }:
 let
-
   bspwmrcfile = builtins.readFile /env/dotfiles/bspwmrc;
   bspwmrc = pkgs.writeScript "bspwmrc" "${bspwmrcfile}";
-
 in {
   imports = [
     ./chromium.nix
@@ -23,11 +21,9 @@ in {
       pkgs.hsetroot
       pkgs.libguestfs
       pkgs.libvirt
-      pkgs.lmms
       pkgs.neofetch
       pkgs.polybar
       pkgs.scrot
-      pkgs.shotcut
       pkgs.slock
       pkgs.virt-manager
       pkgs.xorg.xmodmap

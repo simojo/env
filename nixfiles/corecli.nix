@@ -8,8 +8,6 @@ let
     tmuxconf = builtins.readFile /env/dotfiles/tmuxconf;
   };
 in {
-  nixpkgs.config.allowUnfree = true;
-
   environment = {
     systemPackages = [
       (with import <nixpkgs> {};
@@ -27,7 +25,7 @@ in {
       pkgs.curl
       pkgs.docker
       pkgs.eidolon
-      pkgs.elixir
+      pkgs.unstable.elixir
       pkgs.entr
       pkgs.exa
       pkgs.fd
@@ -40,6 +38,7 @@ in {
       pkgs.gnused
       pkgs.gnutar
       pkgs.htop
+      pkgs.jq
       pkgs.killall
       pkgs.less
       pkgs.ncdu
