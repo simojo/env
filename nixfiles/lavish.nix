@@ -13,8 +13,10 @@
       youtube-dl
     ];
   };
-  # FIXME: this does not work
+
+  # NOTE: this does not work
   # programs.steam.enable = true;
+
   hardware = {
     steam-hardware.enable = true;
     opengl = {

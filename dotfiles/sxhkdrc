@@ -23,6 +23,10 @@ super + Tab
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# kill picom
+super + shift + Escape
+	pkill -9 -x picom
+
 # focus/swap the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}

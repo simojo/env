@@ -21,6 +21,7 @@ in {
       pkgs.unstable.cairomm
       pkgs.unstable.chromium
       pkgs.unstable.guile-cairo
+      pkgs.unstable.picom
       pkgs.virt-manager
       pkgs.xorg.xev
       pkgs.xorg.xmodmap
@@ -96,18 +97,19 @@ in {
       xrandrHeads = [
       ];
     };
-    picom = {
-      enable = true;
-      fade = true;
-      fadeDelta = 5;
-      inactiveOpacity = 0.85;
-      shadow = true;
-      settings.blur = {
-        method = "gaussian";
-        blurStrength = 10;
-        size = 10;
-      };
-    };
+    # possibly using config file instead
+    # picom = {
+    #   enable = true;
+    #   fade = true;
+    #   fadeDelta = 5;
+    #   inactiveOpacity = 0.85;
+    #   shadow = true;
+    #   settings.blur = {
+    #     method = "gaussian";
+    #     blurStrength = 10;
+    #     size = 10;
+    #   };
+    # };
   };
 
   security = {
