@@ -105,7 +105,17 @@ in {
       xrandrHeads = [
       ];
     };
-    picom.enable = true;
+    picom = {
+      activeOpacity = true;
+      enable = true;
+      fade = true;
+      shadow = true;
+      blur = {
+        method = "gaussian";
+        size = 10;
+        deviation = 5.0;
+      };
+    };
   };
 
   security = {
