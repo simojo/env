@@ -1,7 +1,15 @@
+
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+
 [colors]
 background = #aaa000000
-background-alt = #aa000000
-foreground = #999999
+foreground = #b8c8e3
+foreground-transparent = #aab8c8e3
 color1 = #121212
 
 [bar/mybar]
@@ -33,12 +41,13 @@ tray-offset-y = 0
 ; Pad the sides of each tray icon
 tray-padding = 1
 
+
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
 
 label-empty-foreground = ${colors.foreground}
-label-focused-background = ${colors.foreground}
+label-focused-background = ${colors.foreground-transparent}
 label-focused = %name%
 label-focused-padding = 1
 label-occupied = %name%
@@ -46,10 +55,11 @@ label-occupied-padding = 1
 label-empty = %name%
 label-empty-padding = 1
 
-label-monocle = M
-label-tiled = T
-label-floating = F
-label-pseudotiled = P
+label-monocle = Monocle
+label-tiled = Tiled
+label-floating = Floating
+label-pseudotiled = Pseudo Tiled
+
 
 [settings]
 label-focused-underline= ${colors.color1}
@@ -58,6 +68,7 @@ throttle-output-for = 10
 throttle-input-for = 30
 screenchange-reload = true
 pseudo-transparency = true
+
 
 [module/date]
 type = internal/date
@@ -69,6 +80,7 @@ format-foreground = ${colors.color1}
 format-padding = 1
 label = %date% %time%
 label-foreground = ${colors.foreground}
+
 
 [module/battery]
 type = internal/battery
@@ -94,6 +106,7 @@ format-charging-padding = 1
 format-discharging-padding = 1
 format-full-padding = 1
 
+
 [module/network]
 type = internal/network
 interface = wlp2s0
@@ -106,6 +119,7 @@ label-connected = %essid%
 format-connected-padding = 1
 format-connected-foreground = ${colors.color1}
 label-connected-foreground = ${colors.foreground}
+
 
 [module/alsa]
 type = internal/alsa
