@@ -106,14 +106,15 @@ in {
       ];
     };
     picom = {
-      # activeOpacity = 1.0;
       enable = true;
       fade = true;
+      fadeDelta = 5;
+      inactiveOpacity = 0.85;
       shadow = true;
       settings.blur = {
         method = "gaussian";
+        blurStrength = 10;
         size = 10;
-        deviation = 5.0;
       };
     };
   };
