@@ -110,7 +110,7 @@ in {
       enable = true;
       fade = true;
       shadow = true;
-      blur = {
+      settings.blur = {
         method = "gaussian";
         size = 10;
         deviation = 5.0;
