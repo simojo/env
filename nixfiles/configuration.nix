@@ -6,6 +6,7 @@
       ./coregui.nix
       ./corecli.nix
       ./lavish.nix
+      ./chromium.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -67,8 +68,8 @@
 
   location = {
     # https://www.latlong.net/
-    latitude = 41.646099;
-    longitude = -80.147148;
+    latitude = 41.64801;
+    longitude = -80.14641;
   };
 
   services = {

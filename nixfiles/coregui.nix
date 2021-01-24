@@ -4,10 +4,6 @@ let
   bspwmrcfile = builtins.readFile /env/dotfiles/bspwmrc;
   bspwmrc = pkgs.writeScript "bspwmrc" "${bspwmrcfile}";
 in {
-  imports = [
-    ./chromium.nix
-  ];
-
   environment = {
     systemPackages = [
       pkgs.alacritty
@@ -42,12 +38,6 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
-
-  location = {
-    # https://www.latlong.net/
-    latitude = 41.646099;
-    longitude = -80.147148;
-  };
 
   programs.light.enable = true;
 
