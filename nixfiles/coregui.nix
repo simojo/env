@@ -12,12 +12,8 @@ in {
     systemPackages = [
       pkgs.alacritty
       pkgs.bemenu
-      pkgs.unstable.cairo
-      pkgs.unstable.cairomm
-      pkgs.unstable.chromium
       pkgs.feh
       pkgs.ffmpeg
-      pkgs.unstable.guile-cairo
       pkgs.hsetroot
       pkgs.libguestfs
       pkgs.libvirt
@@ -25,7 +21,12 @@ in {
       pkgs.polybar
       pkgs.scrot
       pkgs.slock
+      pkgs.unstable.cairo
+      pkgs.unstable.cairomm
+      pkgs.unstable.chromium
+      pkgs.unstable.guile-cairo
       pkgs.virt-manager
+      pkgs.xorg.xev
       pkgs.xorg.xmodmap
       pkgs.xorg.xset
     ];
