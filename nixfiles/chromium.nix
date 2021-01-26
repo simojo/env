@@ -70,6 +70,7 @@
           { "url" = "https://amazon.com/"; name = "Amazon"; }
           { "url" = "https://newegg.com/"; name = "Newegg"; }
           { "url" = "https://ebay.com/"; name = "eBay"; }
+          { "url" = "https://sites.allegheny.edu/lits/library/"; name = "Aggregator"; }
         ]; }
         { "name" = "Nix"; "children" = [
           { "url" = "https://nixos.org/nix/manual/"; name = "nix-manual"; }
