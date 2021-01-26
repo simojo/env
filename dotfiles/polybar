@@ -10,24 +10,25 @@
 background = #aa000000
 foreground = #b8c8e3
 foreground-transparent = #aa404040
-color1 = #ff8c80
+accent = #ff8c80
+green = #00cc99
 
 [bar/mybar]
 override-redirect = false
 bottom = false
 background = ${colors.background}
-foreground = ${colors.color1}
+foreground = ${colors.foreground}
 fixed-center = true
 width = 60%
 height = 30
 radius = 15
+padding = 2
 line-size = 2
-line-color = #f00
 offset-y = 1%
-separator = •
 offset-x = 20%
+separator = "      "
 
-font-0 = Hack:style=Regular:pixelsize=11;2
+font-0 = FontAwesome5Free:style=Solid:size=12;2
 
 modules-right = network alsa backlight battery
 modules-center = date
@@ -46,24 +47,31 @@ tray-padding = 1
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
+label-focused-underline = ${colors.accent}
 
-label-empty-foreground = ${colors.foreground}
-label-focused-background = ${colors.foreground-transparent}
-label-focused = %name%
-label-focused-padding = 1
-label-occupied = %name%
-label-occupied-padding = 1
 label-empty = %name%
+label-empty-foreground = ${colors.foreground}
 label-empty-padding = 1
 
+label-focused = %name%
+label-focused-foreground = ${colors.accent}
+label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.accent}
+label-occupied-padding = 1
+
 label-monocle = Monocle
+label-monocle-foreground = ${colors.accent}
 label-tiled = Tiled
+label-tiled-foreground = ${colors.accent}
 label-floating = Floating
-label-pseudotiled = Pseudo Tiled
+label-floating-foreground = ${colors.accent}
+label-pseudotiled = PseudoTiled
+label-pseudotiled-foreground = ${colors.accent}
 
 
 [settings]
-label-focused-underline= ${colors.color1}
 throttle-output = 5
 throttle-output-for = 10
 throttle-input-for = 30
@@ -73,13 +81,15 @@ pseudo-transparency = true
 
 [module/date]
 type = internal/date
-time = %H:%M
+hour = %H
+minute = %M
+time = 
 date = %b %d
 format = <label>
 interval = 10
-format-foreground = ${colors.color1}
+format-foreground = ${colors.accent}
 format-padding = 1
-label = %date% • %time%
+label = %date%  %time%
 label-foreground = ${colors.foreground}
 
 
@@ -89,23 +99,22 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <label-charging>
-format-discharging = <label-discharging>
-format-full = <label-full>
-label-charging = %percentage%%
-label-discharging = %percentage%%
+format-charging = <ramp-capacity> <label-charging>
+format-charging-foreground = ${colors.green}
 
-label-charging-foreground = ${colors.foreground}
-label-discharging-foreground = ${colors.foreground}
-label-full-foreground = ${colors.foreground}
+format-discharging = <ramp-capacity> <label-discharging>
+format-dischargin-foreground = ${colors.foreground}
 
-format-charging-foreground = ${colors.color1}
-format-discharging-foreground = ${colors.color1}
-format-full-foreground = ${colors.color1}
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.green}
+format-full-foreground = ${colors.foreground}
 
-format-charging-padding = 1
-format-discharging-padding = 1
-format-full-padding = 1
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-foreground = ${colors.green}
 
 
 [module/network]
@@ -115,31 +124,36 @@ interval = 3.0
 unknown-as-up = true
 accumulate-stats = true
 
-format-connected = <label-connected>
+format-connected =  <label-connected>
 label-connected = %essid%
 format-connected-padding = 1
-format-connected-foreground = ${colors.color1}
+format-connected-foreground = ${colors.accent}
 label-connected-foreground = ${colors.foreground}
 
 
 [module/alsa]
 type = internal/alsa
-format-volume = <label-volume>
-label-muted = muted
-label-muted-padding = 1
-label-volume-foreground = ${colors.foreground}
-format-volume-foreground = ${colors.color1}
+format-volume = <ramp-volume> <label-volume>
 format-volume-padding = 1
+
+label-muted = ""
+label-muted-padding = 1
+label-muted-foreground = ${colors.accent}
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-foreground = ${colors.accent}
 
 [module/backlight]
 type = custom/script
-exec = light -G
+exec = output=$(light -G); output=${output%.*}; echo "${output}"
 scroll-up = light -A 5
 scroll-down = light -U 5
 label = %output%%
 click-left = "light -S 100%"
 interval = 0.2
-format = <label>
+format =  <label>
 format-padding = 1
-format-foreground = ${colors.color1}
+format-foreground = ${colors.accent}
 label-foreground = ${colors.foreground}

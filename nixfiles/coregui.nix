@@ -34,6 +34,7 @@ in {
   fonts.fonts = [
     pkgs.vistafonts
     pkgs.hack-font
+    pkgs.font-awesome
   ];
 
   sound.enable = true;
