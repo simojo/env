@@ -26,7 +26,7 @@ padding = 2
 line-size = 2
 offset-y = 1%
 offset-x = 20%
-separator = "      "
+separator = "     "
 
 font-0 = FontAwesome5Free:style=Solid:size=12;2
 
@@ -81,9 +81,7 @@ pseudo-transparency = true
 
 [module/date]
 type = internal/date
-hour = %H
-minute = %M
-time = 
+time = %H%M
 date = %b %d
 format = <label>
 interval = 10
