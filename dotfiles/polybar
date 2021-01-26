@@ -7,10 +7,10 @@
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 [colors]
-background = #aaa000000
+background = #aa000000
 foreground = #b8c8e3
-foreground-transparent = #aab8c8e3
-color1 = #121212
+foreground-transparent = #aa404040
+color1 = #ff8c80
 
 [bar/mybar]
 override-redirect = false
@@ -18,20 +18,21 @@ bottom = false
 background = ${colors.background}
 foreground = ${colors.color1}
 fixed-center = true
-width = 100%
-height = 20
-radius = 0.0
+width = 60%
+height = 30
+radius = 15
 line-size = 2
 line-color = #f00
-offset-y = 0
-offset-x = 0
-separator = |
+offset-y = 1%
+separator = •
+offset-x = 20%
 
 font-0 = Hack:style=Regular:pixelsize=11;2
 
-modules-right = network alsa backlight battery date
-modules-center =
+modules-right = network alsa backlight battery
+modules-center = date
 modules-left = bspwm
+
 ; Position of the system tray window
 tray-position = left
 tray-maxsize = 15
@@ -72,13 +73,13 @@ pseudo-transparency = true
 
 [module/date]
 type = internal/date
-time = %H:%M:%S
+time = %H:%M
 date = %b %d
 format = <label>
-#format-background = #55ff3399
+interval = 10
 format-foreground = ${colors.color1}
 format-padding = 1
-label = %date% %time%
+label = %date% • %time%
 label-foreground = ${colors.foreground}
 
 
