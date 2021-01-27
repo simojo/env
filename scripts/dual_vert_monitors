@@ -10,13 +10,13 @@ run() {
     --mode 3840x2160 \
     --rate 60.00 \
     --rotate 'left' \
-    --dpi 120 \
+    --dpi 150 \
     --output DP-2 \
     --mode 3840x2160 \
     --rate 60.00 \
     --rotate 'left' \
     --right-of DP-1 \
-    --dpi 120
+    --dpi 150
   remove_monitor eDP-1
   wm_restart
 }

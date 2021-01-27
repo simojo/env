@@ -101,7 +101,7 @@ format-charging = <ramp-capacity> <label-charging>
 format-charging-foreground = ${colors.green}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-dischargin-foreground = ${colors.foreground}
+format-discharging-foreground = ${colors.foreground}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.green}
@@ -111,8 +111,7 @@ ramp-capacity-0 = " "
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
-ramp-capacity-4 = " "
-ramp-capacity-foreground = ${colors.green}
+ramp-capaity-foreground = ${colors.accent}
 
 
 [module/network]

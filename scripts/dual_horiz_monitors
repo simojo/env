@@ -1,18 +1,18 @@
 #!/usr/bin/env sh
 
-# enable the dual horiz monitors#
+# enable the dual horiz monitors #
 run() {
   xrandr \
-    --output eDP-1 \
-    --mode 1920x1080 \
-    --rate 60.00 \
-    --dpi 120 \
     --output DP-1 \
     --primary \
-    --above eDP-1 \
     --mode 1920x1080 \
     --rate 60.00 \
     --dpi 120 \
+    --output eDP-1 \
+    --below DP-1 \
+    --mode 1920x1080 \
+    --rate 60.00 \
+    --dpi 100
   wm_restart
 }
 
