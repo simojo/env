@@ -11,6 +11,7 @@ background = #aa000000
 foreground = #b8c8e3
 foreground-transparent = #aa404040
 accent = #ff8c80
+red = #C74D4C
 green = #00cc99
 
 [bar/mybar]
@@ -103,15 +104,16 @@ format-charging-foreground = ${colors.green}
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-foreground = ${colors.foreground}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.green}
-format-full-foreground = ${colors.foreground}
-
 ramp-capacity-0 = " "
+ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = " "
+ramp-capacity-1-foreground = ${colors.red}
 ramp-capacity-2 = " "
+ramp-capacity-2-foreground = ${colors.accent}
 ramp-capacity-3 = " "
-ramp-capaity-foreground = ${colors.accent}
+ramp-capacity-3-foreground = ${colors.accent}
+ramp-capacity-4 = " "
+ramp-capacity-4-foreground = ${colors.green}
 
 
 [module/network]
