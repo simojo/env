@@ -5,11 +5,13 @@
       unstable.aseprite
       unstable.discord
       unstable.godot
+      unstable.linuxPackages.v4l2loopback
       unstable.lmms
       unstable.minecraft
+      unstable.obs-studio
       unstable.shotcut
-      unstable.zoom-us
       unstable.steam
+      unstable.zoom-us
       youtube-dl
     ];
   };

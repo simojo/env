@@ -11,8 +11,8 @@ background = #aa000000
 foreground = #b8c8e3
 foreground-transparent = #aa404040
 accent = #ff8c80
-red = #C74D4C
-green = #00cc99
+bad = #C74D4C
+good = #00cc99
 
 [bar/mybar]
 override-redirect = false
@@ -98,22 +98,23 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
+format-charging-prefix = 
+format-charging-prefix-foreground = ${colors.good}
 format-charging = <ramp-capacity> <label-charging>
-format-charging-foreground = ${colors.green}
+format-charging-foreground = ${colors.accent}
+label-charging-foreground = ${colors.foreground}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.foreground}
+format-discharging-foreground = ${colors.accent}
+label-discharging-foreground = ${colors.foreground}
 
 ramp-capacity-0 = " "
-ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-0-foreground = ${colors.bad}
 ramp-capacity-1 = " "
-ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-1-foreground = ${colors.bad}
 ramp-capacity-2 = " "
-ramp-capacity-2-foreground = ${colors.accent}
 ramp-capacity-3 = " "
-ramp-capacity-3-foreground = ${colors.accent}
 ramp-capacity-4 = " "
-ramp-capacity-4-foreground = ${colors.green}
 
 
 [module/network]
@@ -137,7 +138,7 @@ format-volume-padding = 1
 
 label-muted = ""
 label-muted-padding = 1
-label-muted-foreground = ${colors.accent}
+label-muted-foreground = ${colors.bad}
 
 ramp-volume-0 = ""
 ramp-volume-1 = ""
