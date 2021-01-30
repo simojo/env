@@ -17,7 +17,15 @@ super + shift + backslash
 
 # launch program launcher
 super + Tab
-	bemenu-run
+	bemenu-run \
+		--prompt="              > " \
+		--ignorecase \
+		--wrap \
+		--list=1000 \
+		--tf=#666666 \
+		--hf=#ffffff \
+		--nf=#666666 \
+		--fn "Hack 50"
 
 # restart sxhkd daemon
 super + Escape

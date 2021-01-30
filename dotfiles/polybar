@@ -20,13 +20,13 @@ bottom = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 fixed-center = true
-width = 60%
+width = 90%
 height = 30
-radius = 15
+; radius = 15
 padding = 2
 line-size = 2
-offset-y = 1%
-offset-x = 20%
+offset-y = 0
+offset-x = 5%
 separator = "     "
 
 font-0 = FontAwesome5Free:style=Solid:size=12;2
