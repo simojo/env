@@ -18,7 +18,7 @@ super + shift + backslash
 # launch program launcher
 super + Tab
 	bemenu-run \
-		--prompt="              > " \
+		--prompt="> " \
 		--ignorecase \
 		--wrap \
 		--list=1000 \
