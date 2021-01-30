@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# enable the single panoramic monitor #
+# enable the dual vert monitors#
 run() {
   xrandr \
     --output eDP-1 \
@@ -9,9 +9,10 @@ run() {
     --primary \
     --mode 1920x1080 \
     --rate 60.00 \
+    --rotate 'right' \
     --dpi 120
-  remove_monitor eDP-1
-  wm_restart
+  removeMonitor eDP-1
+  wmRestart
 }
 
 run

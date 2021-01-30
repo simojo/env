@@ -13,7 +13,7 @@ run() {
     --mode 1920x1080 \
     --rate 60.00 \
     --dpi 100
-  wm_restart
+  wmRestart
 }
 
 run

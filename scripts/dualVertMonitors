@@ -17,8 +17,8 @@ run() {
     --rotate 'left' \
     --right-of DP-1 \
     --dpi 150
-  remove_monitor eDP-1
-  wm_restart
+  removeMonitor eDP-1
+  wmRestart
 }
 
 run
