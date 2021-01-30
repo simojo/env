@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
+# NOTE: xrandr --listactivemonitors also looks for existing monitors
 
 # remove monitor from bspwm #
 run() {
-  # NOTE: xrandr --listactivemonitors also looks for existing monitors
   if [[ $(bspc query -M --names) == *"$1"* ]]; then
     bspc monitor $1 -r
   fi
