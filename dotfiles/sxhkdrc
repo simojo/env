@@ -18,14 +18,15 @@ super + shift + backslash
 # launch program launcher
 super + Tab
 	bemenu-run \
-		--prompt="> " \
+		--prompt=">" \
+		--prefix=">" \
 		--ignorecase \
 		--wrap \
 		--list=1000 \
 		--tf=#666666 \
 		--hf=#ffffff \
 		--nf=#666666 \
-		--fn "Hack 50"
+		--fn "Hack 30"
 
 # restart sxhkd daemon
 super + Escape
@@ -44,11 +45,11 @@ super + p
 	bspc node -f parent
 
 # close node
-super + shift + w
+super + x
   bspc node -c
 
 # kill node
-super + shift + q
+super + shift + x
   bspc node -k
 
 # focus or send to the given desktop

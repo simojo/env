@@ -179,8 +179,17 @@ au FileType mkd,markdown,tex,html,text nmap 0 g0
 au FileType mkd,markdown,tex,html,text nmap $ g$
 nmap <silent> <Leader>sc :setlocal spell!<cr>
 
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
+" autocopmletion
+" https://github.com/prabirshrestha/vim-lsp/wiki/Servers
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" Plug 'ervandew/supertab'
+" let g:SuperTabDefaultCompletionType = "context"
 
 " ;d to expand the error details (q to exit).
 " ;n to jump to the next error location.
