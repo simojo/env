@@ -1,20 +1,13 @@
 
-    EEEEEEEEEEEEEEEEEEEEEE NNNNNNNN        NNNNNNNN VVVVVVVV           VVVVVVVV
-    E::::::::::::::::::::E N:::::::N       N::::::N V::::::V           V::::::V
-    E::::::::::::::::::::E N::::::::N      N::::::N V::::::V           V::::::V
-    EE::::::EEEEEEEEE::::E N:::::::::N     N::::::N V::::::V           V::::::V
-      E:::::E       EEEEEE N::::::::::N    N::::::N  V:::::V           V:::::V
-      E:::::E              N:::::::::::N   N::::::N   V:::::V         V:::::V
-      E::::::EEEEEEEEEE    N:::::::N::::N  N::::::N    V:::::V       V:::::V
-      E:::::::::::::::E    N::::::N N::::N N::::::N     V:::::V     V:::::V
-      E:::::::::::::::E    N::::::N  N::::N:::::::N      V:::::V   V:::::V
-      E::::::EEEEEEEEEE    N::::::N   N:::::::::::N       V:::::V V:::::V
-      E:::::E              N::::::N    N::::::::::N        V:::::V:::::V
-      E:::::E       EEEEEE N::::::N     N:::::::::N         V:::::::::V
-    EE::::::EEEEEEEE:::::E N::::::N      N::::::::N          V:::::::V
-    E::::::::::::::::::::E N::::::N       N:::::::N           V:::::V
-    E::::::::::::::::::::E N::::::N        N::::::N            V:::V
-    EEEEEEEEEEEEEEEEEEEEEE NNNNNNNN         NNNNNNN             VVV
+      ______ _   ___      __
+     |  ____| \ | \ \    / /
+     | |__  |  \| |\ \  / /
+     |  __| | . ` | \ \/ /
+     | |____| |\  |  \  /
+     |______|_| \_|   \/
+
+     reproducible environment
+
 
 ![Screenshot](https://github.com/simojo/env/blob/master/screenshot.png)
 
