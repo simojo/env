@@ -179,6 +179,10 @@ if command -v fd > /dev/null; then
   alias fdc="fd --color always"
 fi
 
+if command -v ncdu > /dev/null; then
+  alias du='ncdu'
+fi
+
 if command -v rg > /dev/null; then
   alias grep="rg"
   alias rgc="rg --color always"
