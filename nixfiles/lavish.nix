@@ -5,7 +5,6 @@
       unstable.aseprite
       unstable.discord
       unstable.godot
-      unstable.linuxPackages.v4l2loopback
       unstable.lmms
       unstable.minecraft
       unstable.obs-studio

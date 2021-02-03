@@ -54,7 +54,7 @@
           { "url" = "https://app.slack.com/"; name = "Slack"; }
           { "url" = "jupyter.cs.allegheny.edu"; name = "Jupyter"; }
           { "url" = "https://airtable.com"; name = "Airtable"; }
-          { "url" = "https://github.com/simojo"; name = "GitHub"; }
+          { "url" = "https://github.com/"; name = "GitHub"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
@@ -62,15 +62,15 @@
           { "url" = "https://hulu.com/my-stuff"; name = "Hulu"; }
         ]; }
         { "name" = "Services"; "children" = [
-          { "url" = "https://github.com/"; name = "GitHub"; }
-          { "url" = "https://github.com/simojo"; name = "simojo"; }
-          { "url" = "https://digitalocean.com/"; name = "DigitalOcean"; }
-          { "url" = "https://namecheap.com/"; name = "Namecheap"; }
-          { "url" = "https://linkedin.com/"; name = "LinkedIn"; }
-          { "url" = "https://amazon.com/"; name = "Amazon"; }
-          { "url" = "https://newegg.com/"; name = "Newegg"; }
-          { "url" = "https://ebay.com/"; name = "eBay"; }
           { "url" = "https://sites.allegheny.edu/lits/library/"; name = "Aggregator"; }
+          { "url" = "https://amazon.com/"; name = "Amazon"; }
+          { "url" = "https://digitalocean.com/"; name = "DigitalOcean"; }
+          { "url" = "https://ebay.com/"; name = "eBay"; }
+          { "url" = "https://github.com/"; name = "GitHub"; }
+          { "url" = "https://web.hellotalk.com/?from=1home"; name = "HelloTalk"; }
+          { "url" = "https://linkedin.com/"; name = "LinkedIn"; }
+          { "url" = "https://namecheap.com/"; name = "Namecheap"; }
+          { "url" = "https://newegg.com/"; name = "Newegg"; }
         ]; }
         { "name" = "Nix"; "children" = [
           { "url" = "https://nixos.org/nix/manual/"; name = "nix-manual"; }
