@@ -88,7 +88,8 @@ format = <label>
 interval = 10
 format-foreground = ${colors.accent}
 format-padding = 1
-label = %date%  %time% ; clock
+; clock
+label = %date%  %time%
 label-foreground = ${colors.foreground}
 
 
@@ -98,7 +99,8 @@ battery = BAT0
 adapter = AC
 full-at = 100
 
-format-charging-prefix =  ; lightning bolt
+; lightning bolt
+format-charging-prefix = 
 format-charging-prefix-foreground = ${colors.good}
 format-charging = <ramp-capacity> <label-charging>
 format-charging-foreground = ${colors.accent}
@@ -108,15 +110,23 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-foreground = ${colors.accent}
 label-discharging-foreground = ${colors.foreground}
 
-ramp-capacity-0 = " " ; 0.00 battery
+; 0.00 battery
+ramp-capacity-0 = " "
 ramp-capacity-0-foreground = ${colors.bad}
-ramp-capacity-1 = " " ; 0.25 battery
-ramp-capacity-2 = " " ; 0.25 battery
-ramp-capacity-3 = " " ; 0.50 battery
-ramp-capacity-4 = " " ; 0.50 battery
-ramp-capacity-5 = " " ; 0.75 battery
-ramp-capacity-6 = " " ; 0.75 battery
-ramp-capacity-7 = " " ; 1.00 battery
+; 0.25 battery
+ramp-capacity-1 = " "
+; 0.25 battery
+ramp-capacity-2 = " "
+; 0.50 battery
+ramp-capacity-3 = " "
+; 0.50 battery
+ramp-capacity-4 = " "
+; 0.75 battery
+ramp-capacity-5 = " "
+; 0.75 battery
+ramp-capacity-6 = " "
+; 1.00 battery
+ramp-capacity-7 = " "
 ramp-capacity-7-foreground = ${colors.good}
 
 
@@ -127,7 +137,8 @@ interval = 3.0
 unknown-as-up = true
 accumulate-stats = true
 
-format-connected =  <label-connected> ; wifi sign
+; wifi sign
+format-connected =  <label-connected>
 label-connected = %essid%
 format-connected-padding = 1
 format-connected-foreground = ${colors.accent}
@@ -139,13 +150,17 @@ type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
 format-volume-padding = 1
 
-label-muted = "" ; volume muted
+; volume muted
+label-muted = ""
 label-muted-padding = 1
 label-muted-foreground = ${colors.bad}
 
-ramp-volume-0 = "" ; volume 0.0
-ramp-volume-1 = "" ; volume 0.5
-ramp-volume-2 = "" ; volume 1.0
+; volume 0.0
+ramp-volume-0 = ""
+; volume 0.5
+ramp-volume-1 = ""
+; volume 1.0
+ramp-volume-2 = ""
 ramp-volume-foreground = ${colors.accent}
 
 [module/backlight]
@@ -156,7 +171,8 @@ scroll-down = light -U 5
 label = %output%%
 click-left = "light -S 100%"
 interval = 0.2
-format =  <label> ; lightbulb
+; lightbulb
+format =  <label>
 format-padding = 1
 format-foreground = ${colors.accent}
 label-foreground = ${colors.foreground}

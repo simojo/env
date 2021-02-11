@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# copys nixfiles to where nix can actually use them #
+run() {
+  cp /env/nixfiles/* /etc/nixos/
+}
+
+run

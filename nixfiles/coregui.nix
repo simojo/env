@@ -11,6 +11,7 @@ in {
       pkgs.feh
       pkgs.ffmpeg
       pkgs.hsetroot
+      pkgs.lguf-brightness
       pkgs.libguestfs
       pkgs.libvirt
       pkgs.neofetch
