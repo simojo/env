@@ -25,7 +25,6 @@ in {
       pkgs.curl
       pkgs.docker
       pkgs.eidolon
-      pkgs.unstable.elixir
       pkgs.entr
       pkgs.exa
       pkgs.fd
@@ -43,10 +42,8 @@ in {
       pkgs.less
       pkgs.ncdu
       pkgs.netcat
-      pkgs.unstable.nim
       pkgs.nix
       pkgs.nmap
-      pkgs.unstable.nodejs
       pkgs.objconv
       pkgs.openvpn
       pkgs.pandoc
@@ -58,6 +55,10 @@ in {
       pkgs.tldr
       pkgs.tmux
       pkgs.tree
+      pkgs.unstable.elixir
+      pkgs.unstable.jdk
+      pkgs.unstable.nim
+      pkgs.unstable.nodejs
       pkgs.unzip
       pkgs.vim
       pkgs.wpa_supplicant
