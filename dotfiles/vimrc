@@ -377,6 +377,7 @@ hi! User8                          ctermfg=8     ctermbg=none  cterm=none
 hi! User9                          ctermfg=15    ctermbg=none  cterm=none
 hi! VertSplit                      ctermfg=8     ctermbg=none  cterm=none
 hi! Visual                         ctermfg=none  ctermbg=none  cterm=reverse
+hi! WildMenu                       ctermfg=15    ctermbg=none  cterm=none
 
 hi! link Search                    Visual
 hi! link IncSearch                 Visual
@@ -404,7 +405,6 @@ hi! link SignColumn                LineNr
 hi! link SpecialKey                NonText
 hi! link TabLineFill               StatusLineNC
 hi! link WarningMsg                ErrorMsg
-hi! link WildMenu                  Visual
 
 "%%%%% Major %%%%%
 hi! Normal                         ctermfg=none  ctermbg=none  cterm=none
