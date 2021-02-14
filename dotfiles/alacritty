@@ -53,92 +53,32 @@ font:
     x: 0
     y: 0
 
-# Colors (Jellybeans)
+# Colors (tokyo-night)
 colors:
   bright:
-    black: '#666666'   # 8
-    red: '#ffa1a1'     # 9
-    green: '#bddeab'   # 10
-    yellow: '#ffdca0'  # 11
-    blue: '#b1d8f6'    # 12
-    magenta: '#FF7CB4' # 13
-    cyan: '#1ab2a8'    # 14
-    white: '#ffffff'   # 15
+    black: '#4e5173'
+    blue: '#7AA2F7'
+    cyan: '#4abaaf'
+    green: '#9ECE6A'
+    magenta: '#9a7ecc'
+    red: '#F7768E'
+    white: '#acb0d0'
+    yellow: '#E0AF68'
   cursor:
-    cursor: '#ffa560'
-    text: '#ffffff'
+    cursor: #E0AF68
+    text: '#1e1f24'
   normal:
-    black: '#121212'   # 0
-    red: '#e27373'     # 1
-    green: '#94b979'   # 2
-    yellow: '#ffba7b'  # 3
-    blue: '#97bedc'    # 4
-    magenta: '#fc5fa2' # 5
-    cyan: '#00837B'    # 6
-    white: '#dedede'   # 7
+    black: '#000000'
+    blue: '#7AA2F7'
+    cyan: '#4abaaf'
+    green: '#9ECE6A'
+    magenta: '#9a7ecc'
+    red: '#F7768E'
+    white: '#acb0d0'
+    yellow: '#E0AF68'
   primary:
-    background: '#121212'
-    foreground: '#dedede'
-
-# # Colors (Gruvbox Dark)
-# colors:
-#   bright:
-#     black: '#7f7061'
-#     blue: '#719586'
-#     cyan: '#7db669'
-#     green: '#aab01e'
-#     magenta: '#c77089'
-#     red: '#f73028'
-#     white: '#e6d4a3'
-#     yellow: '#f7b125'
-#   cursor:
-#     cursor: '#e6d4a3'
-#     text: '#1e1e1e'
-#   normal:
-#     black: '#1e1e1e'
-#     blue: '#377375'
-#     cyan: '#578e57'
-#     green: '#868715'
-#     magenta: '#a04b73'
-#     red: '#be0f17'
-#     white: '#978771'
-#     yellow: '#cc881a'
-#   primary:
-#     background: '#1e1e1e'
-#     foreground: '#e6d4a3'
-#   selection:
-#     background: '#e6d4a3'
-#     text: '#534a42'
-
-# # Colors (Credit: exelotl)
-# colors:
-#   bright:
-#     black: '#6c7985'
-#     blue: '#5cd7fe'
-#     cyan: '#4EC9B0'
-#     green: '#91D462'
-#     magenta: '#fc5fa2'
-#     red: '#fc8e3e'
-#     white: '#ffffff'
-#     yellow: '#f7b125'
-#   cursor:
-#     cursor: '#f64949'
-#     text: '#1e1f24'
-#   normal:
-#     black: '#121212'
-#     blue: '#49A4C2'
-#     cyan: '#5CCDB7'
-#     green: '#91D462'
-#     magenta: '#A90D91'
-#     red: '#f64949'
-#     white: '#978771'
-#     yellow: '#cc881a'
-#   primary:
-#     background: '#121212'
-#     foreground: '#ffffff'
-#   selection:
-#     background: '#f64949'
-#     text: '#534a42'
+    foreground: '#a9b1d6'
+    background: '#000000'
 
 background_opacity: 1.00
 

@@ -91,42 +91,6 @@ let g:signify_line_highlight = 0
 nmap <silent> <Leader>sj <plug>(signify-next-hunk)
 nmap <silent> <Leader>sk <plug>(signify-prev-hunk)
 
-" lightline:  A light and configurable statusline/tabline plugin for Vim
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-  \   'colorscheme': 'simpleblack',
-  \   'active': {
-    \   'left':[ [ 'mode', 'paste' ],
-    \            [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-    \   ]
-  \   },
-	\   'component': {
-	\     'lineinfo': '%3l:%-2v',
-	\   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   },
-      \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-      \ }
-  \ }
-let g:lightline.separator = {
-	\   'left': '', 'right': ''
-  \}
-let g:lightline.subseparator = {
-	\   'left': '', 'right': ''
-  \}
-
 " jumping around more efficiently, an absolute *must*.
 " ;l to jump by word to anything on the screen.
 " ;j to jump downwards by lines on the screen.
@@ -238,6 +202,9 @@ set list listchars=tab:\ \ ,trail:␣,extends:»,precedes:«,nbsp:•
 set autoindent smartindent copyindent shiftround smarttab
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
+" folding
+set foldenable foldnestmax=4 foldmethod=syntax
+
 " show editing mode among other useful things
 set showmode showcmd
 
@@ -248,13 +215,10 @@ set nocompatible
 syntax on
 
 " Security
-set modelines=0
+set nomodeline
 
 " Show line numbers
 set number
-
-" Show file stats
-set ruler
 
 " Whitespace
 set wrap
@@ -271,12 +235,23 @@ set hidden
 " Rendering
 set ttyfast
 
-" Status bar
-set laststatus=2
-
-
 " Save as root
 command! -nargs=0 Sw w !sudo tee % > /dev/null
+
+" statusline
+
+set hidden noruler rulerformat=%6(%=%l%)
+set laststatus=2
+set statusline=%f
+set statusline+=%(\ %{FugitiveHead()}%)
+set statusline+=%(\ %R%)
+set statusline+=%(\ %M%)
+set statusline+=%=
+set statusline+=%<
+set statusline+=%(\ %{&filetype}%)
+set statusline+=%(\ %{&encoding}%)
+set statusline+=%(\ %l\:%c%)
+set statusline+=%(\ %p%)
 
 "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 "%%%%%%%%  Mappings  %%%%%%%%%
@@ -285,8 +260,12 @@ command! -nargs=0 Sw w !sudo tee % > /dev/null
 " move across editor lines
 map j gj
 map k gk
+
+" while in tabedit
 noremap h gT
 noremap l gt
+
+" yank to eol
 noremap Y y$
 
 " faster navigation
@@ -335,7 +314,8 @@ set background=dark
 if exists("syntax_on")
   syntax reset
 endif
-set synmaxcol=512
+syntax sync minlines=256
+set synmaxcol=200
 hi clear
 
 "%%%%% Vim UI %%%%%
