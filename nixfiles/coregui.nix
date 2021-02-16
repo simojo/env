@@ -92,7 +92,6 @@ in {
           xset s noexpose
           feh --bg-fill --no-xinerama /env/imgs/bg/bg.jpg || hsetroot -solid '#000000'
           light -N 1.0
-          redshift -b 1.0:0.7 -l 41.64801:-80.14641 -t 5500:4000 &
         '';
       };
       enable = true;
