@@ -32,6 +32,8 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar -c /env/dotfiles/polybar mybar
 
-picom --config /env/dotfiles/picom.conf
-
+pkill -9 redshift
+redshift -x
 redshift -b 1.0:0.7 -l 41.64801:-80.14641 -t 5500:4000 &
+
+picom --config /env/dotfiles/picom.conf
