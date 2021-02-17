@@ -202,6 +202,10 @@ if command -v fd > /dev/null; then
   alias fdc="fd --color always"
 fi
 
+if command -v feh > /dev/null; then
+  alias feh="feh -d"
+fi
+
 if command -v ncdu > /dev/null; then
   alias du='ncdu'
 fi
