@@ -1,5 +1,5 @@
-# chromium configuration
 { config, lib, pkgs, ... }:
+# chromium configuration
 {
   programs.chromium = {
     enable = true;
@@ -117,6 +117,7 @@
         ]; }
         { "name" = "Git"; "children" = [
           { "url" = "https://docs.github.com/en/enterprise/2.15/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"; name = "ssh-key-gen"; }
+          { "url" = "https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key"; name = "gpg key gen"; }
         ]; }
       ];
 
