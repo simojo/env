@@ -1,3 +1,4 @@
+# chromium configuration
 { config, lib, pkgs, ... }:
 {
   programs.chromium = {

@@ -30,7 +30,7 @@ in {
       pkgs.xorg.xset
     ];
     etc."sxhkdrc".text = builtins.readFile /env/dotfiles/sxhkdrc;
-    etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty;
+    etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty.yml;
   };
 
   fonts.fonts = [
@@ -46,22 +46,6 @@ in {
   programs.light.enable = true;
 
   services = {
-    # redshift = {
-    #   extraOptions = [
-    #     "-b 1.0:0.5"
-    #     "-l 41.64801:-80.14641"
-    #     "-t 5500:4000"
-    #   ];
-    #   # NOTE: temperature settings do not work; brightness settings do
-    #   # temperature = {
-    #   #   day = 5500;
-    #   #   night = 4000;
-    #   # };
-    #   # brightness = {
-    #   #   day = "1.0";
-    #   #   night = "0.7";
-    #   # };
-    # };
     unclutter = {
       enable = true;
     };
@@ -109,19 +93,6 @@ in {
       xrandrHeads = [
       ];
     };
-    # possibly using config file instead
-    # picom = {
-    #   enable = true;
-    #   fade = true;
-    #   fadeDelta = 5;
-    #   inactiveOpacity = 0.85;
-    #   shadow = true;
-    #   settings.blur = {
-    #     method = "gaussian";
-    #     blurStrength = 10;
-    #     size = 10;
-    #   };
-    # };
   };
 
   security = {

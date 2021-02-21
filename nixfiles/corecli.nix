@@ -1,26 +1,42 @@
+# core CLI environment
 { config, lib, pkgs, ... }:
-let
-  dotfiles = {
-    vimrc = builtins.readFile /env/dotfiles/vimrc;
-    htoprc = builtins.readFile /env/dotfiles/htoprc;
-    bashrc = builtins.readFile /env/dotfiles/bashrc;
-    gitconfig = builtins.readFile /env/dotfiles/gitconfig;
-    tmuxconf = builtins.readFile /env/dotfiles/tmuxconf;
+{
+  console = {
+    colors = [
+      "4E5173"
+      "F7768E"
+      "9ECE6A"
+      "E0AF68"
+      "7AA2F7"
+      "9A7ECC"
+      "4ABAAF"
+      "ACB0D0"
+      "000000"
+      "F7768E"
+      "9ECE6A"
+      "E0AF68"
+      "7AA2F7"
+      "9A7ECC"
+      "4ABAAF"
+      "ACB0D0"
+    ];
+    earlySetup = true;
   };
-in {
   environment = {
     systemPackages = [
       (with import <nixpkgs> {};
       vim_configurable.customize {
         name = "vim";
         vimrcConfig = {
-          customRC = dotfiles.vimrc;
+          customRC = builtins.readFile ../dotfiles/vimrc;
         };
       })
       pkgs.acpi
       pkgs.age
       pkgs.atop
       pkgs.bash
+      pkgs.bashCompletion
+      pkgs.bashInteractive
       pkgs.bat
       pkgs.curl
       pkgs.docker
@@ -37,20 +53,28 @@ in {
       pkgs.gnused
       pkgs.gnutar
       pkgs.htop
+      pkgs.hdparm
       pkgs.jq
       pkgs.killall
       pkgs.less
+      pkgs.lm_sensors
       pkgs.ncdu
       pkgs.netcat
       pkgs.nix
       pkgs.nmap
       pkgs.objconv
+      pkgs.openssh
       pkgs.openvpn
       pkgs.pandoc
+      pkgs.pass
+      pkgs.parted
       pkgs.pinentry
       pkgs.ripgrep
       pkgs.rsync
       pkgs.sd
+      pkgs.tldr
+      pkgs.tokei
+      pkgs.shellcheck
       pkgs.tig
       pkgs.tldr
       pkgs.tmux
@@ -66,9 +90,21 @@ in {
       pkgs.zip
       pkgs.zsh
     ];
-    etc."bashrc.local".text = dotfiles.bashrc;
-    etc."gitconfig".text = dotfiles.gitconfig;
-    etc."htoprc".text = dotfiles.htoprc;
-    etc."tmux.conf".text = dotfiles.tmuxconf;
+    etc."bashrc.local".text = builtins.readFile ../dotfiles/bashrc;
+    etc."gitconfig".text = builtins.readFile ../dotfiles/gitconfig;
+    etc."htoprc".text = builtins.readFile ../dotfiles/htoprc;
+    etc."tmux.conf".text = builtins.readFile ../dotfiles/tmuxconf;
+  };
+
+  programs = {
+    ssh = {
+      startAgent = true;
+    };
+    gnupg = {
+      agent= {
+        enable = true;
+        pinentryFlavor = "curses";
+      };
+    };
   };
 }

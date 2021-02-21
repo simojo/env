@@ -56,26 +56,26 @@ font:
 # Colors (tokyo-night)
 colors:
   bright:
-    black: '#4e5173'
-    blue: '#7AA2F7'
-    cyan: '#4abaaf'
-    green: '#9ECE6A'
-    magenta: '#9a7ecc'
+    black: '#4E5173'
     red: '#F7768E'
-    white: '#acb0d0'
+    green: '#9ECE6A'
     yellow: '#E0AF68'
+    blue: '#7AA2F7'
+    magenta: '#9a7ecc'
+    cyan: '#4abaaf'
+    white: '#acb0d0'
   cursor:
     cursor: #E0AF68
-    text: '#1e1f24'
+    text: '#1E1F24'
   normal:
     black: '#000000'
-    blue: '#7AA2F7'
-    cyan: '#4abaaf'
-    green: '#9ECE6A'
-    magenta: '#9a7ecc'
     red: '#F7768E'
-    white: '#acb0d0'
+    green: '#9ECE6A'
     yellow: '#E0AF68'
+    blue: '#7AA2F7'
+    magenta: '#9A7ECC'
+    cyan: '#4ABAAF'
+    white: '#ACB0D0'
   primary:
     foreground: '#a9b1d6'
     background: '#000000'

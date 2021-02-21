@@ -1,8 +1,10 @@
+# nonessential packages
 { config, lib, pkgs, ... }:
 {
   environment = {
     systemPackages = with pkgs; [
       unstable.aseprite
+      unstable.bitwig-studio
       unstable.discord
       unstable.godot
       unstable.lmms
