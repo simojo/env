@@ -1,6 +1,7 @@
 [user]
   name = Simon Jones
   email = github@simonjjones.com
+  signingkey = 1171F25FA9340928
 [push]
   default = simple
 [pull]
@@ -10,3 +11,5 @@
 [core]
   quotepath = false
   editor = vim
+[commit]
+  gpgsign = true
