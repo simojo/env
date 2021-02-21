@@ -45,11 +45,13 @@ export VISUAL='vim'
 export BROWSER='chromium'
 export TERMINAL='alacritty'
 
+# completion, a far-cry from Zsh
+# FIXME
+# bind "set show-all-if-ambiguous on"
+# bind "set completion-ignore-case on"
+
 # lean on FZF for better completion #
 if command -v fzf > /dev/null; then
-  # completion, a far-cry from Zsh
-  bind "set show-all-if-ambiguous on"
-  bind "set completion-ignore-case on"
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
   export FZF_COMPLETION_TRIGGER=''
