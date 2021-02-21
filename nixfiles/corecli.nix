@@ -28,7 +28,7 @@
       vim_configurable.customize {
         name = "vim";
         vimrcConfig = {
-          customRC = builtins.readFile ../dotfiles/vimrc;
+          customRC = builtins.readFile /env/dotfiles/vimrc;
         };
       })
       pkgs.acpi
@@ -90,10 +90,10 @@
       pkgs.zip
       pkgs.zsh
     ];
-    etc."bashrc.local".text = builtins.readFile ../dotfiles/bashrc;
-    etc."gitconfig".text = builtins.readFile ../dotfiles/gitconfig;
-    etc."htoprc".text = builtins.readFile ../dotfiles/htoprc;
-    etc."tmux.conf".text = builtins.readFile ../dotfiles/tmuxconf;
+    etc."bashrc.local".text = builtins.readFile /env/dotfiles/bashrc;
+    etc."gitconfig".text = builtins.readFile /env/dotfiles/gitconfig;
+    etc."htoprc".text = builtins.readFile /env/dotfiles/htoprc;
+    etc."tmux.conf".text = builtins.readFile /env/dotfiles/tmuxconf;
   };
 
   programs = {
