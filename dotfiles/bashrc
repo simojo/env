@@ -46,9 +46,8 @@ export BROWSER='chromium'
 export TERMINAL='alacritty'
 
 # completion, a far-cry from Zsh
-# FIXME
-# bind "set show-all-if-ambiguous on"
-# bind "set completion-ignore-case on"
+bind "set show-all-if-ambiguous on"
+bind "set completion-ignore-case on"
 
 # lean on FZF for better completion #
 if command -v fzf > /dev/null; then
@@ -67,6 +66,17 @@ if command -v fzf > /dev/null; then
     fd --type d --hidden --follow --exclude ".git" . "$1"
   }
 fi
+
+# ctrl+p for password management
+bind -x '"\C-p": pc $(_passfind)'
+_passfind() {
+  passwords=$(\find "$HOME"/.password-store/*.gpg)
+  nukethis="$HOME/.password-store/"
+  andthis=".gpg"
+  passwords="${passwords//$nukethis/}"
+  passwords="${passwords//$andthis/}"
+  echo "$passwords" | fzf --height 8 --reverse --select-1
+}
 
 #%%%%%%%%%%%%%%%
 #%%% prompt %%%%
@@ -125,17 +135,8 @@ export LS_COLORS
 #%%% Functions %%%%
 #%%%%%%%%%%%%%%%%%%
 
-# colored man pages #
-man() { env \
-  LESS_TERMCAP_mb=$'\e[01;31m' \
-  LESS_TERMCAP_md=$'\e[01;31m' \
-  LESS_TERMCAP_me=$'\e[0m' \
-  LESS_TERMCAP_se=$'\e[0m' \
-  LESS_TERMCAP_so=$'\e[01;33m' \
-  LESS_TERMCAP_ue=$'\e[0m' \
-  LESS_TERMCAP_us=$'\e[01;32m' \
-  man "$@"
-}
+# link cd & ls
+cnl() { \cd "$@" && ll; }
 
 # extract archives #
 extract() {
@@ -155,6 +156,24 @@ extract() {
       *) echo "{extraction-failed}" ;;
     esac
   else echo "{invalid-file}"; fi
+}
+
+# colored man pages #
+man() { env \
+  LESS_TERMCAP_mb=$'\e[01;31m' \
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  man "$@"
+}
+
+# prevents leaking clipboard data to login forms
+# function hides Ctrl+C default output if no arg is given
+function pc() {
+  [[ "$*" != "" ]] && echo '' | xclip && pass -c "$@"
 }
 
 #%%%%%%%%%%%%%%%%%%
@@ -179,6 +198,10 @@ alias nrs='sudo nixos-rebuild switch'
 alias ns='nix-shell'
 alias cds='cd /_scratch'
 alias cdp='cd /_projects'
+alias cd="cnl"
+alias ..="cnl .."
+alias ...="cnl ../.."
+alias ....="cnl ../../.."
 
 if command -v exa > /dev/null; then
   alias l="exa --group-directories-first --sort=Name --time-style=iso"
@@ -231,6 +254,9 @@ if command -v rg > /dev/null; then
   alias rgc="rg --color always"
 fi
 
+# htop #
+alias htop="HTOPRC=/etc/htoprc htop"
+
 # tmux #
 alias tl='tmux list-sessions'
 alias ta='tmux attach -t '
@@ -238,11 +264,15 @@ alias td='tmux detach'
 alias tn='tmux new -s'
 alias tk='tmux kill-session -t'
 
-# xclip #
-alias xclip='xclip -selection "clipboard"'
-
 # vim #
 alias vim='vim -p'
 alias vi='vim'
 alias vmi='vim'
 alias v='vim'
+
+# xclip #
+alias xclip='xclip -selection "clipboard"'
+
+# zfs #
+alias zl='zfs list'
+alias zs='zpool status'

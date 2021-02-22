@@ -3,7 +3,7 @@
 {
   console = {
     colors = [
-      "4E5173"
+      "000000"
       "F7768E"
       "9ECE6A"
       "E0AF68"
@@ -11,7 +11,7 @@
       "9A7ECC"
       "4ABAAF"
       "ACB0D0"
-      "000000"
+      "4E5173"
       "F7768E"
       "9ECE6A"
       "E0AF68"
@@ -52,8 +52,9 @@
       pkgs.gnupg
       pkgs.gnused
       pkgs.gnutar
-      pkgs.htop
       pkgs.hdparm
+      pkgs.htop
+      pkgs.hyperfine
       pkgs.jq
       pkgs.killall
       pkgs.less
@@ -66,18 +67,19 @@
       pkgs.openssh
       pkgs.openvpn
       pkgs.pandoc
-      pkgs.pass
       pkgs.parted
+      pkgs.pass
       pkgs.pinentry
       pkgs.ripgrep
       pkgs.rsync
+      pkgs.ruby
       pkgs.sd
-      pkgs.tldr
-      pkgs.tokei
       pkgs.shellcheck
       pkgs.tig
       pkgs.tldr
+      pkgs.tldr
       pkgs.tmux
+      pkgs.tokei
       pkgs.tree
       pkgs.unstable.elixir
       pkgs.unstable.jdk

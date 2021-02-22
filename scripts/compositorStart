@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# kick of redshift along with picom #
+run() {
+  # wait for x session to begin
+  sleep 5
+
+  pkill -9 redshift
+  redshift -x
+  redshift -b 1.0:0.7 -l 41.64801:-80.14641 -t 5500:4000
+
+  picom --config /env/dotfiles/picom.conf
+}
+
+run
