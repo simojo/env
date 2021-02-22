@@ -68,13 +68,9 @@ if command -v fzf > /dev/null; then
 fi
 
 # ctrl+p for password management
-bind -x '"\C-p": pc $(_passfind)'
-_passfind() {
-  passwords=$(\find "$HOME"/.password-store/*.gpg)
-  nukethis="$HOME/.password-store/"
-  andthis=".gpg"
-  passwords="${passwords//$nukethis/}"
-  passwords="${passwords//$andthis/}"
+bind -x '"\C-p": _passCopy $(_passfzf)'
+_passfzf() {
+  passwords=$(_passList)
   echo "$passwords" | fzf --height 8 --reverse --select-1
 }
 
@@ -135,9 +131,6 @@ export LS_COLORS
 #%%% Functions %%%%
 #%%%%%%%%%%%%%%%%%%
 
-# link cd & ls
-cnl() { \cd "$@" && ll; }
-
 # extract archives #
 extract() {
   if [ -f "$1" ]; then
@@ -168,12 +161,6 @@ man() { env \
   LESS_TERMCAP_ue=$'\e[0m' \
   LESS_TERMCAP_us=$'\e[01;32m' \
   man "$@"
-}
-
-# prevents leaking clipboard data to login forms
-# function hides Ctrl+C default output if no arg is given
-function pc() {
-  [[ "$*" != "" ]] && echo '' | xclip && pass -c "$@"
 }
 
 #%%%%%%%%%%%%%%%%%%
@@ -276,3 +263,6 @@ alias xclip='xclip -selection "clipboard"'
 # zfs #
 alias zl='zfs list'
 alias zs='zpool status'
+
+# link cd & ls
+cnl() { \cd "$@" && ll; }

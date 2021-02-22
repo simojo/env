@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+run() {
+  bemenu-run \
+    --prompt=">" \
+    --prefix=">" \
+    --ignorecase \
+    --wrap \
+    --list=1000 \
+    --tf=#666666 \
+    --hf=#ffffff \
+    --nf=#666666 \
+    --fn "Hack 30"
+}
+
+run

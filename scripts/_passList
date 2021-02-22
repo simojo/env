@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+run() {
+  passwords=$(\find "$HOME"/.password-store/*.gpg)
+  nukethis="$HOME/.password-store/"
+  andthis=".gpg"
+  passwords="${passwords//$nukethis/}"
+  passwords="${passwords//$andthis/}"
+  echo "$passwords"
+}
+
+run

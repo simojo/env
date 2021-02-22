@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# prevents leaking clipboard data to login forms #
+# function hides Ctrl+C default output if no arg is given #
+run() {
+  [[ "$*" != "" ]] && echo '' | xclip && pass -c "$@"
+}
+
+run "$1"
