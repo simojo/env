@@ -61,7 +61,7 @@ colors:
     green: '#9ECE6A'
     yellow: '#E0AF68'
     blue: '#7AA2F7'
-    magenta: '#9a7ecc'
+    magenta: '#FC5FA2'
     cyan: '#4abaaf'
     white: '#acb0d0'
   cursor:
@@ -73,7 +73,7 @@ colors:
     green: '#9ECE6A'
     yellow: '#E0AF68'
     blue: '#7AA2F7'
-    magenta: '#9A7ECC'
+    magenta: '#FC5FA2'
     cyan: '#4ABAAF'
     white: '#ACB0D0'
   primary:
