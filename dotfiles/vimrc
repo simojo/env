@@ -51,8 +51,8 @@ iab <%# <%# %><esc>F%hi
 " indentLine: displays thin vertical lines
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char='┊'
-" autocmd Filetype json let g:indentLine_enabled = 0
 let g:vim_json_syntax_conceal=0
+let g:indentLine_fileTypeExclude = ['text', 'md', 'csv', 'cron']
 
 " abbreviations and plugins to automatically complete closing syntaxes.
 " generally a good idea to let Vim do the repetitive typing when possible.
@@ -145,15 +145,15 @@ nmap <silent> <Leader>sc :setlocal spell!<cr>
 
 " autocopmletion
 " https://github.com/prabirshrestha/vim-lsp/wiki/Servers
-Plug 'prabirshrestha/asyncomplete-buffer.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+" Plug 'prabirshrestha/asyncomplete-buffer.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-" Plug 'ervandew/supertab'
-" let g:SuperTabDefaultCompletionType = "context"
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 
 " ;d to expand the error details (q to exit).
 " ;n to jump to the next error location.
