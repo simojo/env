@@ -17,6 +17,7 @@ in {
       pkgs.neofetch
       pkgs.polybar
       pkgs.redshift
+      pkgs.rofi
       pkgs.scrot
       pkgs.slock
       pkgs.unstable.cairo
