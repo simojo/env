@@ -4,6 +4,7 @@ run() {
   rofi -show run \
     -matching fuzzy \
     -display-run ">" \
+    -tokenize \
     -theme "/env/dotfiles/rofi.rasi" \
     -disable-history \
     -hide-scrollbar
