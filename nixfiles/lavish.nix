@@ -14,6 +14,7 @@
       unstable.reaper
       unstable.shotcut
       unstable.steam
+      unstable.slack-dark
       unstable.zoom-us
       youtube-dl
     ];

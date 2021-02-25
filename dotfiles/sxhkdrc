@@ -19,6 +19,10 @@ super + shift + backslash
 super + Tab
 	launcher
 
+# launch window switcher
+super + w
+	windowSwitcher
+
 # restart sxhkd daemon
 super + Escape
 	pkill -USR1 -x sxhkd

@@ -1,0 +1,116 @@
+/* global settings and color variables */
+* {
+   fg:               #ffffff;
+   bg:               #000000;
+   highlight:        underline #ffffff;
+   urgentcolor:      #C74D4C;
+   accent:           #666666;
+   font: "Hack 30";
+   background-color: @bg;
+}
+
+window {
+   background-color: @bg;
+   anchor: north;
+   location: north;
+   y-offset: 10%;
+}
+
+mainbox {
+   background-color: @bg;
+   spacing:0px;
+   children: [inputbar, message, listview];
+}
+
+message {
+   padding: 6px 10px;
+   background-color:@bg;
+}
+
+textbox {
+   text-color:@accent;
+   background-color:@bg;
+}
+
+listview {
+   fixed-height: false;
+   dynamic: true;
+   scrollbar: false;
+   spacing: 0px;
+   padding: 1px 0px 0px 0px;
+   margin: 0px 0px 1px 0px;
+   background: @bg;
+}
+
+element {
+   padding: 2px 15px;
+}
+
+element normal.normal {
+   padding: 0px 15px;
+   background-color: @bg;
+   text-color: @accent;
+}
+
+element normal.urgent {
+   background-color: @bg;
+   text-color: @urgentcolor;
+}
+
+element normal.active {
+   background-color: @bg;
+   text-color: @accent;
+}
+
+element selected.normal {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+element selected.urgent {
+    background-color: @urgentcolor;
+    text-color:       @bg;
+}
+
+element selected.active {
+    background-color: @bg;
+    text-color:       @fg;
+}
+
+element alternate.normal {
+    background-color: @bg;
+    text-color:       @accent;
+}
+
+element alternate.urgent {
+    background-color: @bg;
+    text-color:       @urgentcolor;
+}
+
+element alternate.active {
+    background-color: @bg;
+    text-color:       @accent;
+}
+
+inputbar {
+   background-color: @bg;
+   spacing: 0px;
+}
+
+prompt {
+   padding:6px 9px;
+   background-color: @bg;
+   text-color:@fg;
+}
+
+entry {
+   padding:6px 10px;
+   background-color:@bg;
+   text-color:@fg;
+}
+
+case-indicator {
+   padding:6px 10px;
+   text-color:@fg;
+   background-color:@bg;
+}

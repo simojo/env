@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 run() {
-  rofi -show run \
+  rofi -show window \
     -matching fuzzy \
-    -display-run ">" \
+    -display-window ">" \
     -theme "/env/dotfiles/rofi.rasi" \
     -disable-history \
     -hide-scrollbar
