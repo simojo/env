@@ -18,7 +18,6 @@ in {
       pkgs.polybar
       pkgs.redshift
       pkgs.rofi
-      pkgs.rofi-calc
       pkgs.scrot
       pkgs.slock
       pkgs.unstable.cairo
