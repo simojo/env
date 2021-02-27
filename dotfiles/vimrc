@@ -134,11 +134,11 @@ endfunction
 " writing tools
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-let g:limelight_conceal_ctermfg='gray'
+let g:limelight_conceal_ctermfg='#666666'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-litecorrect'
 au FileType mkd,markdown,tex,html,text call litecorrect#init()
-au FileType mkd,markdown,tex,html,text nmap \ :Goyo<CR>:Limelight<CR>
+au FileType mkd,markdown,tex,html,text nmap \ :Goyo<cr>:Limelight<cr>
 au FileType mkd,markdown,tex,html,text nmap 0 g0
 au FileType mkd,markdown,tex,html,text nmap $ g$
 nmap <silent> <Leader>sc :setlocal spell!<cr>
