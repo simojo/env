@@ -1,5 +1,4 @@
 { pkgs ? import <unstable> {} }:
-
 let
   shellname = "python";
   myPython = with pkgs; [
