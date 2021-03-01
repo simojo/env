@@ -40,6 +40,7 @@
       pkgs.bat
       pkgs.curl
       pkgs.docker
+      pkgs.docker-compose
       pkgs.eidolon
       pkgs.entr
       pkgs.exa

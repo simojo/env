@@ -1,5 +1,13 @@
 # https://nixos.wiki/wiki/Cheatsheet
 { config, lib, pkgs, ... }:
+let
+  notsecret = {
+    sshPubKeys = {
+      alphaPubKey = builtins.readFile /env/notsecret/alpha.pub;
+      ghPubKey = builtins.readFile /env/notsecret/gh.pub;
+    };
+  };
+in
 {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -90,7 +98,15 @@
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" "video" "libvirtd" ];
+        extraGroups = [ "wheel" "audio" "video" "libvirtd" "docker" ];
+        openssh = {
+          authorizedKeys = {
+            keys = [
+              notsecret.sshPubKeys.ghPubKey
+              notsecret.sshPubKeys.alphaPubKey
+            ];
+          };
+        };
       };
     };
   };
@@ -104,7 +120,14 @@
     };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+    };
+    docker ={
+      enable = true;
+    };
+  };
 
   hardware.bluetooth.enable = true;
 
