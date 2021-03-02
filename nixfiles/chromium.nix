@@ -6,7 +6,6 @@
     extensions = [
       "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-      "hdokiejnpimakedhajhdlcegeplioahd" # LastPass
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
       "khpcanbeojalbkpgpmjpdkjnkfcgfkhb" # Chromium smooth scroll
