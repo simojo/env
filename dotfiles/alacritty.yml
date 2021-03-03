@@ -62,10 +62,10 @@ colors:
     yellow: '#E0AF68'
     blue: '#7AA2F7'
     magenta: '#FC5FA2'
-    cyan: '#4abaaf'
-    white: '#acb0d0'
+    cyan: '#4ABAAF'
+    white: '#ACB0D0'
   cursor:
-    cursor: #E0AF68
+    cursor: '#E0AF68'
     text: '#1E1F24'
   normal:
     black: '#000000'
@@ -85,21 +85,21 @@ background_opacity: 1.00
 working_directory: /_scratch
 
 key_bindings:
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Add,      mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: V,         mods: Control|Shift, action: Paste            }
+  - { key: C,         mods: Control|Shift, action: Copy             }
+  - { key: Insert,    mods: Shift,         action: PasteSelection   }
+  - { key: Key0,      mods: Control,       action: ResetFontSize    }
+  - { key: Equals,    mods: Control,       action: IncreaseFontSize }
+  - { key: Plus,      mods: Control,       action: IncreaseFontSize }
+  - { key: Underline, mods: Control,       action: DecreaseFontSize }
+  - { key: Minus,     mods: Control,       action: DecreaseFontSize }
 
-  - { key: Paste,                    action: Paste                            }
-  - { key: Copy,                     action: Copy                             }
-  - { key: L,         mods: Control, action: ClearLogNotice                   }
-  - { key: L,         mods: Control, chars: "\x0c"                            }
-  - { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
-  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  - { key: Paste,                          action: Paste                            }
+  - { key: Copy,                           action: Copy                             }
+  - { key: L,         mods: Control,       action: ClearLogNotice                   }
+  - { key: L,         mods: Control,       chars: "\x0c"                            }
+  - { key: PageUp,    mods: Shift,         action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageDown,  mods: Shift,         action: ScrollPageDown, mode: ~Alt       }
+  - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt       }
+  - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt       }
 
