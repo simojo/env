@@ -176,7 +176,9 @@ alias gdc='git diff --cached'
 alias gl='git log --oneline'
 alias gP='git push'
 alias gp='git pull'
+alias gb='git branch'
 alias gc='git commit'
+alias gcm='git commit -m'
 
 # bash management #
 alias x='clear'
