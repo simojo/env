@@ -101,7 +101,6 @@ label-foreground = ${colors.foreground}
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 100
 
 ; lightning bolt
 format-charging-prefix = 
