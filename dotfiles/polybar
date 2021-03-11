@@ -6,6 +6,8 @@
 ;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
+; https://github.com/polybar/polybar/wiki
+
 
 [colors]
 background = #aa000000
@@ -132,12 +134,17 @@ ramp-capacity-7 = " "
 ramp-capacity-7-foreground = ${colors.good}
 
 
-[module/network]
+[module/wireless-network]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
 unknown-as-up = true
-accumulate-stats = true
+
+[module/wired-network]
+type = internal/network
+interface = enp57s0u2
+interval = 3.0
+unknown-as-up = true
 
 ; wifi sign
 format-connected =  <label-connected>
