@@ -35,7 +35,7 @@ separator = "     "
 
 font-0 = FontAwesome5Free:style=Solid:size=12;2
 
-modules-right = network alsa backlight battery
+modules-right = wired-network wireless-network alsa backlight battery
 modules-center = date
 modules-left = bspwm
 
@@ -79,7 +79,6 @@ label-pseudotiled-foreground = ${colors.accent}
 [settings]
 throttle-output = 5
 throttle-output-for = 10
-throttle-input-for = 30
 screenchange-reload = true
 pseudo-transparency = true
 
@@ -132,16 +131,13 @@ ramp-capacity-6 = " "
 ramp-capacity-7 = " "
 ramp-capacity-7-foreground = ${colors.good}
 
+label-full = <ramp-capacity> <label-discharging>
+label-full-foreground = ${colors.foreground}
+
 
 [module/wireless-network]
 type = internal/network
 interface = wlp2s0
-interval = 3.0
-unknown-as-up = true
-
-[module/wired-network]
-type = internal/network
-interface = enp57s0u2
 interval = 3.0
 unknown-as-up = true
 
@@ -151,6 +147,19 @@ label-connected = %essid%
 format-connected-padding = 1
 format-connected-foreground = ${colors.accent}
 label-connected-foreground = ${colors.foreground}
+
+[module/wired-network]
+type = internal/network
+interface = enp57s0u2
+interval = 3.0
+unknown-as-up = true
+
+; ethernet sign
+format-connected =  <label-connected>
+format-connected-padding = 1
+format-connected-foreground = ${colors.accent}
+label-connected-foreground = ${colors.foreground}
+
 
 
 [module/alsa]
