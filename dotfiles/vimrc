@@ -210,8 +210,8 @@ set list listchars=tab:\ \ ,trail:␣,extends:»,precedes:«,nbsp:•
 set autoindent smartindent copyindent shiftround smarttab
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-" folding
-set foldenable foldnestmax=4 foldmethod=syntax
+" folding (use zi to toggle 'foldenable')
+set nofoldenable foldnestmax=4 foldmethod=indent
 
 " show editing mode among other useful things
 set showmode showcmd

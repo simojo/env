@@ -2,6 +2,7 @@
 let
   myTex = with pkgs; [
     tectonic
+    biber
   ];
   shellname = "latex";
 in
