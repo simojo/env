@@ -3,8 +3,9 @@
 {
   environment = {
     systemPackages = with pkgs; [
-      unstable.aseprite
       unstable.ardour
+      unstable.arduino
+      unstable.aseprite
       unstable.bitwig-studio
       unstable.discord
       unstable.godot
@@ -13,8 +14,8 @@
       unstable.obs-studio
       unstable.reaper
       unstable.shotcut
-      unstable.steam
       unstable.slack-dark
+      unstable.steam
       unstable.zoom-us
       youtube-dl
     ];
