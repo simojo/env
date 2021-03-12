@@ -47,6 +47,14 @@ in {
   programs.light.enable = true;
 
   services = {
+    services = {
+    redshift = {
+      enable = true;
+      temperature = {
+        day = 5500;
+        night = 4200;
+      };
+    };
     unclutter = {
       enable = true;
     };

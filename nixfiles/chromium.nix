@@ -8,7 +8,6 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
-      "khpcanbeojalbkpgpmjpdkjnkfcgfkhb" # Chromium smooth scroll
     ];
     extraOpts = let
     in {

@@ -33,5 +33,4 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar -c /env/dotfiles/polybar mybar
 
 # start compositor along with other visual-related tasks #
-compositorStart
-disown
+picom --config /env/dotfiles/picom.conf
