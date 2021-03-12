@@ -47,7 +47,6 @@ in {
   programs.light.enable = true;
 
   services = {
-    services = {
     redshift = {
       enable = true;
       temperature = {
