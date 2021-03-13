@@ -70,6 +70,9 @@
           { "url" = "https://linkedin.com/"; name = "LinkedIn"; }
           { "url" = "https://namecheap.com/"; name = "Namecheap"; }
           { "url" = "https://newegg.com/"; name = "Newegg"; }
+          { "url" = "https://translate.google.com/?sl=en&tl=es&op=translate"; name = "Spanish-English"; }
+          { "url" = "https://translate.google.com/?sl=en&tl=ja&op=translate"; name = "Japanese-English"; }
+          { "url" = "https://translate.google.com/?sl=en&tl=el&op=translate"; name = "Greek-English"; }
         ]; }
         { "name" = "Nix"; "children" = [
           { "url" = "https://nixos.org/nix/manual/"; name = "nix-manual"; }
