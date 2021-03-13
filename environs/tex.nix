@@ -18,6 +18,8 @@ in
   }
 
 
+# This is generally used for markdown, as it is lightweight
+
 # This yaml header helps
 # ---
 # title: 'Title'
