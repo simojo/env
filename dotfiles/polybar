@@ -131,8 +131,8 @@ ramp-capacity-6 = " "
 ramp-capacity-7 = " "
 ramp-capacity-7-foreground = ${colors.good}
 
-label-full = <ramp-capacity> <label-discharging>
-label-full-foreground = ${colors.foreground}
+label-full = "   %percentage%"
+label-full-foreground = ${colors.good}
 
 
 [module/wireless-network]
