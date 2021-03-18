@@ -6,11 +6,12 @@
 ;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
-; https://github.com/polybar/polybar/wiki
+; https://github.com/polybar/polybar/wiki polybar wiki
+; https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 hex transparency codes
 
 
 [colors]
-background = #aa000000
+background = #03000000
 foreground = #b8c8e3
 foreground-transparent = #aa404040
 accent = #ff8c80
@@ -33,7 +34,8 @@ offset-y = 0
 offset-x = 0
 separator = "     "
 
-font-0 = FontAwesome5Free:style=Solid:size=12;2
+font-0 = Hack:style=Solid:size=11;2
+font-1 = FontAwesome5Free:style=Solid:size=12;2
 
 modules-right = wired-network wireless-network alsa backlight battery
 modules-center = date
@@ -85,14 +87,13 @@ pseudo-transparency = true
 
 [module/date]
 type = internal/date
-time = %H.%M
-date = %b %d
+time = %I:%M %p
+date = %a %b %d
 format = <label>
 interval = 10
 format-foreground = ${colors.accent}
 format-padding = 1
-; clock
-label = %date%  %time%
+label = %date% %time%
 label-foreground = ${colors.foreground}
 
 

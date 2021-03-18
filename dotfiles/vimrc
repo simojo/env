@@ -423,6 +423,7 @@ hi! ALEInfoSign                    ctermfg=15 ctermbg=none cterm=none
 hi! link ALEWarningSign            ALEWarning
 hi! link ALEStyleWarning           ALEWarning
 hi! link ALEStyleWarningSign       ALEWarning
+hi! link ALEStyleError             ALEWarning
 
 "%%%%% EasyMotion %%%%%
 hi! EasyMotionTarget               ctermfg=1 ctermbg=none cterm=none

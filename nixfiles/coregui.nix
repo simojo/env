@@ -7,7 +7,6 @@ in {
   environment = {
     systemPackages = [
       pkgs.alacritty
-      pkgs.bemenu
       pkgs.feh
       pkgs.ffmpeg
       pkgs.hsetroot
@@ -59,7 +58,7 @@ in {
     };
     xserver = {
       libinput.enable = true;
-      libinput.naturalScrolling = false;
+      libinput.touchpad.naturalScrolling = false;
       autoRepeatDelay = 300;
       autoRepeatInterval = 30;
       desktopManager = {
@@ -68,12 +67,14 @@ in {
         };
       };
       displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "simon";
+        };
         sddm = {
           enable = true;
           autoLogin = {
-            enable = true;
             relogin = false;
-            user = "simon";
           };
         };
         sessionCommands = ''
