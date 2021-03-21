@@ -323,7 +323,7 @@ if exists("syntax_on")
   syntax reset
 endif
 syntax sync minlines=256
-set synmaxcol=200
+set synmaxcol=0
 hi clear
 
 "%%%%% Vim UI %%%%%
