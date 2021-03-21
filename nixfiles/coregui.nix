@@ -102,6 +102,18 @@ in {
       xrandrHeads = [
       ];
     };
+    picom = {
+      vSync = true;
+      fade = true;
+      shadow = true;
+      fadeDelta = 0.07;
+      refreshRate = 0;
+      opacityRules = [
+        "90:class_g = 'Alacritty'"
+      ];
+      activeOpacity = 1;
+      backend = "glx";
+    };
   };
 
   security = {
