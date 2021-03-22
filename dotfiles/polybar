@@ -132,7 +132,7 @@ ramp-capacity-6 = " "
 ramp-capacity-7 = " "
 ramp-capacity-7-foreground = ${colors.good}
 
-label-full = "   %percentage%"
+label-full = "   %percentage%%"
 label-full-foreground = ${colors.good}
 
 
