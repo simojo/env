@@ -103,15 +103,16 @@ in {
       ];
     };
     picom = {
+      enable = true;
       vSync = true;
       fade = true;
+      fadeDelta = 5;
       shadow = true;
-      fadeDelta = 0.07;
       refreshRate = 0;
       opacityRules = [
         "90:class_g = 'Alacritty'"
       ];
-      activeOpacity = 1;
+      activeOpacity = 1.0;
       backend = "glx";
     };
   };
