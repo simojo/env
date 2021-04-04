@@ -7,6 +7,7 @@ in {
   environment = {
     systemPackages = [
       pkgs.alacritty
+      pkgs.electron
       pkgs.feh
       pkgs.ffmpeg
       pkgs.hsetroot

@@ -4,7 +4,7 @@
   environment = {
     systemPackages = with pkgs; [
       unstable.ardour
-      unstable.arduino
+      unstable.arduino-cli
       unstable.aseprite
       unstable.bitwig-studio
       unstable.discord
