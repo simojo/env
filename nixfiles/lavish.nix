@@ -9,8 +9,8 @@
       unstable.bitwig-studio
       unstable.discord
       unstable.godot
+      unstable.multimc
       unstable.lmms
-      unstable.minecraft
       unstable.obs-studio
       unstable.reaper
       unstable.shotcut

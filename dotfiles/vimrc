@@ -247,7 +247,6 @@ set ttyfast
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 
 " statusline
-
 set hidden noruler rulerformat=%6(%=%l%)
 set laststatus=2
 set statusline=%f
