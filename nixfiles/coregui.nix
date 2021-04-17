@@ -14,6 +14,7 @@ in {
       pkgs.lguf-brightness
       pkgs.libguestfs
       pkgs.libvirt
+      pkgs.libGL
       pkgs.neofetch
       pkgs.polybar
       pkgs.redshift
