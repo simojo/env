@@ -128,6 +128,8 @@ nmap <Leader><tab> :Rg<cr>
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
 function! MarkdownLevel()
