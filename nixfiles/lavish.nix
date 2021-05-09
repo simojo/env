@@ -9,15 +9,16 @@
       unstable.bitwig-studio
       unstable.discord
       unstable.godot
+      unstable.mplayer
       unstable.multimc
       unstable.lmms
-      unstable.obs-studio
       unstable.reaper
       unstable.shotcut
       unstable.slack-dark
       unstable.steam
       unstable.zoom-us
       youtube-dl
+      simplescreenrecorder
     ];
   };
 
