@@ -17,8 +17,9 @@
       unstable.slack-dark
       unstable.steam
       unstable.zoom-us
-      youtube-dl
+      rshell
       simplescreenrecorder
+      youtube-dl
     ];
   };
 
