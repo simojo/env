@@ -8,8 +8,21 @@
   rebase = false
 [color]
   ui = true
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
 [core]
   quotepath = false
   editor = vim
 [commit]
   gpgsign = true
+[merge]
+  tool = vimdiff
+[delta]
+  features = side-by-side line-numbers decorations color-only
+  syntax-theme = none
+[delta "line-numbers"]
+  line-numbers-left-format = "{nm:^4}"
+  line-numbers-right-format = "{np:^4}"

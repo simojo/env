@@ -108,11 +108,25 @@ nmap <silent> <Leader>l <Plug>(easymotion-bd-w)
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '~25%' }
-command! -bang -nargs=? -complete=dir Files call
-      \ fzf#vim#files(<q-args>, {'sink': 'tabedit'}, <bang>0)
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split' }
 nmap <tab> :Files<cr>
 nmap <Leader><tab> :Rg<cr>
-
 
 " markdown tweaks to improve folding in large documents with nested headers.
 " also, disable some absurd nonsensical defaults that that plugin ships with.
@@ -154,16 +168,38 @@ au FileType mkd,markdown,tex,html,text nmap $ g$
 nmap <silent> <Leader>sc :setlocal spell!<cr>
 
 " autocopmletion
-" https://github.com/prabirshrestha/vim-lsp/wiki/Servers
-" Plug 'prabirshrestha/asyncomplete-buffer.vim'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" imap <c-space> <Plug>(asyncomplete_force_refresh)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-git',
+  \ 'coc-css',
+  \ 'coc-html',
+  \ 'coc-rls',
+  \ 'coc-python',
+  \ 'coc-sh',
+  \ 'coc-svelte',
+  \ 'coc-tsserver',
+  \ ]
 
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "context"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " ;d to expand the error details (q to exit).
 " ;n to jump to the next error location.
@@ -179,6 +215,7 @@ let g:ale_sign_warning = '▸'
 
 " polyglot: syntax highlighting/formatting across nearly every language
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['autoindent']
 
 call plug#end()
 
@@ -435,7 +472,7 @@ hi! link EasyMotionShade           NonText
 "%%%%% Diff %%%%%
 hi! link diffAdded                 DiffAdd
 hi! link diffRemoved               DiffDelete
-hi! link diffFile                  PreProc
+hi! link diffFile                  Comment
 hi! link diffLine                  Title
 
 "%%%%% Vim help %%%%%

@@ -15,6 +15,7 @@
       unstable.reaper
       unstable.shotcut
       unstable.slack-dark
+      thonny
       unstable.steam
       unstable.zoom-us
       rshell
