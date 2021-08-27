@@ -23,6 +23,15 @@ docker run -t -d --network=macnet --ip=172.16.1.choose --restart=unless-stopped 
 # either create and use a TLS cert from pfsense or route through proxy.
 ```
 
+```sh
+# disabling iptables
+
+# /etc/docker/daemon.json
+{
+  "iptables": false
+}
+```
+
 > FIXME: registry setup
 
 > FIXME: process for updating containers
