@@ -50,6 +50,7 @@
       pkgs.file
       pkgs.fzf
       pkgs.gcc-arm-embedded # Raspberry Pi Pico SDK
+      pkgs.ghc
       pkgs.git
       pkgs.gnugrep
       pkgs.gnumake
