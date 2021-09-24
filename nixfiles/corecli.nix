@@ -38,7 +38,6 @@
       pkgs.bashCompletion
       pkgs.bashInteractive
       pkgs.bat
-      pkgs.cmake # Raspberry Pi Pico SDK
       pkgs.curl
       pkgs.delta
       pkgs.docker
@@ -49,7 +48,6 @@
       pkgs.fd
       pkgs.file
       pkgs.fzf
-      pkgs.gcc-arm-embedded # Raspberry Pi Pico SDK
       pkgs.ghc
       pkgs.git
       pkgs.gnugrep
@@ -63,7 +61,6 @@
       pkgs.jq
       pkgs.killall
       pkgs.less
-      pkgs.llvm # Raspberry Pi Pico SDK
       pkgs.lm_sensors
       pkgs.micropython
       pkgs.ncdu

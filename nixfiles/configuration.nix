@@ -15,6 +15,7 @@ in
       ./corecli.nix
       ./lavish.nix
       ./chromium.nix
+      ./teensy.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -25,34 +26,34 @@ in
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/disk/by-partuuid";
 
-  fileSystems."/" =
-    { device = "zpuddle/root";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "zpuddle/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/nix" =
-    { device = "zpuddle/nix";
-      fsType = "zfs";
-    };
+  fileSystems."/nix" = {
+    device = "zpuddle/nix";
+    fsType = "zfs";
+  };
 
-  fileSystems."/_projects" =
-    { device = "zpuddle/projects";
-      fsType = "zfs";
-    };
+  fileSystems."/_projects" = {
+    device = "zpuddle/projects";
+    fsType = "zfs";
+  };
 
-  fileSystems."/_scratch" =
-    { device = "zpuddle/scratch";
-      fsType = "zfs";
-    };
+  fileSystems."/_scratch" = {
+    device = "zpuddle/scratch";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5DF7-6823";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/5DF7-6823";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/85864a8b-8282-4874-b846-f9e61767a05b"; }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/85864a8b-8282-4874-b846-f9e61767a05b"; }
+  ];
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
