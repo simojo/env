@@ -62,7 +62,6 @@
       pkgs.killall
       pkgs.less
       pkgs.lm_sensors
-      pkgs.micropython
       pkgs.ncdu
       pkgs.neovim
       pkgs.netcat
