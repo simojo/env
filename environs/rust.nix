@@ -2,7 +2,7 @@
 
 let
   shellname = "rust";
-  myRust = with pkgs; [ rustc cargo rustfmt ];
+  myRust = with pkgs; [ rustc cargo rustfmt rust-analyzer ];
 in
   pkgs.stdenv.mkDerivation {
     name = shellname;
