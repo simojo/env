@@ -18,6 +18,16 @@ gpg --delete-key "KEYIDGOESHERE"
 gpg --delete-secret-key "KEYIDGOESHERE"
 ```
 
+```sh
+# encrypt a file
+gpg -o asdf.gpg -c asdf.txt
+
+# decrypt a file
+gpg --output asdf.txt -d asdf.gpg
+# or
+gpg asdf.gpg
+```
+
 **Links**  
 
 http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/  
