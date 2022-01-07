@@ -1,16 +1,3 @@
-
-      ______ _   ___      __
-     |  ____| \ | \ \    / /
-     | |__  |  \| |\ \  / /
-     |  __| | . ` | \ \/ /
-     | |____| |\  |  \  /
-     |______|_| \_|   \/
-
-     reproducible environment
-
-
-![Screenshot](https://github.com/simojo/env/blob/master/screenshot.png)
-
 ### Overview
 
 **Colorscheme**: [Tokyo-Night (modified)](https://github.com/ghifarit53/tokyonight-vim)  

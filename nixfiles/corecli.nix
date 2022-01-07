@@ -85,10 +85,10 @@
       pkgs.tmux
       pkgs.tokei
       pkgs.tree
-      pkgs.unstable.elixir
-      pkgs.unstable.jdk
-      pkgs.unstable.nim
-      pkgs.unstable.nodejs
+      pkgs.elixir
+      pkgs.jdk
+      pkgs.nim
+      pkgs.nodejs
       pkgs.unzip
       pkgs.vim
       pkgs.wpa_supplicant

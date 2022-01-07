@@ -15,13 +15,12 @@ in
       ./corecli.nix
       ./lavish.nix
       ./chromium.nix
-      ./teensy.nix
       ./nvim.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "v4l2loopback" ];
   boot.kernelParams = [ "elevator=none" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "zfs" ];
