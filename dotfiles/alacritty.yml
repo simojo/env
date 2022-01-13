@@ -53,32 +53,32 @@ font:
     x: 0
     y: 0
 
-# Colors (tokyo-night)
+# Colors (Tomorrow Night Burns)
 colors:
   bright:
-    black: '#4E5173'
-    red: '#F7768E'
-    green: '#9ECE6A'
-    yellow: '#E0AF68'
-    blue: '#7AA2F7'
-    magenta: '#FC5FA2'
-    cyan: '#4ABAAF'
-    white: '#ACB0D0'
+    black: '#42454f'
+    blue: '#fc595f'
+    cyan: '#ba8586'
+    green: '#a63c40'
+    magenta: '#df9395'
+    red: '#832e31'
+    white: '#ffffff'
+    yellow: '#d2494e'
   cursor:
-    cursor: '#E0AF68'
-    text: '#1E1F24'
+    cursor: '#ff443e'
+    text: '#000000'
   normal:
     black: '#000000'
-    red: '#F7768E'
-    green: '#9ECE6A'
-    yellow: '#E0AF68'
-    blue: '#7AA2F7'
-    magenta: '#FC5FA2'
-    cyan: '#4ABAAF'
-    white: '#ACB0D0'
+    blue: '#fc595f'
+    cyan: '#ba8586'
+    green: '#a63c40'
+    magenta: '#df9395'
+    red: '#832e31'
+    white: '#ffffff'
+    yellow: '#d3494e'
   primary:
-    foreground: '#a9b1d6'
     background: '#000000'
+    foreground: '#ffffff'
 
 background_opacity: 1.00
 

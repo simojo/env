@@ -15,7 +15,6 @@ in
       ./corecli.nix
       ./lavish.nix
       ./chromium.nix
-      ./nvim.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -120,6 +119,13 @@ in
       };
     };
   };
+
+  # neovim nightly overlay
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
 
   virtualisation = {
     libvirtd = {
