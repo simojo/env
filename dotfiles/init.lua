@@ -84,6 +84,15 @@ vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
 
 -- highlighting; leaving as vimscript until I have time to migrate to lua
 vim.cmd [[
+" setup
+syntax enable
+set background=dark
+if exists("syntax_on")
+  syntax reset
+endif
+set synmaxcol=0
+hi clear
+
 "%%%%% Vim UI %%%%%
 hi! ColorColumn                    ctermfg=none  ctermbg=none  cterm=none
 hi! Conceal                        ctermfg=8     ctermbg=none  cterm=none
@@ -295,8 +304,6 @@ return require('packer').startup(function(use)
   use "evanleck/vim-svelte"
   use "gpanders/editorconfig.nvim"
 
-
-
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -304,7 +311,6 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-  use 'omnisharp/omnisharp-vim'
   use {
     'hrsh7th/nvim-cmp',
     config = function()
@@ -349,16 +355,12 @@ return require('packer').startup(function(use)
           { name = 'cmdline' }
         })
       })
-      -- omnisharp lsp config
-      require'lspconfig'.omnisharp.setup {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-        on_attach = function(_, bufnr)
-          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        end,
-        cmd = { "C:/Users/jdelgreco/AppData/Local/omnisharp-vim/omnisharp-roslyn/OmniSharp.exe", "--languageserver" , "--hostPID", tostring(pid) },
-      }
-      -- svelte lsp config
+      -- svelte lsp
       require'lspconfig'.svelte.setup{}
+      -- haskell lsp
+      require'lspconfig'.hls.setup{}
+      -- rust lsp
+      require'lspconfig'.rust_analyzer.setup{}
     end
   }
 

@@ -43,6 +43,7 @@
       pkgs.docker
       pkgs.docker-compose
       pkgs.eidolon
+      pkgs.elixir
       pkgs.entr
       pkgs.exa
       pkgs.fd
@@ -55,9 +56,11 @@
       pkgs.gnupg
       pkgs.gnused
       pkgs.gnutar
+      pkgs.haskell-language-server
       pkgs.hdparm
       pkgs.htop
       pkgs.hyperfine
+      pkgs.jdk
       pkgs.jq
       pkgs.killall
       pkgs.less
@@ -65,8 +68,10 @@
       pkgs.ncdu
       pkgs.neovim
       pkgs.netcat
+      pkgs.nim
       pkgs.nix
       pkgs.nmap
+      pkgs.nodejs
       pkgs.objconv
       pkgs.openssh
       pkgs.openvpn
@@ -84,10 +89,6 @@
       pkgs.tmux
       pkgs.tokei
       pkgs.tree
-      pkgs.elixir
-      pkgs.jdk
-      pkgs.nim
-      pkgs.nodejs
       pkgs.unzip
       pkgs.vim
       pkgs.wpa_supplicant

@@ -4,7 +4,8 @@ let
   shellname = "hs";
   mods = with pkgs; [
     ghc
-    haskellPackages.file-embed
+    haskell-language-server
+    cabal-install
   ];
 in
   pkgs.stdenv.mkDerivation {
