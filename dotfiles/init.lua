@@ -2,6 +2,9 @@
 vim.o.swapfile = false
 vim.o.backup = false
 
+-- set working dir
+vim.cmd("cd %:p:h")
+
 -- modelines are apparently an arbitrary code execution vector, so disable;
 vim.o.modeline = false
 
@@ -33,16 +36,16 @@ vim.o.scrolloff = 6
 -- statuslines mostly waste vertical space, so show sparingly;
 -- use Ctrl+G to get bearings if needed;
 vim.o.statusline = '%f'
-vim.o.statusline = vim.o.statusline .. '%( %{FugitiveHead()}%)'
-vim.o.statusline = vim.o.statusline .. '%( %R%)'
-vim.o.statusline = vim.o.statusline .. '%( %M%)'
-vim.o.statusline = vim.o.statusline .. '%='
-vim.o.statusline = vim.o.statusline .. '%<'
-vim.o.statusline = vim.o.statusline .. '%( %{&filetype}%)'
-vim.o.statusline = vim.o.statusline .. '%( %{&encoding}%)'
-vim.o.statusline = vim.o.statusline .. '%( %l:%c%)'
-vim.o.statusline = vim.o.statusline .. '%( %p%)'
-vim.o.laststatus = 1
+.. '%( %{FugitiveHead()}%)'
+.. '%( %R%)'
+.. '%( %M%)'
+.. '%='
+.. '%<'
+.. '%( %{&filetype}%)'
+.. '%( %{&encoding}%)'
+.. '%( %l:%c%)'
+.. '%( %p%)'
+vim.o.laststatus = 2
 vim.o.hidden = true
 vim.o.ruler = false
 vim.o.rulerformat = "%6(%=%l%)"
@@ -234,9 +237,7 @@ return require('packer').startup(function(use)
     'phaazon/hop.nvim',
     branch = 'v1',
     config = function()
-      require('hop').setup {
-        keys = 'etovxqpdgfblzhckisuran'
-      }
+      require('hop').setup { keys = 'etovxqpdgfblzhckisuran' }
       vim.api.nvim_set_keymap("n", "<Leader>l", "<cmd>lua require'hop'.hint_words()<cr>", {})
       vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>lua require'hop'.hint_lines()<cr>", {})
       vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>lua require'hop'.hint_lines_skip_whitespace()<cr>", {})
@@ -246,7 +247,7 @@ return require('packer').startup(function(use)
 
   -- show marks in sign column;
   use {
-    'chentau/marks.nvim',
+    'chentoast/marks.nvim',
     config = function()
       require('marks').setup {
         default_mappings = false,
@@ -301,6 +302,7 @@ return require('packer').startup(function(use)
     end
   }
 
+  use "tpope/vim-fugitive"
   use "evanleck/vim-svelte"
   use "gpanders/editorconfig.nvim"
 
@@ -314,8 +316,8 @@ return require('packer').startup(function(use)
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      vim.cmd [[set completeopt=menu,menuone,noselect]]
       local cmp = require'cmp'
+      vim.opt.completeopt = {"menu", "menuone"}
       cmp.setup({
         snippet = {
           -- REQUIRED - you must specify a snippet engine
@@ -339,7 +341,10 @@ return require('packer').startup(function(use)
           { name = 'vsnip' },
         }, {
           { name = 'buffer' },
-        })
+        }),
+        completion = {
+          completeopt = 'menu,menuone'
+        },
       })
       -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline('/', {

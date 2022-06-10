@@ -2,6 +2,7 @@
 let
   shellname = "python";
   myPython = with pkgs; [
+    python2Full
     python38Full
     python38Packages.pylint
     python38Packages.black
