@@ -62,20 +62,19 @@ vim.api.nvim_set_keymap('n', 'sk', 'zk', {})
 vim.api.nvim_set_keymap('n', 'sl', 'zM', {})
 vim.api.nvim_set_keymap('n', 'sL', 'zR', {})
 
--- keybinds pertaining to splits & buffers;
+-- keybinds pertaining to splits, buffers, and windows;
 vim.api.nvim_set_keymap('n', '<Leader>wv', '<c-w>v', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ws', '<c-w>s', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>wc', '<c-w>c', { silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ww', '<c-w><c-w>', { silent = true })
 vim.api.nvim_set_keymap('n', 'g;', ':bn<cr>', { silent = true })
 vim.api.nvim_set_keymap('n', 'gj', ':bp<cr>', { silent = true })
-vim.api.nvim_set_keymap('n', 'B', ':b#<cr>', { silent = true })
+vim.api.nvim_set_keymap('n', 'h', 'gT', { silent = true })
+vim.api.nvim_set_keymap('n', 'l', 'gt', { silent = true })
 
 -- keybinds pertaining to scrolling;
 vim.api.nvim_set_keymap('n', 'J', ':set scroll=2<cr><c-d>', { silent = true })
 vim.api.nvim_set_keymap('n', 'K', ':set scroll=2<cr><c-u>', { silent = true })
-vim.api.nvim_set_keymap('v', 'J', '2j', { silent = true })
-vim.api.nvim_set_keymap('v', 'K', '2k', { silent = true })
 
 -- keybinds pertaining to movements;
 vim.api.nvim_set_keymap('n', '<C-j>', 'zRddp==', {})
@@ -195,6 +194,7 @@ hi! link ALEStyleWarning           ALEWarning
 hi! link ALEStyleWarningSign       ALEWarning
 hi! link ALEStyleError             ALEWarning
 
+"FIMXE: For Hop.nvim
 "%%%%% EasyMotion %%%%%
 hi! EasyMotionTarget               ctermfg=1 ctermbg=none cterm=none
 hi! EasyMotionTarget2First         ctermfg=15 ctermbg=none cterm=none
@@ -303,7 +303,13 @@ return require('packer').startup(function(use)
   }
 
   use "tpope/vim-fugitive"
-  use "evanleck/vim-svelte"
+  use {
+    "evanleck/vim-svelte",
+    config = function()
+      vim.g.svelte_indent_script = 0
+      vim.g.svelte_indent_style = 0
+    end
+  }
   use "gpanders/editorconfig.nvim"
 
   use 'neovim/nvim-lspconfig'

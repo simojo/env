@@ -42,7 +42,7 @@ colors:
     cursor: '#e6d4a3'
     text: '#1e1e1e'
   normal:
-    black: '#1e1e1e'
+    black: '#000000'
     blue: '#377375'
     cyan: '#578e57'
     green: '#868715'
@@ -51,7 +51,7 @@ colors:
     white: '#978771'
     yellow: '#cc881a'
   primary:
-    background: '#1e1e1e'
+    background: '#000000'
     foreground: '#e6d4a3'
   selection:
     background: '#e6d4a3'
