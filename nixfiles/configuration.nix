@@ -76,8 +76,12 @@ in
 
   location = {
     # https://www.latlong.net/
-    latitude = 41.64801;
-    longitude = -80.14641;
+    # Madrid, Spain
+    latitude = 40.416775;
+    longitude = -3.703790;
+    # Meadville, PA
+    # latitude = 41.64801;
+    # longitude = -80.14641;
   };
 
   services = {

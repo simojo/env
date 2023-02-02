@@ -84,144 +84,6 @@ vim.api.nvim_set_keymap('v', '<C-k>', 'zR:m\'<-2<CR>gv=gv', {})
 vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
 
--- highlighting; leaving as vimscript until I have time to migrate to lua
-vim.cmd [[
-" setup
-syntax enable
-set background=dark
-if exists("syntax_on")
-  syntax reset
-endif
-set synmaxcol=0
-hi clear
-
-"%%%%% Vim UI %%%%%
-hi! ColorColumn                    ctermfg=none  ctermbg=none  cterm=none
-hi! Conceal                        ctermfg=8     ctermbg=none  cterm=none
-hi! Cursor                         ctermfg=none  ctermbg=none  cterm=none
-hi! CursorLine                     ctermfg=none  ctermbg=none  cterm=none
-hi! CursorLineNr                   ctermfg=7     ctermbg=none  cterm=none
-hi! DiffAdd                        ctermfg=2     ctermbg=none  cterm=none
-hi! DiffChange                     ctermfg=3     ctermbg=none  cterm=none
-hi! DiffDelete                     ctermfg=1     ctermbg=none  cterm=none
-hi! DiffText                       ctermfg=8     ctermbg=none  cterm=bold
-hi! Directory                      ctermfg=12    ctermbg=none  cterm=none
-hi! Folded                         ctermfg=7     ctermbg=none  cterm=none
-hi! LineNr                         ctermfg=8     ctermbg=none  cterm=none
-hi! MatchParen                     ctermfg=7     ctermbg=none  cterm=underline
-hi! NonText                        ctermfg=8     ctermbg=none  cterm=none
-hi! Pmenu                          ctermfg=8     ctermbg=none  cterm=none
-hi! PmenuSBar                      ctermfg=none  ctermbg=none  cterm=none
-hi! PmenuSel                       ctermfg=15    ctermbg=none  cterm=none
-hi! PmenuThumb                     ctermfg=none  ctermbg=none  cterm=none
-hi! SpellBad                       ctermfg=1     ctermbg=none  cterm=underline
-hi! SpellCap                       ctermfg=1     ctermbg=none  cterm=underline
-hi! SpellLocal                     ctermfg=13    ctermbg=none  cterm=underline
-hi! SpellRare                      ctermfg=11    ctermbg=none  cterm=underline
-hi! StatusLine                     ctermfg=8     ctermbg=none  cterm=none
-hi! StatusLineNC                   ctermfg=8     ctermbg=none  cterm=none
-hi! TabLine                        ctermfg=8     ctermbg=none  cterm=bold
-hi! TabLineSel                     ctermfg=7     ctermbg=none  cterm=bold
-hi! Title                          ctermfg=7     ctermbg=none  cterm=bold
-hi! User1                          ctermfg=1     ctermbg=none  cterm=none
-hi! User2                          ctermfg=4     ctermbg=none  cterm=none
-hi! User3                          ctermfg=2     ctermbg=none  cterm=none
-hi! User4                          ctermfg=3     ctermbg=none  cterm=none
-hi! User5                          ctermfg=5     ctermbg=none  cterm=none
-hi! User6                          ctermfg=6     ctermbg=none  cterm=none
-hi! User7                          ctermfg=7     ctermbg=none  cterm=none
-hi! User8                          ctermfg=8     ctermbg=none  cterm=none
-hi! User9                          ctermfg=15    ctermbg=none  cterm=none
-hi! VertSplit                      ctermfg=8     ctermbg=none  cterm=none
-hi! Visual                         ctermfg=none  ctermbg=none  cterm=reverse
-hi! WildMenu                       ctermfg=15    ctermbg=none  cterm=none
-
-hi! link Search                    Visual
-hi! link IncSearch                 Visual
-hi! link ModeMsg                   NonText
-hi! link VisualNOS                 Visual
-hi! link SpellBad                  Error
-hi! link SpellLocal                Normal
-hi! link PmenuSbar                 Pmenu
-hi! link PmenuThumb                Pmenu
-hi! link ColorColumn               Normal
-hi! link SignColumn                Normal
-hi! link FoldColumn                Normal
-hi! link VertSplit                 StatusLine
-hi! link WarningMsg                Error
-hi! link SpecialKey                Comment
-
-hi! link CursorColumn              CursorLine
-hi! link FoldColumn                SignColumn
-hi! link IncSearch                 Visual
-hi! link ModeMsg                   MoreMsg
-hi! link MoreMsg                   Title
-hi! link Question                  MoreMsg
-hi! link Search                    Visual
-hi! link SignColumn                LineNr
-hi! link SpecialKey                NonText
-hi! link TabLineFill               StatusLineNC
-hi! link WarningMsg                ErrorMsg
-
-"%%%%% Major %%%%%
-hi! Normal                         ctermfg=none  ctermbg=none  cterm=none
-hi! Comment                        ctermfg=8     ctermbg=none  cterm=none
-hi! Constant                       ctermfg=3     ctermbg=none  cterm=none
-hi! Identifier                     ctermfg=14    ctermbg=none  cterm=none
-hi! Statement                      ctermfg=2     ctermbg=none  cterm=none
-hi! PreProc                        ctermfg=5     ctermbg=none  cterm=none
-hi! Type                           ctermfg=4     ctermbg=none  cterm=none
-hi! Special                        ctermfg=13    ctermbg=none  cterm=none
-hi! Underlined                     ctermfg=4     ctermbg=none  cterm=underline
-hi! Ignore                         ctermfg=0     ctermbg=none  cterm=none
-hi! Error                          ctermfg=1     ctermbg=none  cterm=underline
-hi! Todo                           ctermfg=1     ctermbg=none  cterm=bold,underline
-hi! link ErrorMsg                  Error
-
-hi! Delimiter                      ctermfg=7     ctermbg=none  cterm=none
-hi! String                         ctermfg=10     ctermbg=none  cterm=none
-hi! Keyword                        ctermfg=1     ctermbg=none  cterm=none
-hi! Function                       ctermfg=4     ctermbg=none  cterm=none
-hi! Number                         ctermfg=10     ctermbg=none  cterm=none
-hi! link Operator                  Delimiter
-
-"%%%%% ALE %%%%%
-hi! ALEWarning                     ctermfg=3 ctermbg=none cterm=none
-hi! ALEInfo                        ctermfg=15 ctermbg=none cterm=none
-hi! ALEInfoSign                    ctermfg=15 ctermbg=none cterm=none
-hi! link ALEWarningSign            ALEWarning
-hi! link ALEStyleWarning           ALEWarning
-hi! link ALEStyleWarningSign       ALEWarning
-hi! link ALEStyleError             ALEWarning
-
-"FIMXE: For Hop.nvim
-"%%%%% EasyMotion %%%%%
-hi! EasyMotionTarget               ctermfg=1 ctermbg=none cterm=none
-hi! EasyMotionTarget2First         ctermfg=15 ctermbg=none cterm=none
-hi! EasyMotionTarget2Second        ctermfg=15 ctermbg=none cterm=none
-hi! link EasyMotionShade           NonText
-
-"%%%%% Diff %%%%%
-hi! link diffAdded                 DiffAdd
-hi! link diffRemoved               DiffDelete
-hi! link diffFile                  Comment
-hi! link diffLine                  Title
-
-"%%%%% Vim help %%%%%
-hi! link helpExample               String
-hi! link helpHeadline              Title
-hi! link helpSectionDelim          Comment
-hi! link helpHyperTextEntry        Statement
-hi! link helpHyperTextJump         Underlined
-hi! link helpURL                   Underlined
-
-"%%%%% Signify %%%%%
-hi! link SignifySignAdd            DiffAdd
-hi! link SignifySignDelete         DiffDelete
-hi! link SignifySignChange         DiffChange
-hi! link SignifySignChangeDelete   DiffDelete
-]]
-
 -- plugins and associated configs via packer.nvim; autoinstalls as necessary;
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -231,6 +93,23 @@ end
 return require('packer').startup(function(use)
   -- packer manages itself;
   use 'wbthomason/packer.nvim'
+
+  use {
+    'ellisonleao/gruvbox.nvim',
+    config = function()
+      vim.o.background = "dark"
+      require('gruvbox').setup {
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = true,
+        strikethrough = true,
+        palette_overrides = {},
+        inverse = false,
+      }
+      vim.cmd('colorscheme gruvbox')
+    end
+  }
 
   -- quickly jump around the visible buffer;
   use {

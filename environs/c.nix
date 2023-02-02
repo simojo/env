@@ -10,10 +10,20 @@ in
     RUST_BACKTRACE = 1;
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'
+      # usage:
+      # $ ls
+      # asdf.c
+      # $ gccwrap asdf
+      # $ ls
+      # asdf.c
+      # asdf (exec)
       gccwrap() {
         fname="$1"
-        execname=${fname::-2}
-        gcc -Wall -g "$fnmae" -o "$execname"
+        execname="deleteme"
+        gcc -Wall -g "$fname" -o "$execname"
+        ./$execname
+        rm $execname
       }
+
     '';
   }
