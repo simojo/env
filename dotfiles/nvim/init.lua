@@ -50,6 +50,9 @@ vim.o.hidden = true
 vim.o.ruler = false
 vim.o.rulerformat = "%6(%=%l%)"
 
+-- for colorscheming
+vim.o.background = "dark"
+
 -- keybinds leaderkey, mostly used by plugins;
 vim.mapleader = ';'
 vim.g.mapleader = ';'
@@ -94,38 +97,7 @@ return require('packer').startup(function(use)
   -- packer manages itself;
   use 'wbthomason/packer.nvim'
 
-  use {
-    'ellisonleao/gruvbox.nvim',
-    config = function()
-      require('gruvbox').setup {
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = false,
-        strikethrough = true,
-        contrast = "hard",
-        palette_overrides = {
-          dark0 = "#000000",
-          dark0_hard = "#000000",
-          dark1 = "#000000",
-          dark2 = "#000000",
-          dark3 = "#000000",
-          dark4 = "#000000",
-        },
-        inverse = false,
-        overrides = {
-          SignColumn = {bg = "#000000"},
-          CursorLine = {bg = "#000000"},
-          CursorLineNr = {bg = "#000000"},
-          TabLine = {bg = "#000000"},
-          StatusLine = {bg = "#000000"},
-          StatusLineNC = {bg = "#000000"},
-        },
-      }
-    end
-  }
-  vim.o.background = "dark"
-  vim.cmd('colorscheme gruvbox')
+  use { 'ellisonleao/gruvbox.nvim' }
 
   -- quickly jump around the visible buffer;
   use {
