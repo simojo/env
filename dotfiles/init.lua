@@ -97,19 +97,35 @@ return require('packer').startup(function(use)
   use {
     'ellisonleao/gruvbox.nvim',
     config = function()
-      vim.o.background = "dark"
       require('gruvbox').setup {
         undercurl = true,
         underline = true,
         bold = true,
-        italic = true,
+        italic = false,
         strikethrough = true,
-        palette_overrides = {},
+        contrast = "hard",
+        palette_overrides = {
+          dark0 = "#000000",
+          dark0_hard = "#000000",
+          dark1 = "#000000",
+          dark2 = "#000000",
+          dark3 = "#000000",
+          dark4 = "#000000",
+        },
         inverse = false,
+        overrides = {
+          SignColumn = {bg = "#000000"},
+          CursorLine = {bg = "#000000"},
+          CursorLineNr = {bg = "#000000"},
+          TabLine = {bg = "#000000"},
+          StatusLine = {bg = "#000000"},
+          StatusLineNC = {bg = "#000000"},
+        },
       }
-      vim.cmd('colorscheme gruvbox')
     end
   }
+  vim.o.background = "dark"
+  vim.cmd('colorscheme gruvbox')
 
   -- quickly jump around the visible buffer;
   use {

@@ -54,7 +54,7 @@ in
     { device = "/dev/disk/by-uuid/85864a8b-8282-4874-b846-f9e61767a05b"; }
   ];
 
-  nix.maxJobs = lib.mkDefault 8;
+  nix.settings.max-jobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   boot.loader.systemd-boot.consoleMode = "max";
@@ -88,7 +88,7 @@ in
     openssh = {
       enable = true;
       passwordAuthentication = false;
-      challengeResponseAuthentication = false;
+      kbdInteractiveAuthentication = false;
       permitRootLogin = "prohibit-password";
       ports = [55000];
     };
@@ -124,13 +124,6 @@ in
     };
   };
 
-  # neovim nightly overlay
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
-
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -142,5 +135,5 @@ in
 
   hardware.bluetooth.enable = true;
 
-  system.stateVersion = "20.09";
+  system.stateVersion = "22.11";
 }

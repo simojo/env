@@ -3,8 +3,7 @@
 {
   environment = {
     systemPackages = with pkgs; [
-      unstable.mplayer
-      unstable.multimc
+      unstable.prismlauncher # used to be multimc
       simplescreenrecorder
       youtube-dl
     ];

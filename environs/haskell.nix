@@ -1,6 +1,5 @@
-{ pkgs ? import <unstable> {} }:
-
 let
+  pkgs = import (fetchTarball ("channel:nixpkgs-unstable")) {};
   shellname = "hs";
   mods = with pkgs; [
     ghc

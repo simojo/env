@@ -20,7 +20,6 @@ in {
       pkgs.redshift
       pkgs.rofi
       pkgs.scrot
-      pkgs.slock
       pkgs.unstable.cairo
       pkgs.unstable.cairomm
       pkgs.unstable.chromium
@@ -46,6 +45,7 @@ in {
   hardware.pulseaudio.support32Bit = true;
 
   programs.light.enable = true;
+  programs.slock.enable = true;
 
   services = {
     redshift = {
@@ -110,7 +110,6 @@ in {
       fade = true;
       fadeDelta = 5;
       shadow = true;
-      refreshRate = 0;
       opacityRules = [
         "90:class_g = 'Alacritty'"
       ];

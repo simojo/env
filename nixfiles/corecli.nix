@@ -35,7 +35,7 @@
       pkgs.age
       pkgs.atop
       pkgs.bash
-      pkgs.bashCompletion
+      pkgs.bash-completion
       pkgs.bashInteractive
       pkgs.bat
       pkgs.curl
@@ -56,12 +56,10 @@
       pkgs.gnupg
       pkgs.gnused
       pkgs.gnutar
-      pkgs.haskell-language-server
       pkgs.hdparm
       pkgs.htop
       pkgs.hyperfine
       pkgs.jdk
-      pkgs.jq
       pkgs.killall
       pkgs.less
       pkgs.lm_sensors
@@ -77,7 +75,6 @@
       pkgs.openvpn
       pkgs.pandoc
       pkgs.parted
-      pkgs.pass
       pkgs.pinentry
       pkgs.ripgrep
       pkgs.rsync

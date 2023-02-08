@@ -83,7 +83,7 @@ colors:
     background: '#e6d4a3'
     text: '#534a42'
 
-background_opacity: 1.00
+window.opacity: 1.00
 
 working_directory: /_scratch
 
