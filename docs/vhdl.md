@@ -39,6 +39,10 @@ $ ghw -r name_of_entity --wave=wave_file.ghw
 
 * **entities**: a way to create the structure of a `vhdl` program, namely, the inputs and outputs.
 ```vhdl
+-- file: asdf.vhdl
+library ieee;
+use ieee.standard_logic_1164.all;
+
 entity asdf_entity is
 port (
   a: in std_logic;
