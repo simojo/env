@@ -39,6 +39,10 @@ $ ghw -r name_of_entity --wave=wave_file.ghw
 
 * **entities**: a way to create the structure of a `vhdl` program, namely, the inputs and outputs.
 ```vhdl
+-- file: asdf.vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
 entity asdf_entity is
 port (
   a: in std_logic;
@@ -83,7 +87,7 @@ $ ghdl -e asdf_entity
 ```
 * In order to effectively simulate the design, you will need to create a *testbench*, which is another `vhdl` file used to inject inputs.
   * It's best practice to inject inputs in ascending order of whichever binary representation you are using.
-  * **Example:** This file will increment a 2-bit integer every 1ns.
+  * **Example:** This file will increment a 2-bit integer every 1ns that ports `std_logic` variables `a, b` back into `asdf.vhdl`.
   ```
   # directory structure
   ./
@@ -93,7 +97,7 @@ $ ghdl -e asdf_entity
   ```vhdl
   -- file: testbench_asdf.vhdl
   library ieee;
-  use ieee.standard_logic_1164.all;
+  use ieee.std_logic_1164.all;
 
   -- place empty entity, because there are no top level dependencies
   entity tb is
