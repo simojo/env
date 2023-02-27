@@ -98,7 +98,6 @@
     etc."gitconfig".text = builtins.readFile /env/dotfiles/gitconfig;
     etc."htoprc".text = builtins.readFile /env/dotfiles/htoprc;
     etc."tmux.conf".text = builtins.readFile /env/dotfiles/tmuxconf;
-    etc."nvim/init.lua".text = builtins.readFile /env/dotfiles/init.lua;
   };
 
   programs = {

@@ -255,11 +255,10 @@ alias td='tmux detach'
 alias tn='tmux new -s'
 alias tk='tmux kill-session -t'
 
-# vim #
+# nvim #
+alias nvim = "nvim -p"
 alias vim='vim -p'
 alias vi='vim'
-alias vmi='vim'
-alias v='vim'
 
 # xclip #
 alias xclip='xclip -selection "clipboard"'

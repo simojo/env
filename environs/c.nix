@@ -2,7 +2,7 @@
 
 let
   shellname = "c";
-  myC = with pkgs; [ gcc ];
+  myC = with pkgs; [ gcc python3 ];
 in
   pkgs.stdenv.mkDerivation {
     name = shellname;
@@ -17,11 +17,12 @@ in
       # $ ls
       # asdf.c
       # asdf (exec)
+      # can only take a single argument
       gccwrap() {
         fname="$1"
         execname="deleteme"
         gcc -Wall -g "$fname" -o "$execname"
-        ./$execname
+        ./$execname $2
         rm $execname
       }
 

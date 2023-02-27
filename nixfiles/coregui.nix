@@ -26,6 +26,7 @@ in {
       pkgs.unstable.guile-cairo
       pkgs.unstable.picom
       pkgs.virt-manager
+      pkgs.vscode
       pkgs.xorg.xev
       pkgs.xorg.xmodmap
       pkgs.xorg.xset

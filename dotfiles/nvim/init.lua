@@ -97,7 +97,16 @@ return require('packer').startup(function(use)
   -- packer manages itself;
   use 'wbthomason/packer.nvim'
 
+  -- colorscheme
   use { 'ellisonleao/gruvbox.nvim' }
+
+  use { 'nvim-treesitter/nvim-treesitter',
+    run = function()
+      -- from treesitter wiki, mitigates packer from breaking on first treesitter install
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
 
   -- quickly jump around the visible buffer;
   use {
@@ -239,6 +248,8 @@ return require('packer').startup(function(use)
       require'lspconfig'.hls.setup{}
       -- rust lsp
       require'lspconfig'.rust_analyzer.setup{}
+      -- vhdl lsp
+      require'lspconfig'.ghdl_ls.setup{}
     end
   }
 
