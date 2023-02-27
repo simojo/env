@@ -83,7 +83,7 @@ $ ghdl -e asdf_entity
 ```
 * In order to effectively simulate the design, you will need to create a *testbench*, which is another `vhdl` file used to inject inputs.
   * It's best practice to inject inputs in ascending order of whichever binary representation you are using.
-  * **Example:** This file will increment a 2-bit integer every 1ns.
+  * **Example:** This file will increment a 2-bit integer every 1ns that ports `std_logic` variables `a, b` back into `asdf.vhdl`.
   ```
   # directory structure
   ./
