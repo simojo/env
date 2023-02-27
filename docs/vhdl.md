@@ -113,7 +113,7 @@ $ ghdl -e asdf_entity
   signal ab: std_logic_vector (1 downto 0);
   signal c: std_logic;
   begin
-    portmap_asdf: asdf port map (a => ab(1), b => ab(0), c => c);
+    portmap_asdf: asdf_entity port map (a => ab(1), b => ab(0), c => c);
     -- manually putting in all combinations if the easiest method I've discovered so far. Perhaps usign an unsigned integer and incrementing it could be easier.
     -- iterates 2-bit integer in 4ns total
     process
