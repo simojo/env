@@ -15,6 +15,11 @@ Simulations are useful for doing anything meaningful. If you create a design tha
 
 A `.vcd` file is a Value Change Dump file that originates from Verilog. `ghdl` is capable of exporting to the `.vcd` file format for a limited number of outputs. [Check here](https://ghdl-rad.readthedocs.io/en/latest/using/Simulation.html) for more information.  
 
+```sh
+$ # after analyzing/elaborating:
+$ ghw -r name_of_entity --vcd=vcd_file.vcd
+```
+
 * `dwfv` is a lightweight cli that uses `rust-tui` to display `vcd` files, shipping vi-like keybindings.
 * [vc.drom.io](https://vc.drom.io/) is a web-based viewer for `vcd` files.
 * `gtkwave` can simulate a plethora of filetypes relating to signal analysis, including `vcd` files.
@@ -22,6 +27,11 @@ A `.vcd` file is a Value Change Dump file that originates from Verilog. `ghdl` i
 #### Simulating `.ghw` files
 
 A `.ghw` file is a GHdl waveform file, which is currently maintained by the creators of `ghdl`. It supports all signal types in `vhdl`.  
+
+```sh
+$ # after analyzing/elaborating:
+$ ghw -r name_of_entity --wave=wave_file.ghw
+```
 
 * `gtkwave` is the only notable tool I know of that can read `.ghw` files. Obviously a trade-off here between tooling quality and flexibility. Although `gtkwave` has no problem with `X11`, it may be more preferable to use the cli programs mentioned above if one was to work in a headless or legacy environment. [Check here](https://ghdl-rad.readthedocs.io/en/latest/using/Simulation.html) for more information.
 
@@ -73,7 +83,7 @@ $ ghdl -e asdf_entity
 ```
 * In order to effectively simulate the design, you will need to create a *testbench*, which is another `vhdl` file used to inject inputs.
   * It's best practice to inject inputs in ascending order of whichever binary representation you are using.
-  * **Example:**
+  * **Example:** This file will increment a 2-bit integer every 1ns.
   ```
   # directory structure
   ./
@@ -99,12 +109,13 @@ $ ghdl -e asdf_entity
       c: out std_logic
     );
   end component;
-  -- not necessar to use `std_logic_vector`, but for the sake of example...
+  -- not necessary to use `std_logic_vector`, but for the sake of example...
   signal ab: std_logic_vector (1 downto 0);
   signal c: std_logic;
   begin
     portmap_asdf: asdf port map (a => ab(1), b => ab(0), c => c);
     -- manually putting in all combinations if the easiest method I've discovered so far. Perhaps usign an unsigned integer and incrementing it could be easier.
+    -- iterates 2-bit integer in 4ns total
     process
     begin
       ab <= "00";
@@ -117,4 +128,11 @@ $ ghdl -e asdf_entity
       wait for 1 ns;
     end process;
   end behavior;
+  ```
+  ```sh
+  $ # generate/view .ghw file for this design:
+  $ ghdl -a *.vhdl
+  $ ghdl -e tb # must be name of testbench entity title (which is now above asdf.vhdl in heirarchy)
+  $ ghdl -r tb --stop-time=4ns --wave=asdf_simulation.ghw
+  $ gtkwave asdf_simulation.ghw
   ```
