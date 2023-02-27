@@ -141,7 +141,7 @@ $ ghdl -e asdf_entity
   $ gtkwave asdf_simulation.ghw
   ```
   * And here is what our waveform looks like when viewed from `dwfv` as a `.vcd` file:
-  ```
+
   ```txt
   v                                                                                                          ↔ 33613fs
   > !: tb.ab[:2] = h0──────────┬─────────────────────────────┬─────────────────────────────┬─────────────────────────────
