@@ -41,7 +41,7 @@ $ ghw -r name_of_entity --wave=wave_file.ghw
 ```vhdl
 -- file: asdf.vhdl
 library ieee;
-use ieee.standard_logic_1164.all;
+use ieee.std_logic_1164.all;
 
 entity asdf_entity is
 port (
@@ -97,7 +97,7 @@ $ ghdl -e asdf_entity
   ```vhdl
   -- file: testbench_asdf.vhdl
   library ieee;
-  use ieee.standard_logic_1164.all;
+  use ieee.std_logic_1164.all;
 
   -- place empty entity, because there are no top level dependencies
   entity tb is
