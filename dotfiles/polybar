@@ -21,7 +21,7 @@ good = #00cc99
 [bar/mybar]
 dpi = 120
 override-redirect = false
-bottom = false
+bottom = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 fixed-center = true
@@ -34,8 +34,8 @@ offset-y = 0
 offset-x = 0
 separator = "     "
 
-font-0 = Hack:style=Solid:size=11;2
-font-1 = FontAwesome5Free:style=Solid:size=12;2
+font-0 = Roboto Mono:style=Solid:size=11;2
+font-1 = Font Awesome 6 Free:style=Solid:size=12;2
 
 modules-right = wired-network wireless-network alsa backlight battery
 modules-center = date
