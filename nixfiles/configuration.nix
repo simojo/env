@@ -94,7 +94,7 @@ in
     };
   };
 
-  time.timeZone = "America/New_York";
+  time.timeZone = "Europe/Madrid";
 
   users = {
     mutableUsers = true;
