@@ -39,6 +39,7 @@ in {
     pkgs.vistafonts
     pkgs.hack-font
     pkgs.font-awesome
+    pkgs.roboto-mono
   ];
 
   sound.enable = true;
@@ -110,7 +111,7 @@ in {
       vSync = true;
       fade = true;
       fadeDelta = 5;
-      shadow = true;
+      shadow = false;
       opacityRules = [
         "90:class_g = 'Alacritty'"
       ];

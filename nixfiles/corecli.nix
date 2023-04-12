@@ -76,6 +76,7 @@
       pkgs.pandoc
       pkgs.parted
       pkgs.pinentry
+      pkgs.qemu_kvm
       pkgs.ripgrep
       pkgs.rsync
       pkgs.ruby
