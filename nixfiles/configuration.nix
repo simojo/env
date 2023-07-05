@@ -94,10 +94,11 @@ in
     };
   };
 
-  time.timeZone = "Europe/Madrid";
+  time.timeZone = "America/New_York";
 
   users = {
     mutableUsers = true;
+    extraGroups.vboxusers.members = [ "simon" ];
     users = {
       simon = {
         isNormalUser = true;
@@ -126,6 +127,9 @@ in
 
   virtualisation = {
     libvirtd = {
+      enable = true;
+    };
+    virtualbox.host = {
       enable = true;
     };
     docker ={

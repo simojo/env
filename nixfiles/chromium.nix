@@ -79,6 +79,7 @@
           { "url" = "https://nixos.org/nixpkgs/manual/"; name = "nixpkgs-manual"; }
           { "url" = "https://nixos.org/nixos/manual/"; name = "nixos-manual"; }
           { "url" = "https://nixos.org/nixos/options.html"; name = "nixos-options"; }
+          { "url" = "https://nixos.org/nixos/packages.html"; name = "nixos-packages"; }
           { "url" = "https://discourse.nixos.org/"; name = "nixos-discourse"; }
           { "url" = "https://old.reddit.com/r/nixos/"; name = "nixos-reddit"; }
           { "url" = "https://nixos.wiki/"; name = "nixos-wiki"; }
