@@ -87,6 +87,9 @@ vim.api.nvim_set_keymap('v', '<C-k>', 'zR:m\'<-2<CR>gv=gv', {})
 vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
 
+-- incremental search, highlight without jumping
+vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>', { noremap = true })
+
 -- plugins and associated configs via packer.nvim; autoinstalls as necessary;
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -111,7 +114,7 @@ return require('packer').startup(function(use)
         -- list of parsers to always be installed
         ensure_installed = {
           "c", "cpp", "lua", "vim", "vimdoc", "rust", "nix",
-          "html", "css", "javascript", "svelte"
+          "html", "css", "javascript", "svelte", "python", "julia"
         },
         highlight = {
           enable = true,
@@ -262,6 +265,29 @@ return require('packer').startup(function(use)
           { name = 'cmdline' }
         })
       })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf }
+          vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', '<Leader><C-k>', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+          vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+          vim.keymap.set('n', '<Leader>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, opts)
+          vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
+          vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<Leader>f', function()
+            vim.lsp.buf.format { async = true }
+          end, opts)
+        end,
+      })
       -- svelte lsp
       require'lspconfig'.svelte.setup{}
       -- haskell lsp
@@ -270,6 +296,19 @@ return require('packer').startup(function(use)
       require'lspconfig'.rust_analyzer.setup{}
       -- vhdl lsp
       require'lspconfig'.ghdl_ls.setup{}
+      -- python lsp
+      require'lspconfig'.pylsp.setup{
+        settings = {
+          pylsp = {
+            plugins = {
+              ruff = {
+                enabled = true,
+                extendSelect = { "I" },
+              }
+            }
+          }
+        }
+      }
     end
   }
 

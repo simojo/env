@@ -3,6 +3,7 @@
 let
   shellname = "dlib-dev";
   buildInpts = with pkgs; [
+    alsa-lib
     blas
     bzip2
     cmake
@@ -10,68 +11,82 @@ let
     cudaPackages.libcublas
     cudatoolkit # nixos.wiki/wiki/CUDA
     dav1d
+    dlib
     elfutils
     ffmpeg
+    ffmpeg.dev
+    ffmpeg.out
+    fontconfig
+    freetype
     gcc
-    gfortran
     gcc-unwrapped
+    SDL2
+    gfortran
     glib
     glibc
+    gmp
     gnutls
     gst_all_1.gst-plugins-base
     gst_all_1.gstreamer
     hdf5
     lame
-    lapack
+    lapack.dev
+    lapack.out
+    libass
     libdeflate
     libdrm
     libffi
+    libidn2
     libjpeg
+    libogg
     libopus
     libpng
     libssh
+    libtasn1
     libtheora
     libtiff
+    libunistring
     libunwind
     libva
     libva
+    brotli
     libvdpau
     libvorbis
     libvpx
     libwebp
     nettle
+    numactl
     ocl-icd
     openblas
     opencv
     openexr
     openjpeg
+    harfbuzz
+    openssl
+    dbus
     orc
-    libunistring
     p11-kit
     pcre2
-    numactl
     pkg-config
     protobuf
-    libogg
+    pulseaudio
+    fribidi
     python3
     soxr
     speex
     srt
-    gmp
-    libtasn1
     x264
-    libidn2
     x265
     xorg.libX11
     xorg.libX11.dev
-    xorg.libXext
     xorg.libXau
-    openssl
     xorg.libXdmcp
+    xorg.libXext
     xorg.libxcb
     xorg.xorgproto
     xvidcore
     xz
+    zimg
     zlib
     zstd
   ];
@@ -91,6 +106,7 @@ in
           That is why we have the assignment of the corresponding environment variable in the shellHook.
       - CUDA (Compute Unified Device Architecture) is used for accessing GPU-instructions
         from a C-language interface. It is developed by NVIDIA.
+      - Download http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2 and for facial landmark detection example
       \033[0m'
 
       export NIX_SHELL_NAME='${shellname}'
@@ -100,36 +116,46 @@ in
       else
         export LD_LIBRARY_PATH="${pkgs.bzip2.out}/lib"
       fi
+
+      export LD_LIBRARY_PATH="${pkgs.alsa-lib.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.fontconfig.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.freetype.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.dlib.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.libass.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.cudaPackages.cudnn}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.cudaPackages.libcublas}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.cudatoolkit}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.dav1d.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.dbus.lib}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.elfutils.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.ffmpeg.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.gcc-unwrapped.lib}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.fribidi.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.gfortran.cc.lib}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.glib.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.glibc}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.gmp.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.gnutls.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.gst_all_1.gst-plugins-base.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.gst_all_1.gstreamer.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.hdf5.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.lame.lib}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.brotli.lib}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libdeflate.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libdrm.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libffi.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.SDL2.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.libidn2.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libjpeg.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.xorg.libXext.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.openssl.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.libogg.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.harfbuzz.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libopus.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.libunistring.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libpng.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.gmp.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libssh.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libtasn1.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.libidn2.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.gfortran.cc.lib}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libtheora.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.numactl.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libtiff.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.libunistring.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libunwind.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libva.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libva.out}/lib:$LD_LIBRARY_PATH"
@@ -138,13 +164,14 @@ in
       export LD_LIBRARY_PATH="${pkgs.libvpx.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.libwebp.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.nettle.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.numactl.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.ocl-icd.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.openblas.out}/lib:$LD_LIBRARY_PATH"
-      export LD_LIBRARY_PATH="${pkgs.libogg.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.opencv.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.opencv}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.openexr.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.openjpeg.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.openssl.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.orc.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.p11-kit.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.pcre2.out}/lib:$LD_LIBRARY_PATH"
@@ -156,12 +183,13 @@ in
       export LD_LIBRARY_PATH="${pkgs.x265.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.xorg.libXau}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.xorg.libXdmcp}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.xorg.libXext.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.xorg.libxcb}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.xvidcore.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.xz.out}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.zlib}/lib:$LD_LIBRARY_PATH"
       export LD_LIBRARY_PATH="${pkgs.zstd.out}/lib:$LD_LIBRARY_PATH"
-
-      echo "${pkgs.gfortran.cc.lib}"
+      export LD_LIBRARY_PATH="${pkgs.pulseaudio.out}/lib:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="${pkgs.zimg.out}/lib:$LD_LIBRARY_PATH"
     '';
   }

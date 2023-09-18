@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+# copies nvim/ directory into correct config location in $HOME
+run() {
+  # exclude copying directories. Only copy regular files
+  # removing said files will need to be done separately
+  
+  for f in /env/dotfiles/nvim/*; do
+    if [ ! -d "$f" ]; then
+      cp $f ~/.config/nvim/
+    fi
+  done
+
+  for f in /env/dotfiles/nvim/plugin/*; do
+    if [ ! -d "$f" ]; then
+      cp $f ~/.config/nvim/plugin/
+    fi
+  done
+}
+
+run

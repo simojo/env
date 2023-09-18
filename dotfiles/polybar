@@ -87,7 +87,7 @@ pseudo-transparency = true
 
 [module/date]
 type = internal/date
-time = %I:%M %p
+time = %H:%M
 date = %a %b %d
 format = <label>
 interval = 10
