@@ -20,6 +20,8 @@
   gpgsign = true
 [merge]
   tool = vimdiff
+[mergetool]
+  keepBackup = false
 [delta]
   features = side-by-side line-numbers decorations color-only
   syntax-theme = none
