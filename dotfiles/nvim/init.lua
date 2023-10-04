@@ -176,11 +176,7 @@ return require('packer').startup(function(use)
 
   -- indentation guides
   use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('indent_blankline').setup {
-      }
-    end
+    'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {}
   }
 
   -- fuzzy finder for files/git/buffers/etc
