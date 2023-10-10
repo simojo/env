@@ -5,7 +5,7 @@
   highlight:        underline #ffffff;
   urgentcolor:      #C74D4C;
   accent:           #666666;
-  font: "Hack 30";
+  font: "Roboto Mono 30";
   background-color: @bg;
 }
 

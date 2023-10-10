@@ -176,7 +176,26 @@ return require('packer').startup(function(use)
 
   -- indentation guides
   use {
-    'lukas-reineke/indent-blankline.nvim', main = "ibl", opts = {}
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require("ibl").setup {
+        indent = { char = "▏" },
+        scope = {
+          show_start = false,
+          show_end = false,
+        }
+      }
+    end,
+  }
+
+
+  -- surrounding selections and editing surrounding characters
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require("nvim-surround").setup {
+      }
+    end,
   }
 
   -- fuzzy finder for files/git/buffers/etc
@@ -284,6 +303,7 @@ return require('packer').startup(function(use)
           end, opts)
         end,
       })
+      local nvim_lsp = require('lspconfig')
       -- svelte lsp
       require'lspconfig'.svelte.setup{}
       -- haskell lsp
@@ -304,6 +324,11 @@ return require('packer').startup(function(use)
             }
           }
         }
+      }
+      -- cpp/c lsp
+      require'lspconfig'.clangd.setup{
+        single_file_support = false,
+        root_dir = nvim_lsp.util.root_pattern(".git", "compile_commands.json")
       }
     end
   }
