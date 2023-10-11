@@ -64,7 +64,7 @@
       pkgs.less
       pkgs.lm_sensors
       pkgs.ncdu
-      pkgs.neovim
+      pkgs.unstable.neovim
       pkgs.netcat
       pkgs.nim
       pkgs.nix

@@ -7,6 +7,9 @@ let
       ghPubKey = builtins.readFile /env/notsecret/gh.pub;
     };
   };
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
 {
   imports =
@@ -119,7 +122,7 @@ in
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: {
-      unstable = import <unstable> {
+      unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
     };
