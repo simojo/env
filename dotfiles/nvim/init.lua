@@ -100,8 +100,10 @@ return require('packer').startup(function(use)
   -- packer manages itself;
   use 'wbthomason/packer.nvim'
 
-  -- colorscheme
+  -- dark colorscheme (default)
   use { 'ellisonleao/gruvbox.nvim' }
+  -- light colorscheme (default)
+  use { 'catpuccin/nvim' }
 
   use { 'nvim-treesitter/nvim-treesitter',
     run = function()
