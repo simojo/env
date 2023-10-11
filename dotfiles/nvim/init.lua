@@ -103,7 +103,7 @@ return require('packer').startup(function(use)
   -- dark colorscheme (default)
   use { 'ellisonleao/gruvbox.nvim' }
   -- light colorscheme (default)
-  use { 'catpuccin/nvim' }
+  use { 'catppuccin/nvim' }
 
   use { 'nvim-treesitter/nvim-treesitter',
     run = function()
