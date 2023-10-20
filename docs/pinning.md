@@ -8,6 +8,8 @@ as something of a reference for various situations and approaches that can be
 taken.  The takeaway here is essentially that *you probably want to pin
 nixpkgs*.
 
+* *Note:* [https://lazamar.co.uk/nix-versions/](https://lazamar.co.uk/nix-versions/) offers a means of "[finding] all versions of a package that were available in a channel and the revision [it can be downloaded from]."
+
 ## Pinning within `nix-shell` environments using `fetchTarball`
 
 Normally, the intention is to pin against the latest version of the
@@ -60,7 +62,7 @@ with the first command as shown below, but needn't jump through the same sha256
 hoops.
 
 ```sh
-git ls-remote https://github.com/nixos/nixpkgs-channels nixpkgs-unstable
+git ls-remote https://github.com/nixos/nixpkgs nixos-unstable
 ```
 
 Afterwards, you drop the commit hash alone into a `shell.nix` something like
@@ -71,8 +73,8 @@ let
   shellname = "nix-shell-example";
   pkgs = import (builtins.fetchGit {
     name = "nixpkgs-unstable-2020-02-15"; # descriptive, can be whatever
-    url = https://github.com/nixos/nixpkgs-channels/;
-    ref = "refs/heads/nixpkgs-unstable";
+    url = https://github.com/nixos/nixpkgs/;
+    ref = "refs/heads/nixos-unstable";
     rev = "f77e057cda60a3f96a4010a698ff3be311bf18c6";
   }) {};
 in
