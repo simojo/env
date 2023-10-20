@@ -1,61 +1,44 @@
-{ pkgs ? import <unstable> {} }:
-
 let
+  pkgs = import (builtins.fetchGit {
+    name = "nixos-unstable-2023-10-18";
+    url = https://github.com/nixos/nixpkgs/;
+    ref = "refs/heads/nixos-unstable";
+    rev = "ca012a02bf8327be9e488546faecae5e05d7d749";
+  }) {};
   shellname = "cs203";
-  python-lsp-ruff = pkgs.python311.pkgs.buildPythonPackage rec {
-    pname = "python-lsp-ruff";
-    version = "1.4.0";
-    format = "pyproject";
-    disabled = pkgs.python311.pkgs.pythonOlder "3.7";
-    src = pkgs.fetchPypi {
-      inherit version;
-      pname = "python-lsp-ruff";
-      sha256 = "sha256-TqTeQc/lT5DcPcJbZXbEiUGbYjFP8idpzdSZlXD59Y4=";
-    };
-    postPatch = ''
-      # ruff binary is used directly, the ruff python package is not needed
-      sed -i '/"ruff>=/d' pyproject.toml
-      sed -i 's|sys.executable, "-m", "ruff"|"${pkgs.ruff}/bin/ruff"|' pylsp_ruff/plugin.py
-    '';
-
-    propagatedBuildInputs = [
-      pkgs.python311Packages.lsprotocol
-      pkgs.python311Packages.python-lsp-server
-      pkgs.python311
-      pkgs.python311Packages.tomli
-    ];
-
-    doCheck = true;
-  };
   buildInpts = with pkgs; [
+    gcc-unwrapped.lib
+    glibc
+    glibc
     graphviz
     pipx
     poetry
+    python311Packages.python-lsp-ruff
     python310
-    python310Packages.pip
-    python310Packages.rich
-    python310Packages.jupyter
-    python310Packages.ipython
-    python310Packages.ipykernel
     python310Packages.ipykernel.dist
+    python310Packages.ipython
+    python310Packages.jupyter
     python310Packages.jupyterlab
     python310Packages.markdown
+    python310Packages.pip
+    python310Packages.rich
+    python310Packages.virtualenv
     python311
     python311Packages.pip
     python311Packages.python-lsp-server
-    python-lsp-ruff
     quarto
     ruff
-    pkgs.gcc-unwrapped.lib
     sqlite.dev
+    stdenv.cc.cc.lib
   ];
 in
-  pkgs.stdenv.mkDerivation {
+  with pkgs.lib; pkgs.stdenv.mkDerivation {
     name = shellname;
-    buildInputs = [ buildInpts python-lsp-ruff ];
+    buildInputs = [ buildInpts ];
+    runtimeDependencies = [ pkgs.stdenv.cc.cc.lib ];
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
     shellHook = ''
-      export LD_LIBRARY_PATH="${pkgs.gcc-unwrapped.lib}/lib:$LD_LIBRARY_PATH"
-
+      export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
       echo -e '\033[1;33m
       This is a shell for CMPSC 203: Software Engineering at Allegheny College
       \033[0m'
