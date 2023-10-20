@@ -24,7 +24,6 @@ in {
       pkgs.unstable.cairomm
       pkgs.unstable.chromium
       pkgs.unstable.guile-cairo
-      pkgs.unstable.picom
       pkgs.virt-manager
       pkgs.vscode
       pkgs.xorg.xev
@@ -105,18 +104,6 @@ in {
       xkbOptions = "caps:escape";
       xrandrHeads = [
       ];
-    };
-    picom = {
-      enable = true;
-      vSync = true;
-      fade = true;
-      fadeDelta = 5;
-      shadow = false;
-      opacityRules = [
-        "90:class_g = 'Alacritty'"
-      ];
-      activeOpacity = 1.0;
-      backend = "glx";
     };
   };
 
