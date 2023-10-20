@@ -190,6 +190,12 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- markdown live preview
+  -- install without yarn or npm
+  use {
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  }
 
   -- surrounding selections and editing surrounding characters
   use {
