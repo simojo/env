@@ -328,7 +328,9 @@ return require('packer').startup(function(use)
               ruff = {
                 enabled = true,
                 extendSelect = { "I" },
-              }
+              },
+              pycodestyle = {ignore = { "E302", "E501", "W503" }},
+              pep8 = {ignore = { "E711" }},
             }
           }
         }
