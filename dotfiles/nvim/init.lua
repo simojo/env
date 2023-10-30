@@ -135,13 +135,17 @@ return require('packer').startup(function(use)
 
   -- quickly jump around the visible buffer;
   use {
-    'phaazon/hop.nvim',
-    branch = 'v1',
+    'smoka7/hop.nvim',
+    tag = "*",
     config = function()
       require('hop').setup { keys = 'etovxqpdgfblzhckisuran' }
-      vim.api.nvim_set_keymap("n", "<Leader>l", "<cmd>lua require'hop'.hint_words()<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>lua require'hop'.hint_lines()<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>lua require'hop'.hint_lines_skip_whitespace()<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hw", ":HopWord<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hl", ":HopLineStart<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hL", ":HopLine<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hk", ":HopLineStartBC<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hj", ":HopLineStartAC<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hp", ":HopPattern<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hP", ":HopPaste<cr>", {})
       vim.cmd("highlight! link HopNextKey2 HopNextKey1") -- make second character more visible
     end
   }
