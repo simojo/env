@@ -33,6 +33,12 @@ vim.o.smarttab = true
 -- scrollahead for better context;
 vim.o.scrolloff = 6
 
+vim.cmd("let g:markdown_recommended_style = 0")
+
+-- indentation spaces tabs and whitespace nonsense
+vim.o.list = true
+vim.o.listchars = "tab:▸ ,trail:␣,extends:»,precedes:«,nbsp:•"
+
 -- statuslines mostly waste vertical space, so show sparingly;
 -- use Ctrl+G to get bearings if needed;
 vim.o.statusline = '%f'
@@ -56,6 +62,13 @@ vim.o.background = "dark"
 -- keybinds leaderkey, mostly used by plugins;
 vim.mapleader = ';'
 vim.g.mapleader = ';'
+
+-- markdown: linewidth guide and spell check 
+vim.cmd("autocmd FileType markdown set colorcolumn=81")
+vim.cmd("autocmd FileType markdown set spell")
+
+-- pio: set filetype automatically
+vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
 
 -- keybinds pertaining to folding;
 vim.api.nvim_set_keymap('n', 'sf', 'za', {})
@@ -88,7 +101,7 @@ vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
 
 -- incremental search, highlight without jumping
-vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>:delmarks i<CR>', { noremap = true })
 
 -- plugins and associated configs via packer.nvim; autoinstalls as necessary;
 local fn = vim.fn
@@ -116,11 +129,13 @@ return require('packer').startup(function(use)
         -- list of parsers to always be installed
         ensure_installed = {
           "c", "cpp", "lua", "vim", "vimdoc", "rust", "nix",
-          "html", "css", "javascript", "svelte", "python", "julia"
+          "html", "css", "javascript", "svelte", "python",
+          "julia", "pioasm"
         },
         highlight = {
           enable = true,
           disable = { "json" },
+          -- disable highlight on large files
           disable = function (lang, buf)
             local max_filesize = 100 * 1024 -- 100KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -139,13 +154,13 @@ return require('packer').startup(function(use)
     tag = "*",
     config = function()
       require('hop').setup { keys = 'etovxqpdgfblzhckisuran' }
-      vim.api.nvim_set_keymap("n", "<Leader>hw", ":HopWord<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hl", ":HopLineStart<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hL", ":HopLine<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hk", ":HopLineStartBC<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hj", ":HopLineStartAC<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hp", ":HopPattern<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>hP", ":HopPaste<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>hw", ":HopWord<cr>", {}) -- hop to word
+      vim.api.nvim_set_keymap("n", "<Leader>hl", ":HopLineStart<cr>", {}) -- hop to line first char
+      vim.api.nvim_set_keymap("n", "<Leader>hk", ":HopLineStartBC<cr>", {}) -- hop to line first char before cursor
+      vim.api.nvim_set_keymap("n", "<Leader>hj", ":HopLineStartAC<cr>", {}) -- hop to line first char after cursor
+      vim.api.nvim_set_keymap("n", "<Leader>h/", ":HopPattern<cr>", {}) -- hop to pattern matches
+      vim.api.nvim_set_keymap("n", "<Leader>hp", ":HopPasteChar1<cr>", {}) -- paste among locations with specified character
+      vim.api.nvim_set_keymap("n", "<Leader>hy", ":HopYankChar1<cr>", {}) -- paste among locations with specified character
       vim.cmd("highlight! link HopNextKey2 HopNextKey1") -- make second character more visible
     end
   }
@@ -180,6 +195,39 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- <C-Enter> [Both] to submit.
+  -- <C-y> [Both] to copy/yank last answer.
+  -- <C-o> [Both] Toggle settings window.
+  -- <Tab> [Both] Cycle over windows.
+  -- <C-f> [Chat] Cycle over modes (center, stick to right).
+  -- <C-c> [Both] to close chat window.
+  -- <C-u> [Chat] scroll up chat window.
+  -- <C-d> [Chat] scroll down chat window.
+  -- <C-k> [Chat] to copy/yank code from last answer.
+  -- <C-n> [Chat] Start new session.
+  -- <C-d> [Chat] draft message (create message without submitting it to server)
+  -- <C-r> [Chat] switch role (switch between user and assistant role to define a workflow)
+  -- <C-s> [Both] Toggle system message window.
+  -- <C-i> [Edit Window] use response as input.
+  -- <C-d> [Edit Window] view the diff between left and right panes and use diff-mode commands
+  -- FIXME: enable at convenience
+  -- use {
+  --   "jackMort/ChatGPT.nvim",
+  --     config = function()
+  --       local home = vim.fn.expand("$HOME")
+  --       require("chatgpt").setup({
+  --         -- pull openai key using gpg decryption
+  --         -- will need to run this command in the terminal before launching nvim if nvim prompts for password
+  --         api_key_cmd = "gpg --decrypt " .. home .. "/openaikey.txt.gpg"
+  --       })
+  --     end,
+  --     requires = {
+  --       "MunifTanjim/nui.nvim",
+  --       "nvim-lua/plenary.nvim",
+  --       "nvim-telescope/telescope.nvim"
+  --     }
+  -- }
+
   -- indentation guides
   use {
     'lukas-reineke/indent-blankline.nvim',
@@ -192,13 +240,6 @@ return require('packer').startup(function(use)
         }
       }
     end,
-  }
-
-  -- markdown live preview
-  -- install without yarn or npm
-  use {
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
   }
 
   -- surrounding selections and editing surrounding characters
@@ -261,9 +302,9 @@ return require('packer').startup(function(use)
           end,
         },
         mapping = {
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-          ['<CR>'] = cmp.mapping.confirm({
+          ['<c-j>'] = cmp.mapping.select_next_item(),
+          ['<c-k>'] = cmp.mapping.select_prev_item(),
+          ['<Tab>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           })
