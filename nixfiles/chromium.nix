@@ -4,7 +4,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+      "gfbliohnnapiefjpjlpjnehglfpaknnc" # Surfingkeys
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
@@ -58,7 +58,6 @@
         { "name" = "Entertainment"; "children" = [
           { "url" = "https://open.spotify.com"; name = "Spotify"; }
           { "url" = "https://youtube.com"; name = "YouTube"; }
-          { "url" = "https://hulu.com/my-stuff"; name = "Hulu"; }
         ]; }
         { "name" = "Services"; "children" = [
           { "url" = "https://sites.allegheny.edu/lits/library/"; name = "Aggregator"; }
