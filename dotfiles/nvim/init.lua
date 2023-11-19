@@ -64,8 +64,8 @@ vim.mapleader = ';'
 vim.g.mapleader = ';'
 
 -- markdown: linewidth guide and spell check 
-vim.cmd("autocmd FileType markdown set colorcolumn=81")
-vim.cmd("autocmd FileType markdown set spell")
+vim.cmd("autocmd BufEnter *.md,*.qmd set colorcolumn=81")
+vim.cmd("autocmd BufEnter *.md,*.qmd set spell")
 
 -- pio: set filetype automatically
 vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
@@ -357,6 +357,8 @@ return require('packer').startup(function(use)
         end,
       })
       local nvim_lsp = require('lspconfig')
+      -- julia lsp
+      require'lspconfig'.julials.setup{}
       -- svelte lsp
       require'lspconfig'.svelte.setup{}
       -- haskell lsp
