@@ -27,7 +27,6 @@ let
     python311Packages.pip
     python311Packages.python-lsp-server
     quarto
-    ruff
     sqlite.dev
     stdenv.cc.cc.lib
   ];
@@ -38,6 +37,7 @@ in
     runtimeDependencies = [ pkgs.stdenv.cc.cc.lib ];
     nativeBuildInputs = [ pkgs.autoPatchelfHook ];
     shellHook = ''
+      export NIX_SHELL_NAME='${shellname}'
       export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
       echo -e '\033[1;33m
       This is a shell for CMPSC 203: Software Engineering at Allegheny College
