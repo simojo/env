@@ -1,6 +1,6 @@
 ### Overview
 
-**Colorscheme**: [Tokyo-Night (modified)](https://github.com/ghifarit53/tokyonight-vim)  
+**Colorscheme**: [https://github.com/ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
 **OS**: [NixOS](https://nixos.org/)  
 **Bar**: [Polybar](https://github.com/polybar/polybar)  
 **WW**: [bspwm](https://github.com/baskerville/bspwm)  
