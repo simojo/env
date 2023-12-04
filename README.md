@@ -1,6 +1,6 @@
 ### Overview
 
-**Colorscheme**: [https://github.com/ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)  
+**Colorscheme**: [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)  
 **OS**: [NixOS](https://nixos.org/)  
 **Bar**: [Polybar](https://github.com/polybar/polybar)  
 **WW**: [bspwm](https://github.com/baskerville/bspwm)  
