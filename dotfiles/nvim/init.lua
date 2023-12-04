@@ -63,9 +63,11 @@ vim.o.background = "dark"
 vim.mapleader = ';'
 vim.g.mapleader = ';'
 
--- markdown: linewidth guide and spell check 
-vim.cmd("autocmd BufEnter *.md,*.qmd set colorcolumn=81")
+-- markdown: linewidth guide and spell check
+-- https://vi.stackexchange.com/questions/11609/automatically-rewrap-lines-when-writing-markdown-in-vim
 vim.cmd("autocmd BufEnter *.md,*.qmd set spell")
+vim.cmd("autocmd BufEnter *.md,*.qmd set colorcolumn=81")
+vim.cmd("autocmd BufEnter *.md,*.qmd set textwidth=80")
 
 -- pio: set filetype automatically
 vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
