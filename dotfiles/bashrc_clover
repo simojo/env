@@ -1,0 +1,263 @@
+
+#  _               _
+# | |             | |
+# | |__   __ _ ___| |__  _ __ ___
+# | '_ \ / _` / __| '_ \| '__/ __|
+# | |_) | (_| \__ \ | | | | | (__
+# |_.__/ \__,_|___/_| |_|_|  \___|
+
+# Black        0;30     Dark Gray     1;30
+# Red          0;31     Light Red     1;31
+# Green        0;32     Light Green   1;32
+# Brown/Orange 0;33     Yellow        1;33
+# Blue         0;34     Light Blue    1;34
+# Purple       0;35     Light Purple  1;35
+# Cyan         0;36     Light Cyan    1;36
+# Light Gray   0;37     White         1;37
+
+# Source global definitions #
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# gpg pinentry issue
+gpgtty=$(tty)
+export GPG_TTY=$gpgtty
+
+#%%%%%%%%%%%%%%%%
+#%%% exports %%%%
+#%%%%%%%%%%%%%%%%
+
+# User specific environment #
+if ! [[ "$PATH" =~ $HOME/.local/bin:$HOME/bin: ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+# Add custom scripts to path #
+PATH="$PATH:/env/scripts"
+# Add cargo binaries to path #
+PATH="$PATH:$HOME/.cargo/bin"
+export PATH
+
+# defaults #
+export EDITOR='vim'
+export VISUAL='vim'
+export BROWSER='chromium'
+export TERMINAL='alacritty'
+
+# lean on FZF for better completion #
+if command -v fzf > /dev/null; then
+  source "$(fzf-share)/completion.bash"
+  source "$(fzf-share)/key-bindings.bash"
+  export FZF_COMPLETION_TRIGGER=''
+  export FZF_COMPLETION_OPTS='--select-1'
+  export FZF_DEFAULT_OPTS='--color=16 --inline-info'
+  export FZF_CTRL_T_OPTS='--select-1'
+  # use fd instead of the default find for path candidates
+  _fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+  }
+  # Use fd to generate the list for directory completion
+  _fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+  }
+fi
+
+#%%%%%%%%%%%%%%%
+#%%% prompt %%%%
+#%%%%%%%%%%%%%%%
+
+prompt_command() {
+  # store last return code, as subsequent commands will overwrite it.
+  RETC="$?"
+
+  # https://askubuntu.com/questions/1020980/no-line-breaks-in-first-line-in-terminal
+  bold='\[\e[1m\]'
+  cyan='\[\e[36m\]'
+  grey='\[\e[90m\]'
+  red='\[\e[31m\]'
+  reset='\[\e[0m\]'
+
+  # store nix-shell status to display later, if nonempty
+  # (displays derivation name if exported as $NIX_SHELL_NAME)
+  if [[ $IN_NIX_SHELL != "" ]]; then
+    [[ $NIX_SHELL_NAME != "" ]] && NS=" $cyan$NIX_SHELL_NAME " || NS=" $IN_NIX_SHELL "
+  else
+    NS=' '
+  fi
+
+  if [[ $RETC == 0 ]]; then
+    RETC="$grey-"
+  else
+    RETC="$red$RETC"
+  fi
+
+  usercolor="$grey"
+  if [[ $USER == "root" ]]; then
+    usercolor="$red"
+  fi
+
+  # prompt showing the user, hostname, cwd, and return codes.
+  PS1="$usercolor\u$grey@\h $bold\w$NS$RETC$reset "
+  PS2="$grey > $reset"
+
+  # append each line to history individually.
+  history -a
+}
+
+PROMPT_DIRTRIM=3
+PROMPT_COMMAND=prompt_command
+
+# patches for ls coloring
+# https://geoff.greer.fm/lscolors/
+export CLICOLOR=1
+export LSCOLORS=ExDxDxDxCxDxDxCxCxExEx
+LS_COLORS="di=1;34:ln=1;33:so=1;33:pi=1;33:ex=1;32:bd=1;"
+LS_COLORS+="33:cd=1;33:su=1;32:sg=1;32:tw=1;34:ow=1;34"
+LS_COLORS+=":*.png=1;35:*.jpg=1;35:*.jpeg=1;35:*.heic=1;35"
+LS_COLORS+=":*.mov=1;35:*.mp4=1;35"
+export LS_COLORS
+
+#%%%%%%%%%%%%%%%%%%
+#%%% Functions %%%%
+#%%%%%%%%%%%%%%%%%%
+
+# extract archives #
+extract() {
+  if [ -f "$1" ]; then
+    case "$1" in
+      *.tar.bz2) tar -jxvf "$1" ;;
+      *.tar.gz) tar -zxvf "$1" ;;
+      *.bz2) bunzip2 "$1" ;;
+      *.gz) gunzip "$1" ;;
+      *.tar) tar -xvf "$1" ;;
+      *.tbz2) tar -jxvf "$1" ;;
+      *.tgz) tar -zxvf "$1" ;;
+      *.zip) unzip "$1" ;;
+      *.ZIP) unzip "$1" ;;
+      *.Z) uncompress "$1" ;;
+      *.xz) tar -Jxvf "$1" ;;
+      *) echo "{extraction-failed}" ;;
+    esac
+  else echo "{invalid-file}"; fi
+}
+
+# colored man pages #
+man() { env \
+  LESS_TERMCAP_mb=$'\e[01;31m' \
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  man "$@"
+}
+
+#%%%%%%%%%%%%%%%%%%
+#%%%% Aliases %%%%%
+#%%%%%%%%%%%%%%%%%%
+
+# git #
+alias gs='git status'
+alias gaa='git add -A'
+alias ga='git add'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gl='git log --oneline'
+alias gP='git push'
+alias gp='git pull'
+alias gb='git branch'
+alias gc='git commit'
+alias gcm='git commit -m'
+
+# bash management #
+alias x='clear'
+alias xx='exit'
+alias nrs='sudo nixos-rebuild switch'
+alias ns='nix-shell'
+alias cds='cd /_scratch'
+alias cdp='cd /_projects'
+alias cd="cnl"
+alias ..="cnl .."
+alias ...="cnl ../.."
+alias ....="cnl ../../.."
+
+if command -v exa > /dev/null; then
+  alias l="exa --group-directories-first --sort=Name --time-style=iso"
+  alias ls="exa --group-directories-first --sort=Name --time-style=iso"
+  alias la="exa --group-directories-first --sort=Name --time-style=iso --all"
+  alias ll="exa --group-directories-first --sort=Name --oneline"
+  alias lal="exa --group-directories-first --sort=Name --time-style=iso --all --long"
+
+  alias tree="exa --tree --group-directories-first --sort=Name --git-ignore --ignore-glob=.git"
+  alias treea="exa --tree --group-directories-first --sort=Name --long --all"
+  alias tree1="exa --tree --group-directories-first --sort=Name --all --level=1"
+  alias tree2="exa --tree --group-directories-first --sort=Name --all --level=2"
+  alias tree3="exa --tree --group-directories-first --sort=Name --all --level=3"
+else
+  alias ls="ls -GhF --color=always"
+  alias ll="l -log"
+  alias l="ls"
+  alias la="l -A"
+  alias l.="l -pd .*"
+  alias lal="ll -A"
+  alias l.l="ll -d .*"
+
+  alias tree="tree --dirsfirst --noreport -ACF"
+  alias treed="tree -d"
+  alias tree1="tree -d -L 1"
+  alias tree2="tree -d -L 2"
+  alias treea="tree -a -I '.git'"
+fi
+
+if command -v bat > /dev/null; then
+  export BAT_THEME="1337"
+  alias cat='bat'
+fi
+
+if command -v fd > /dev/null; then
+  alias find="fd"
+  alias fdc="fd --color always"
+fi
+
+if command -v feh > /dev/null; then
+  alias feh="feh -d"
+fi
+
+if command -v ncdu > /dev/null; then
+  alias du='ncdu'
+fi
+
+if command -v rg > /dev/null; then
+  alias grep="rg"
+  alias rgc="rg --color always"
+fi
+
+# htop #
+alias htop="HTOPRC=/etc/htoprc htop"
+
+# tmux #
+alias tl='tmux list-sessions'
+alias ta='tmux attach -t '
+alias td='tmux detach'
+alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
+
+# nvim #
+alias nvim='nvim -p'
+alias vim='vim -p'
+alias vi='vim'
+
+# xclip #
+alias xclip='xclip -selection "clipboard"'
+
+# zfs #
+alias zl='zfs list'
+alias zs='zpool status'
+
+# link cd & ls
+cnl() { \cd "$@" && ll; }
+
+. /opt/ros/noetic/setup.sh
+. ~/catkin_ws/devel/setup.sh
