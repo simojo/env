@@ -106,7 +106,7 @@ in
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" "video" "libvirtd" "docker" ];
+        extraGroups = [ "wheel" "audio" "video" "libvirtd" "docker" "vboxusers" ];
         openssh = {
           authorizedKeys = {
             keys = [
@@ -117,6 +117,14 @@ in
         };
       };
     };
+  };
+
+  # enable nix-command, flakes
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   nixpkgs.config = {

@@ -64,7 +64,6 @@
       pkgs.less
       pkgs.lm_sensors
       pkgs.ncdu
-      pkgs.unstable.neovim
       pkgs.netcat
       pkgs.nim
       pkgs.nix
@@ -82,11 +81,13 @@
       pkgs.ruby
       pkgs.sd
       pkgs.shellcheck
+      pkgs.sshfs
       pkgs.tig
       pkgs.tldr
       pkgs.tmux
       pkgs.tokei
       pkgs.tree
+      pkgs.unstable.neovim
       pkgs.unzip
       pkgs.vim
       pkgs.wpa_supplicant

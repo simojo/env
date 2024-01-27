@@ -11,9 +11,9 @@ let
     glibc
     glibc
     graphviz
+    patchelf
     pipx
     poetry
-    python311Packages.python-lsp-ruff
     python310
     python310Packages.ipykernel.dist
     python310Packages.ipython
@@ -25,10 +25,13 @@ let
     python310Packages.virtualenv
     python311
     python311Packages.pip
+    python311Packages.pipx
+    python311Packages.python-lsp-ruff
     python311Packages.python-lsp-server
     quarto
     sqlite.dev
     stdenv.cc.cc.lib
+    vim
   ];
 in
   with pkgs.lib; pkgs.stdenv.mkDerivation {
@@ -41,6 +44,10 @@ in
       export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
       echo -e '\033[1;33m
       This is a shell for CMPSC 203: Software Engineering at Allegheny College
+
+      To get ruff to work, run the following:
+
+      patchelf --set-interpreter $(patchelf --print-interpreter `which cp`) /path/to/executable
       \033[0m'
     '';
   }

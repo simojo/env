@@ -14,10 +14,13 @@ in
       nixpkgs.rustfmt
       nixpkgs.rust-analyzer
       nixpkgs.protocol # used for libp2p
+      nixpkgs.clang
+      nixpkgs.llvmPackages.libclang.lib
     ];
     shellHook = ''
       export RUST_BACKTRACE=1 # is this important?
       export NIX_SHELL_NAME='${shellname}'
+      export LIBCLANG_PATH="${nixpkgs.llvmPackages.libclang.lib}/lib";
       alias cb='cargo build'
       alias cf='cargo fmt'
       alias cr='cargo run'

@@ -12,9 +12,10 @@ in {
       pkgs.ffmpeg
       pkgs.hsetroot
       pkgs.lguf-brightness
+      pkgs.libGL
       pkgs.libguestfs
       pkgs.libvirt
-      pkgs.libGL
+      pkgs.logseq
       pkgs.neofetch
       pkgs.polybar
       pkgs.redshift

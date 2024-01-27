@@ -103,7 +103,7 @@ vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
 
 -- incremental search, highlight without jumping
-vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>:delmarks i<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>:delmarks i<CR>', { noremap = true, silent = true })
 
 -- plugins and associated configs via packer.nvim; autoinstalls as necessary;
 local fn = vim.fn
@@ -184,19 +184,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- fuzzy searching to open files;
-  use {
-    'camspiers/snap',
-    config = function()
-      local snap = require'snap'
-      snap.maps {
-        -- primary way to open and jump between files; relies on ripgrep;
-        -- previews disabled in case of screen recording to not leak secrets;
-        {"<Tab>", snap.config.file {producer = "ripgrep.file", preview = false}},
-      }
-    end
-  }
-
   -- <C-Enter> [Both] to submit.
   -- <C-y> [Both] to copy/yank last answer.
   -- <C-o> [Both] Toggle settings window.
@@ -212,23 +199,23 @@ return require('packer').startup(function(use)
   -- <C-s> [Both] Toggle system message window.
   -- <C-i> [Edit Window] use response as input.
   -- <C-d> [Edit Window] view the diff between left and right panes and use diff-mode commands
-  -- FIXME: enable at convenience
-  -- use {
-  --   "jackMort/ChatGPT.nvim",
-  --     config = function()
-  --       local home = vim.fn.expand("$HOME")
-  --       require("chatgpt").setup({
-  --         -- pull openai key using gpg decryption
-  --         -- will need to run this command in the terminal before launching nvim if nvim prompts for password
-  --         api_key_cmd = "gpg --decrypt " .. home .. "/openaikey.txt.gpg"
-  --       })
-  --     end,
-  --     requires = {
-  --       "MunifTanjim/nui.nvim",
-  --       "nvim-lua/plenary.nvim",
-  --       "nvim-telescope/telescope.nvim"
-  --     }
-  -- }
+  -- NOTE: enable at convenience
+  use {
+    "jackMort/ChatGPT.nvim",
+      config = function()
+        local home = vim.fn.expand("$HOME")
+        require("chatgpt").setup({
+          -- pull openai key using gpg decryption
+          -- will need to run this command in the terminal before launching nvim if nvim prompts for password
+          api_key_cmd = "cat " .. home .. "/random.txt"
+        })
+      end,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+  }
 
   -- indentation guides
   use {
@@ -256,6 +243,44 @@ return require('packer').startup(function(use)
   -- fuzzy finder for files/git/buffers/etc
   use {
     'nvim-telescope/telescope.nvim',
+    config = function()
+      -- utility function for determining if inside of repo
+      local function is_git_repo()
+        vim.fn.system("git rev-parse --is-inside-work-tree")
+
+        return vim.v.shell_error == 0
+      end
+      -- utility function for finding root of git project
+      local function get_git_root()
+        local dot_git_path = vim.fn.finddir(".git", ".;")
+        return vim.fn.fnamemodify(dot_git_path, ":h")
+      end
+      -- export custom command for grepping project files,
+      -- falling back to local directory
+      function vim.telescope_grep_project_files()
+        local opts = {}
+        if is_git_repo() then
+          opts = {
+            cwd = get_git_root(),
+          }
+        end
+        require("telescope.builtin").live_grep(opts)
+      end
+      -- export custom command for finding project files,
+      -- falling back to local directory
+      function vim.telescope_find_project_files()
+        local opts = {}
+        if is_git_repo() then
+          opts = {
+            cwd = get_git_root(),
+          }
+        end
+        require("telescope.builtin").find_files(opts)
+      end
+      -- use custom commands as wrappers to telescope
+      vim.api.nvim_set_keymap("n", "<Leader><Tab>", ":lua vim.telescope_grep_project_files()<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Tab>", ":lua vim.telescope_find_project_files()<cr>", {})
+    end,
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
