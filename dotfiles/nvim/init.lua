@@ -71,6 +71,9 @@ vim.cmd("autocmd BufEnter *.md,*.qmd set textwidth=80")
 
 -- pio: set filetype automatically
 vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
+--
+-- launch: set filetype automatically
+vim.cmd("autocmd BufEnter *.launch set filetype=xml")
 
 -- keybinds pertaining to folding;
 vim.api.nvim_set_keymap('n', 'sf', 'za', {})
