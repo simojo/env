@@ -260,4 +260,4 @@ alias zs='zpool status'
 cnl() { \cd "$@" && ll; }
 
 . /opt/ros/noetic/setup.sh
-. ~/catkin_ws/devel/setup.sh
+. ~/SimonJonesArtifact/devel/setup.sh
