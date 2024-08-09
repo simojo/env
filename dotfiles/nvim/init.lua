@@ -121,7 +121,19 @@ return require('packer').startup(function(use)
   -- dark colorscheme (default)
   use { 'ellisonleao/gruvbox.nvim' }
   -- light colorscheme (default)
-  use { 'catppuccin/nvim' }
+  use { 'catppuccin/nvim',
+    config = function()
+      require('catppuccin').setup {
+        color_overrides = {
+          mocha = {
+            base = "#000000",
+            mantle = "#000000",
+            crust = "#000000",
+          },
+        }
+      }
+    end
+  }
 
   use { 'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -135,7 +147,7 @@ return require('packer').startup(function(use)
         ensure_installed = {
           "c", "cpp", "lua", "vim", "vimdoc", "rust", "nix",
           "html", "css", "javascript", "svelte", "python",
-          "julia", "pioasm"
+          "julia", "pioasm", "cmake"
         },
         highlight = {
           enable = true,
@@ -159,6 +171,7 @@ return require('packer').startup(function(use)
     tag = "*",
     config = function()
       require('hop').setup { keys = 'etovxqpdgfblzhckisuran' }
+      vim.api.nvim_set_keymap("n", "<Leader>hc", ":HopChar1<cr>", {}) -- hop to char
       vim.api.nvim_set_keymap("n", "<Leader>hw", ":HopWord<cr>", {}) -- hop to word
       vim.api.nvim_set_keymap("n", "<Leader>hl", ":HopLineStart<cr>", {}) -- hop to line first char
       vim.api.nvim_set_keymap("n", "<Leader>hk", ":HopLineStartBC<cr>", {}) -- hop to line first char before cursor
@@ -185,39 +198,6 @@ return require('packer').startup(function(use)
       vim.o.signcolumn = "yes"
       vim.cmd("highlight! link SignColumn Normal")
     end
-  }
-
-  -- <C-Enter> [Both] to submit.
-  -- <C-y> [Both] to copy/yank last answer.
-  -- <C-o> [Both] Toggle settings window.
-  -- <Tab> [Both] Cycle over windows.
-  -- <C-f> [Chat] Cycle over modes (center, stick to right).
-  -- <C-c> [Both] to close chat window.
-  -- <C-u> [Chat] scroll up chat window.
-  -- <C-d> [Chat] scroll down chat window.
-  -- <C-k> [Chat] to copy/yank code from last answer.
-  -- <C-n> [Chat] Start new session.
-  -- <C-d> [Chat] draft message (create message without submitting it to server)
-  -- <C-r> [Chat] switch role (switch between user and assistant role to define a workflow)
-  -- <C-s> [Both] Toggle system message window.
-  -- <C-i> [Edit Window] use response as input.
-  -- <C-d> [Edit Window] view the diff between left and right panes and use diff-mode commands
-  -- NOTE: enable at convenience
-  use {
-    "jackMort/ChatGPT.nvim",
-      config = function()
-        local home = vim.fn.expand("$HOME")
-        require("chatgpt").setup({
-          -- pull openai key using gpg decryption
-          -- will need to run this command in the terminal before launching nvim if nvim prompts for password
-          api_key_cmd = "cat " .. home .. "/random.txt"
-        })
-      end,
-      requires = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
-      }
   }
 
   -- indentation guides
@@ -369,6 +349,7 @@ return require('packer').startup(function(use)
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, opts)
           vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', '<Leader><C-k>', vim.lsp.buf.signature_help, opts)
@@ -387,6 +368,10 @@ return require('packer').startup(function(use)
         end,
       })
       local nvim_lsp = require('lspconfig')
+      -- nix lsp
+      require'lspconfig'.nil_ls.setup{}
+      -- arduino lsp
+      require'lspconfig'.arduino_language_server.setup{}
       -- julia lsp
       require'lspconfig'.julials.setup{}
       -- svelte lsp
@@ -397,6 +382,8 @@ return require('packer').startup(function(use)
       require'lspconfig'.rust_analyzer.setup{}
       -- vhdl lsp
       require'lspconfig'.ghdl_ls.setup{}
+      -- cmake lsp
+      require'lspconfig'.cmake.setup{}
       -- python lsp
       require'lspconfig'.pylsp.setup{
         settings = {
