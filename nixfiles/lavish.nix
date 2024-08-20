@@ -7,6 +7,7 @@
       minecraft
       simplescreenrecorder
       youtube-dl
+      prusa-slicer
     ];
   };
 }

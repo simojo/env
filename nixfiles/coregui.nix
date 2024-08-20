@@ -25,6 +25,7 @@ in {
       pkgs.unstable.cairomm
       pkgs.unstable.chromium
       pkgs.unstable.guile-cairo
+      pkgs.unstable.jdk
       pkgs.virt-manager
       pkgs.vscode
       pkgs.xorg.xev

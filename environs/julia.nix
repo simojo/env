@@ -10,10 +10,11 @@ in
   unstable.mkShell {
     buildInputs = [
       unstable.julia
+      unstable.gnuplot
     ];
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'
-      julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
+      julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer");'
     '';
   }
 
