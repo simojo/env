@@ -97,7 +97,7 @@ in
     };
   };
 
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Denver";
 
   users = {
     mutableUsers = true;

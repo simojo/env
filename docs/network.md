@@ -10,7 +10,7 @@ nmcli connection add \
  802-1x.phase2-auth mschapv2 802-1x.identity "USERNAME"
 ```
 
-* Note: EAPTYPE is usually peap for Eduroam and other .edu enterprise networks.
+* Note: EAPTYPE is usually `peap` for Eduroam and other .edu enterprise networks.
 
 
 ```sh
