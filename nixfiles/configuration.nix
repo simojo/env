@@ -79,9 +79,9 @@ in
 
   location = {
     # https://www.latlong.net/
-    # Madrid, Spain
-    latitude = 40.416775;
-    longitude = -3.703790;
+    # Boulder, CO
+    latitude = 40.016869;
+    longitude = -105.279617;
     # Meadville, PA
     # latitude = 41.64801;
     # longitude = -80.14641;
