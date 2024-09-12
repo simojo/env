@@ -81,7 +81,8 @@ prompt_command() {
   # store nix-shell status to display later, if nonempty
   # (displays derivation name if exported as $NIX_SHELL_NAME)
   if [[ $IN_NIX_SHELL != "" ]]; then
-    [[ $NIX_SHELL_NAME != "" ]] && NS=" $cyan$NIX_SHELL_NAME " || NS=" $IN_NIX_SHELL "
+    default_name="ns"
+    [[ $NIX_SHELL_NAME != "" ]] && NS=" $cyan$NIX_SHELL_NAME " || NS=" $cyan$default_name "
   else
     NS=' '
   fi

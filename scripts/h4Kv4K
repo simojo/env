@@ -3,23 +3,20 @@
 # enable the dual horiz monitors #
 run() {
   xrandr \
+    --output eDP-1 \
+    --off \
     --output DP-1 \
     --primary \
     --mode 3840x2160 \
     --rate 60.00 \
     --rotate 'left' \
-    --dpi 150 \
+    --dpi 200 \
     --output DP-2 \
     --primary \
     --mode 3840x2160 \
     --rate 60.00 \
-    --dpi 150 \
-    --left-of DP-1 \
-    --output eDP-1 \
-    --below DP-2 \
-    --mode 1920x1080 \
-    --rate 60.00 \
-    --dpi 100
+    --dpi 200 \
+    --left-of DP-1
   wmRestart
 }
 

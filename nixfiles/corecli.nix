@@ -65,8 +65,10 @@
       pkgs.lm_sensors
       pkgs.ncdu
       pkgs.netcat
+      pkgs.nil
       pkgs.nim
       pkgs.nix
+      pkgs.nix-index
       pkgs.nmap
       pkgs.nodejs
       pkgs.objconv
