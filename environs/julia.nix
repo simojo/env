@@ -14,6 +14,7 @@ in
     ];
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'
+      alias jr='julia --project=.' # short for "julia run"
       julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer");'
     '';
   }

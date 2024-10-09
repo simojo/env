@@ -176,13 +176,24 @@ alias gcm='git commit -m'
 alias x='clear'
 alias xx='exit'
 alias nrs='sudo nixos-rebuild switch'
-alias ns='nix-shell'
 alias cds='cd /_scratch'
 alias cdp='cd /_projects'
 alias cd="cnl"
 alias ..="cnl .."
 alias ...="cnl ../.."
 alias ....="cnl ../../.."
+# nix shell and flakes #
+alias ns='nix-shell'
+if command -v nix develop > /dev/null; then
+  nd() {
+    if [[ $IN_NIX_SHELL != "" ]]; then
+      # we're in a nix shell; exit before entering
+      exit
+    fi
+    nix develop
+  }
+  alias nd='nix develop'
+fi
 
 if command -v exa > /dev/null; then
   alias l="exa --group-directories-first --sort=Name --time-style=iso"

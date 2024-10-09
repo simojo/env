@@ -4,7 +4,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      "gfbliohnnapiefjpjlpjnehglfpaknnc" # Surfingkeys
+      "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
@@ -49,10 +49,8 @@
           { "url" = "https://calendar.google.com/calendar/r"; name = "Calendar"; }
           { "url" = "https://gmail.com/"; name = "Mail"; }
           { "url" = "drive.google.com/drive/u/0/my-drive"; name = "Drive"; }
-          { "url" = "https://allegheny.instructure.com"; name = "Canvas"; }
+          { "url" = "https://canvas.colorado.edu"; name = "Canvas"; }
           { "url" = "https://app.slack.com/"; name = "Slack"; }
-          { "url" = "jupyter.cs.allegheny.edu"; name = "Jupyter"; }
-          { "url" = "https://airtable.com"; name = "Airtable"; }
           { "url" = "https://github.com/"; name = "GitHub"; }
         ]; }
         { "name" = "Entertainment"; "children" = [
@@ -82,31 +80,6 @@
           { "url" = "https://discourse.nixos.org/"; name = "nixos-discourse"; }
           { "url" = "https://old.reddit.com/r/nixos/"; name = "nixos-reddit"; }
           { "url" = "https://nixos.wiki/"; name = "nixos-wiki"; }
-        ]; }
-        { "name" = "Elixir"; "children" = [
-          { "url" = "https://elixir-lang.org/"; name = "elixir-lang"; }
-          { "url" = "https://elixir-lang.org/blog"; name = "elixir-blog"; }
-          { "url" = "https://elixirforum.com/"; name = "elixir-forum"; }
-          { "url" = "https://old.reddit.com/r/elixir/"; name = "elixir-reddit"; }
-          { "url" = "https://elixir-lang.org/getting-started/introduction.html"; name = "elixir-book"; }
-          { "url" = "https://elixirschool.com/en/"; name = "elixir-school"; }
-          { "url" = "http://media.pragprog.com/titles/elixir/ElixirCheat.pdf"; name = "elixir-cheatsheet"; }
-          { "url" = "https://hex.pm"; name = "elixir-hex"; }
-          { "url" = "https://github.com/h4cc/awesome-elixir"; name = "elixir-awesome"; }
-          { "url" = "https://hexdocs.pm/elixir/Kernel.html"; name = "elixir-docs-std"; }
-          { "url" = "https://hexdocs.pm/elixir/Regex.html"; name = "elixir-docs-std-regex"; }
-          { "url" = "https://hexdocs.pm/elixir/String.html"; name = "elixir-docs-std-string"; }
-          { "url" = "https://hexdocs.pm/elixir/Enum.html"; name = "elixir-docs-std-enum"; }
-          { "url" = "https://hexdocs.pm/elixir/List.html"; name = "elixir-docs-std-list"; }
-          { "url" = "https://hexdocs.pm/elixir/Map.html"; name = "elixir-docs-std-map"; }
-          { "url" = "https://hexdocs.pm/elixir/Supervisor.html"; name = "elixir-docs-std-supervisor"; }
-          { "url" = "https://hexdocs.pm/elixir/GenServer.html"; name = "elixir-docs-std-genserver"; }
-          { "url" = "https://hexdocs.pm/elixir/Process.html"; name = "elixir-docs-std-process"; }
-          { "url" = "https://hexdocs.pm/eex/EEx.html"; name = "elixir-docs-eex"; }
-          { "url" = "https://hexdocs.pm/ex_unit/ExUnit.html"; name = "elixir-docs-exunit"; }
-          { "url" = "https://hexdocs.pm/iex/IEx.html"; name = "elixir-docs-iex"; }
-          { "url" = "https://hexdocs.pm/logger/Logger.html"; name = "elixir-docs-logger"; }
-          { "url" = "https://hexdocs.pm/mix/Mix.html"; name = "elixir-docs-mix"; }
         ]; }
         { "name" = "ZFS"; "children" = [
           { "url" = "https://www.freebsd.org/doc/handbook/zfs.html"; name = "zfs-handbook"; }

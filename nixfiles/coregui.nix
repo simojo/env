@@ -47,6 +47,8 @@ in {
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
 
+  hardware.opengl.enable = true;
+
   programs.light.enable = true;
   programs.slock.enable = true;
 
