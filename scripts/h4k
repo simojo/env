@@ -1,0 +1,21 @@
+#! /usr/bin/env sh
+
+run() {
+  removeMonitor DP-1
+  removeMonitor DP-2
+  xrandr \
+    --output eDP-1 \
+    --off \
+    --output DP-2 \
+    --off \
+    --output DP-1 \
+    --primary \
+    --rotate normal
+    --mode 3840x2160 \
+    --rate 60.00 \
+    --dpi 150
+  removeMonitor eDP-1
+  wmRestart
+}
+
+run

@@ -368,6 +368,8 @@ return require('packer').startup(function(use)
         end,
       })
       local nvim_lsp = require('lspconfig')
+      -- typst lsp
+      require'lspconfig'.tinymist.setup{}
       -- nix lsp
       require'lspconfig'.nil_ls.setup{}
       -- arduino lsp

@@ -13,7 +13,7 @@ run() {
     --auto \
     --output eDP-1 \
     --primary \
-    --dpi 100
+    --dpi 96
   removeMonitor DP-1
   removeMonitor DP-2
   wmRestart

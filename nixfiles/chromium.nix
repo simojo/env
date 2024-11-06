@@ -8,9 +8,9 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
+      "ldipcbpaocekfooobnbcddclnhejkcpn" # Google Scholar button
     ];
-    extraOpts = let
-    in {
+    extraOpts = {
       "DefaultInsecureContentSetting" = 2; # disallow
       "custom_chrome_frame" = true;
 

@@ -9,7 +9,7 @@ let
   };
   unstableTarball =
     fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+      "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 in
 {
   imports =
@@ -18,6 +18,7 @@ in
       ./corecli.nix
       ./lavish.nix
       ./chromium.nix
+      ./udev.nix
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -106,7 +107,7 @@ in
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "audio" "video" "libvirtd" "docker" "vboxusers" ];
+        extraGroups = [ "wheel" "dialout" "audio" "video" "libvirtd" "docker" "vboxusers" ];
         openssh = {
           authorizedKeys = {
             keys = [
