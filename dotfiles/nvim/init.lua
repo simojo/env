@@ -1,458 +1,428 @@
--- various reasons for disabling these, security and otherwise;
-vim.o.swapfile = false
-vim.o.backup = false
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+--   ___     __     _    _   _ (_)  ___ ___  
+-- /' _ `\ /'__`\ /'_`\ ( ) ( )| |/' _ ` _ `\
+-- | ( ) |(  ___/( (_) )| \_/ || || ( ) ( ) |
+-- (_) (_)`\____)`\___/'`\___/'(_)(_) (_) (_)
+--
+--                 config file
+--         (c) 2026, Simon J. Jones
+--
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--- set working dir
+-- %%%%%%%%%%%%%%%%%%
+-- settings & options
+-- %%%%%%%%%%%%%%%%%%
+local opt = vim.opt
+
+-- Security & Backups
+opt.swapfile = false
+opt.backup = false
+opt.modeline = false
+
+-- Set working dir to current file
 vim.cmd("cd %:p:h")
 
--- modelines are apparently an arbitrary code execution vector, so disable;
-vim.o.modeline = false
+-- Search
+opt.hlsearch = true
+opt.incsearch = true
+opt.smartcase = true
+opt.infercase = true
+opt.ignorecase = true
 
--- search related settings dragged with me forever; some may be defaults;
-vim.o.hlsearch = true
-vim.o.incsearch = true
-vim.o.smartcase = true
-vim.o.infercase = true
-vim.o.ignorecase = true
+-- UI & Display
+opt.cursorline = true
+opt.number = true
+opt.scrolloff = 6
+opt.list = true
+opt.listchars = { tab = "▸ ", trail = "␣", extends = "»", precedes = "«", nbsp = "•" }
+opt.signcolumn = "yes"
+opt.termguicolors = true
+opt.background = "dark"
 
--- line number related settings
-vim.o.cursorline = true
-vim.o.number = true
+-- Manual Statusline
+opt.statusline = '%f'
+    .. '%( %{FugitiveHead()}%)'
+    .. '%( %R%)'
+    .. '%( %M%)'
+    .. '%='
+    .. '%<'
+    .. '%( %{&filetype}%)'
+    .. '%( %{&encoding}%)'
+    .. '%( %l:%c%)'
+    .. '%( %p%)'
+opt.laststatus = 2
+opt.hidden = true
+opt.ruler = false
+opt.rulerformat = "%6(%=%l%)"
 
--- indentation related settings dragged with me forever; some may be defaults;
-vim.o.expandtab = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.autoindent = true
-vim.o.smartindent = true
-vim.o.copyindent = true
-vim.o.shiftround = true
-vim.o.smarttab = true
+-- Indentation
+opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.autoindent = true
+opt.smartindent = true
+opt.copyindent = true
+opt.shiftround = true
+opt.smarttab = true
 
--- scrollahead for better context;
-vim.o.scrolloff = 6
+-- Globals
+vim.g.markdown_recommended_style = 0
+vim.g.mapleader = ';'
+vim.mapleader = ';'
 
-vim.cmd("let g:markdown_recommended_style = 0")
+-- %%%%%%%%%%%%%%%%%%%%%%%%
+-- autocommands & filetypes
+-- %%%%%%%%%%%%%%%%%%%%%%%%
+local user_group = vim.api.nvim_create_augroup('UserEvent', { clear = true })
 
--- indentation spaces tabs and whitespace nonsense
-vim.o.list = true
-vim.o.listchars = "tab:▸ ,trail:␣,extends:»,precedes:«,nbsp:•"
-
--- statuslines mostly waste vertical space, so show sparingly;
--- use Ctrl+G to get bearings if needed;
-vim.o.statusline = '%f'
-.. '%( %{FugitiveHead()}%)'
-.. '%( %R%)'
-.. '%( %M%)'
-.. '%='
-.. '%<'
-.. '%( %{&filetype}%)'
-.. '%( %{&encoding}%)'
-.. '%( %l:%c%)'
-.. '%( %p%)'
-vim.o.laststatus = 2
-vim.o.hidden = true
-vim.o.ruler = false
-vim.o.rulerformat = "%6(%=%l%)"
-
--- When editing a file, always jump to the last known cursor position.
--- Don't do it when the position is invalid, when inside an event handler
--- (happens when dropping a file on gvim) and for a commit message (it's
--- likely a different one than last time).
-vim.g.user = vim.g.user or {}
-vim.g.user.event = vim.api.nvim_create_augroup('UserEvent', { clear = true })
+-- Return to last edit position
 vim.api.nvim_create_autocmd('BufReadPost', {
-  group = vim.g.user.event,
+  group = user_group,
   callback = function(args)
-    local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line('$')
-    local not_commit = vim.b[args.buf].filetype ~= 'commit'
-
-    if valid_line and not_commit then
-      vim.cmd([[normal! g`"]])
+    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    local line_count = vim.api.nvim_buf_line_count(args.buf)
+    local is_commit = vim.bo[args.buf].filetype == 'commit'
+    if mark[1] > 0 and mark[1] <= line_count and not is_commit then
+      vim.cmd('normal! g`\"')
     end
   end,
 })
 
--- for colorscheming
-vim.o.background = "dark"
+-- Markdown / Typst settings
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = user_group,
+  pattern = { '*.md', '*.qmd', '*.typ' },
+  callback = function()
+    opt.spell = true
+    opt.colorcolumn = "81"
+    opt.textwidth = 80
+  end,
+})
 
--- keybinds leaderkey, mostly used by plugins;
-vim.mapleader = ';'
-vim.g.mapleader = ';'
+-- Custom Filetypes
+vim.filetype.add({
+  extension = {
+    pio = 'pioasm',
+    launch = 'xml',
+  },
+})
 
--- markdown: linewidth guide and spell check
--- https://vi.stackexchange.com/questions/11609/automatically-rewrap-lines-when-writing-markdown-in-vim
-vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set spell")
-vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set colorcolumn=81")
-vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set textwidth=80")
+-- %%%%%%%%%%%
+-- keybindings
+-- %%%%%%%%%%%
+local map = vim.keymap.set
 
--- pio: set filetype automatically
-vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
---
--- launch: set filetype automatically
-vim.cmd("autocmd BufEnter *.launch set filetype=xml")
+-- Folding
+map('n', 'sf', 'za', {})
+map('n', 'si', 'zMzv', {})
+map('n', 'sj', 'zj', {})
+map('n', 'sk', 'zk', {})
+map('n', 'sl', 'zM', {})
+map('n', 'sL', 'zR', {})
 
--- keybinds pertaining to folding;
-vim.api.nvim_set_keymap('n', 'sf', 'za', {})
-vim.api.nvim_set_keymap('n', 'si', 'zMzv', {})
-vim.api.nvim_set_keymap('n', 'sj', 'zj', {})
-vim.api.nvim_set_keymap('n', 'sk', 'zk', {})
-vim.api.nvim_set_keymap('n', 'sl', 'zM', {})
-vim.api.nvim_set_keymap('n', 'sL', 'zR', {})
+-- Windows, Splits, and Buffers
+map('n', '<Leader>wv', '<C-w>v', { silent = true })
+map('n', '<Leader>ws', '<C-w>s', { silent = true })
+map('n', '<Leader>wc', '<C-w>c', { silent = true })
+map('n', '<Leader>ww', '<C-w><C-w>', { silent = true })
+map('n', 'g;', ':bn<CR>', { silent = true })
+map('n', 'gj', ':bp<CR>', { silent = true })
+map('n', 'h', 'gT', { silent = true })
+map('n', 'l', 'gt', { silent = true })
 
--- keybinds pertaining to splits, buffers, and windows;
-vim.api.nvim_set_keymap('n', '<Leader>wv', '<c-w>v', { silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>ws', '<c-w>s', { silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>wc', '<c-w>c', { silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>ww', '<c-w><c-w>', { silent = true })
-vim.api.nvim_set_keymap('n', 'g;', ':bn<cr>', { silent = true })
-vim.api.nvim_set_keymap('n', 'gj', ':bp<cr>', { silent = true })
-vim.api.nvim_set_keymap('n', 'h', 'gT', { silent = true })
-vim.api.nvim_set_keymap('n', 'l', 'gt', { silent = true })
+-- Scrolling
+map('n', 'J', ':set scroll=2<CR><C-d>', { silent = true })
+map('n', 'K', ':set scroll=2<CR><C-u>', { silent = true })
 
--- keybinds pertaining to scrolling;
-vim.api.nvim_set_keymap('n', 'J', ':set scroll=2<cr><c-d>', { silent = true })
-vim.api.nvim_set_keymap('n', 'K', ':set scroll=2<cr><c-u>', { silent = true })
+-- Movements & Indentation (Visual)
+map('v', '<C-j>', "zR:m '>+1<CR>gv=gv")
+map('v', '<C-k>', "zR:m '<-2<CR>gv=gv")
+map('v', '>', '>gv', { remap = false })
+map('v', '<', '<gv', { remap = false })
 
--- keybinds pertaining to movements;
-vim.api.nvim_set_keymap('v', '<C-j>', 'zR:m\'>+1<CR>gv=gv', {})
-vim.api.nvim_set_keymap('v', '<C-k>', 'zR:m\'<-2<CR>gv=gv', {})
-vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
-vim.api.nvim_set_keymap('v', '<', '<<cr>gv', { noremap = true })
+-- Incremental search, highlight without jumping
+map('n', '*', ':keepjumps normal! mi*`i<CR>:delmarks i<CR>', { remap = false, silent = true })
 
--- incremental search, highlight without jumping
-vim.api.nvim_set_keymap('n', '*', ':keepjumps normal! mi*`i<CR>:delmarks i<CR>', { noremap = true, silent = true })
-
--- plugins and associated configs via packer.nvim; autoinstalls as necessary;
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%
+-- plugin manager (lazy.nvim)
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+    lazypath })
 end
-return require('packer').startup(function(use)
-  -- packer manages itself;
-  use 'wbthomason/packer.nvim'
+vim.opt.rtp:prepend(lazypath)
 
-  -- dark colorscheme (default)
-  use { 'ellisonleao/gruvbox.nvim' }
-  -- light colorscheme (default)
-  use { 'catppuccin/nvim',
+require("lazy").setup({
+  -- UI & Colorschemes
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = function()
+      require('gruvbox').setup {
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = false,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        palette_overrides = {
+          dark0 = "#000000",
+          dark0_hard = "#000000",
+        },
+        inverse = false,
+        contrast = "hard",
+        overrides = {
+          Search = { bg = "#665c54" },
+          IncSearch = { bg = "#665c54" },
+          SignColumn = { bg = "#000000" },
+          CursorLine = { bg = "#000000" },
+          CursorLineNr = { bg = "#000000" },
+          TabLine = { bg = "#000000" },
+          StatusLine = { bg = "#000000" },
+          StatusLineNC = { bg = "#000000" },
+          Pmenu = { bg = "#000000" },
+          Pmenu = { bg = "#000000" },
+          PmenuSbar = { bg = "#000000" },
+          PmenuThumb = { bg = "#000000" },
+          TabLine = { bg = "#000000" },
+          TabLineSel = { bg = "#000000" },
+          TabLineFill = { bg = "#000000" },
+        },
+      }
+      vim.cmd('colorscheme gruvbox')
+    end
+  },
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
     config = function()
       require('catppuccin').setup {
-        color_overrides = {
-          mocha = {
-            base = "#000000",
-            mantle = "#000000",
-            crust = "#000000",
-          },
-        }
+        color_overrides = { mocha = { base = "#000000", mantle = "#000000", crust = "#000000" } }
       }
     end
-  }
+  },
 
-  use { 'nvim-treesitter/nvim-treesitter',
-    run = function()
-      -- from treesitter wiki, mitigates packer from breaking on first treesitter install
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
+  -- Treesitter
+  {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = false,
+    build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
-        -- list of parsers to always be installed
-        ensure_installed = {
-          "c", "cpp", "lua", "vim", "vimdoc", "rust", "nix",
-          "html", "css", "javascript", "svelte", "python",
-          "julia", "pioasm", "cmake"
-        },
+      require('nvim-treesitter').setup {
+        ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "rust", "nix", "html", "css", "javascript", "svelte", "python", "julia", "pioasm", "cmake" },
         highlight = {
           enable = true,
-          disable = { "json" },
-          -- disable highlight on large files
-          disable = function (lang, buf)
+          disable = function(lang, buf)
             local max_filesize = 100 * 1024 -- 100KB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
+            return ok and stats and stats.size > max_filesize or lang == "json"
           end
         }
       }
     end
-  }
+  },
 
-  -- quickly jump around the visible buffer;
-  use {
+  -- Movement & Editing Utilities
+  {
     'smoka7/hop.nvim',
-    tag = "*",
     config = function()
       require('hop').setup { keys = 'etovxqpdgfblzhckisuran' }
-      vim.api.nvim_set_keymap("n", "<Leader>hc", ":HopChar1<cr>", {}) -- hop to char
-      vim.api.nvim_set_keymap("n", "<Leader>hw", ":HopWord<cr>", {}) -- hop to word
-      vim.api.nvim_set_keymap("n", "<Leader>hl", ":HopLineStart<cr>", {}) -- hop to line first char
-      vim.api.nvim_set_keymap("n", "<Leader>hk", ":HopLineStartBC<cr>", {}) -- hop to line first char before cursor
-      vim.api.nvim_set_keymap("n", "<Leader>hj", ":HopLineStartAC<cr>", {}) -- hop to line first char after cursor
-      vim.api.nvim_set_keymap("n", "<Leader>h/", ":HopPattern<cr>", {}) -- hop to pattern matches
-      vim.api.nvim_set_keymap("n", "<Leader>hp", ":HopPasteChar1<cr>", {}) -- paste among locations with specified character
-      vim.api.nvim_set_keymap("n", "<Leader>hy", ":HopYankChar1<cr>", {}) -- paste among locations with specified character
-      vim.cmd("highlight! link HopNextKey2 HopNextKey1") -- make second character more visible
+      vim.keymap.set("n", "<Leader>hc", ":HopChar1<CR>")
+      vim.keymap.set("n", "<Leader>hw", ":HopWord<CR>")
+      vim.keymap.set("n", "<Leader>hl", ":HopLineStart<CR>")
+      vim.keymap.set("n", "<Leader>hk", ":HopLineStartBC<CR>")
+      vim.keymap.set("n", "<Leader>hj", ":HopLineStartAC<CR>")
+      vim.keymap.set("n", "<Leader>h/", ":HopPattern<CR>")
+      vim.keymap.set("n", "<Leader>hp", ":HopPasteChar1<CR>")
+      vim.keymap.set("n", "<Leader>hy", ":HopYankChar1<CR>")
+      vim.cmd("highlight! link HopNextKey2 HopNextKey1")
     end
-  }
-
-  -- show marks in sign column;
-  use {
+  },
+  {
     'chentoast/marks.nvim',
     config = function()
-      require('marks').setup {
-        default_mappings = false,
-        signs = true,
-        mappings = {
-          set = "m",
-          delete_line = "dm",
-        }
-      }
-      vim.o.signcolumn = "yes"
+      require('marks').setup { default_mappings = false, signs = true, mappings = { set = "m", delete_line = "dm" } }
       vim.cmd("highlight! link SignColumn Normal")
     end
-  }
-
-  -- indentation guides
-  use {
+  },
+  {
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     config = function()
-      require("ibl").setup {
-        indent = { char = "▏" },
-        scope = {
-          show_start = false,
-          show_end = false,
-        }
-      }
-    end,
-  }
-
-  -- surrounding selections and editing surrounding characters
-  use {
-    'kylechui/nvim-surround',
+      require("ibl").setup { indent = { char = "▏" }, scope = { show_start = false, show_end = false } }
+    end
+  },
+  { 'kylechui/nvim-surround', config = true },
+  {
+    'numtostr/comment.nvim',
     config = function()
-      require("nvim-surround").setup {
-      }
-    end,
-  }
+      require('Comment').setup({ sticky = true })
+      vim.keymap.set("n", "<Leader>i", "gcc", { silent = true, remap = true })
+      vim.keymap.set("v", "<Leader>i", "gb", { silent = true, remap = true })
+    end
+  },
+  {
+    'skosulor/nibbler',
+    config = function()
+      require('nibbler').setup({ display_enabled = true })
+      vim.keymap.set("n", "<Leader>nh", ":NibblerToHex<CR>")
+      vim.keymap.set("n", "<Leader>nb", ":NibblerToBin<CR>")
+      vim.keymap.set("n", "<Leader>nd", ":NibblerToDec<CR>")
+      vim.keymap.set("n", "<Leader>nt", ":NibblerToggle<CR>")
+    end
+  },
 
-  -- fuzzy finder for files/git/buffers/etc
-  use {
+  -- Telescope
+  {
     'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      -- utility function for determining if inside of repo
+      local builtin = require("telescope.builtin")
       local function is_git_repo()
         vim.fn.system("git rev-parse --is-inside-work-tree")
-
         return vim.v.shell_error == 0
       end
-      -- utility function for finding root of git project
       local function get_git_root()
         local dot_git_path = vim.fn.finddir(".git", ".;")
         return vim.fn.fnamemodify(dot_git_path, ":h")
       end
-      -- export custom command for grepping project files,
-      -- falling back to local directory
-      function vim.telescope_grep_project_files()
-        local opts = {}
-        if is_git_repo() then
-          opts = {
-            cwd = get_git_root(),
-          }
-        end
-        require("telescope.builtin").live_grep(opts)
-      end
-      -- export custom command for finding project files,
-      -- falling back to local directory
-      function vim.telescope_find_project_files()
-        local opts = {}
-        if is_git_repo() then
-          opts = {
-            cwd = get_git_root(),
-          }
-        end
-        require("telescope.builtin").find_files(opts)
-      end
-      -- use custom commands as wrappers to telescope
-      vim.api.nvim_set_keymap("n", "<Leader><Tab>", ":lua vim.telescope_grep_project_files()<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Tab>", ":lua vim.telescope_find_project_files()<cr>", {})
-    end,
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
 
-  -- comment-toggling;
-  use {
-    'numtostr/comment.nvim',
-    config = function()
-      require('Comment').setup({
-        sticky = true,
-      })
-      vim.api.nvim_set_keymap("n", "<Leader>i", "gcc", { silent = true })
-      vim.api.nvim_set_keymap("v", "<Leader>i", "gb", { silent = true })
+      vim.keymap.set("n", "<Leader><Tab>", function()
+        builtin.live_grep(is_git_repo() and { cwd = get_git_root() } or {})
+      end)
+      vim.keymap.set("n", "<Tab>", function()
+        builtin.find_files(is_git_repo() and { cwd = get_git_root() } or {})
+      end)
     end
-  }
+  },
 
-  use {
-    'skosulor/nibbler',
-    config = function()
-      require('nibbler').setup({
-        display_enabled = true, -- enable real-time display
-      })
-      vim.api.nvim_set_keymap("n", "<Leader>nh", ":NibblerToHex<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>nb", ":NibblerToBin<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>nd", ":NibblerToDec<cr>", {})
-      vim.api.nvim_set_keymap("n", "<Leader>nt", ":NibblerToggle<cr>", {})
-    end
-  }
-
-  use "tpope/vim-fugitive"
-  use {
+  -- Miscellaneous Tools
+  'tpope/vim-fugitive',
+  'gpanders/editorconfig.nvim',
+  'godlygeek/tabular',
+  {
     "evanleck/vim-svelte",
-    config = function()
+    init = function()
       vim.g.svelte_indent_script = 0
       vim.g.svelte_indent_style = 0
     end
-  }
-  use "gpanders/editorconfig.nvim"
-  use "godlygeek/tabular"
+  },
 
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  use {
-    'hrsh7th/nvim-cmp',
+  -- LSP, Mason, & Autocompletion Stack
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+    },
     config = function()
-      local cmp = require'cmp'
-      vim.opt.completeopt = {"menu", "menuone"}
+      -- 1. Setup Autocompletion (Cmp)
+      local cmp = require('cmp')
+      vim.opt.completeopt = { "menu", "menuone" }
+      vim.diagnostic.config({
+        underline = {
+          severity = { min = vim.diagnostic.severity.ERROR },
+        },
+      })
+
       cmp.setup({
-        snippet = {
-          -- REQUIRED - you must specify a snippet engine
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-          end,
-        },
+        snippet = { expand = function(args) vim.fn["vsnip#anonymous"](args.body) end },
         mapping = {
-          ['<c-j>'] = cmp.mapping.select_next_item(),
-          ['<c-k>'] = cmp.mapping.select_prev_item(),
-          ['<Tab>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          })
+          ['<C-j>'] = cmp.mapping.select_next_item(),
+          ['<C-k>'] = cmp.mapping.select_prev_item(),
+          ['<Tab>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
         },
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'vsnip' },
-        }, {
-          { name = 'buffer' },
-        }),
-        completion = {
-          completeopt = 'menu,menuone'
-        },
+        sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'vsnip' } }, { { name = 'buffer' } }),
       })
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline('/', {
-        sources = {
-          { name = 'buffer' }
-        }
-      })
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+
+      cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
       cmp.setup.cmdline(':', {
-        sources = cmp.config.sources({
-          { name = 'path' }
-        }, {
-          { name = 'cmdline' }
-        })
+        sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
       })
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-        callback = function(ev)
-          local opts = { buffer = ev.buf }
-          vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, opts)
-          vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, opts)
-          vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, opts)
-          vim.keymap.set('n', '<Leader><C-k>', vim.lsp.buf.signature_help, opts)
-          vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-          vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-          vim.keymap.set('n', '<Leader>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, opts)
-          vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
-          vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', '<Leader>f', function()
-            vim.lsp.buf.format { async = true }
-          end, opts)
-        end,
-      })
-      local nvim_lsp = require('lspconfig')
-      -- typst lsp
-      require'lspconfig'.tinymist.setup{
-        settings = {
-          exportPdf = "onSave",
-          outputPath = "$root/pdfs/$dir/$name"
-        }
-      }
-      -- nix lsp
-      require'lspconfig'.nil_ls.setup{}
-      -- arduino lsp
-      require'lspconfig'.arduino_language_server.setup{
-        settings = {
+
+      -- 2. Define standard keymaps for when an LSP attaches
+      local on_attach = function(_, bufnr)
+        local opts = { buffer = bufnr }
+        vim.keymap.set('n', '<Leader>gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', '<Leader>gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '<Leader>K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<Leader><C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+        vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<Leader>f', function() vim.lsp.buf.format { async = true } end, opts)
+      end
+
+      -- 3. Setup Mason & Handlers
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local lspconfig = vim.lsp.config
+
+      -- Idea on how to set up servers from https://github.com/mason-org/mason-lspconfig.nvim/issues/565#issuecomment-2926671274
+      local servers = {
+        tinymist = { exportPdf = "onSave", outputPath = "$root/pdfs/$dir/$name" },
+        arduino_language_server = {
           cmd = { "arduino-language-server --cli-config ./arduino-cli.yaml" }
-        }
-      }
-      -- julia lsp
-      require'lspconfig'.julials.setup{}
-      -- svelte lsp
-      require'lspconfig'.svelte.setup{}
-      -- haskell lsp
-      require'lspconfig'.hls.setup{}
-      -- rust lsp
-      require'lspconfig'.rust_analyzer.setup{}
-      -- vhdl lsp
-      require'lspconfig'.ghdl_ls.setup{}
-      -- cmake lsp
-      require'lspconfig'.cmake.setup{}
-      -- python lsp
-      require'lspconfig'.pylsp.setup{
-        settings = {
+        },
+        julials = {},
+        svelte = {},
+        rust_analyzer = {},
+        cmake = {},
+        pylsp = {
           pylsp = {
             plugins = {
               ruff = {
-                enabled = true,
-                extendSelect = { "I" },
+                enabled = false, extendSelect = { "I" }
               },
-              pycodestyle = {ignore = { "E302", "E501", "W503" }},
-              pep8 = {ignore = { "E711" }},
+              pycodestyle = {
+                enabled = false, ignore = { "E302", "E501", "W503", "E261" }
+              },
+              pep8 = {
+                enabled = false, ignore = { "E711" }
+              },
             }
           }
-        }
+        },
+        clangd = {
+          single_file_support = false,
+          -- FIXME: is this necessary given the default configs? root_dir = lspconfig.util.root_pattern(".git", "compile_commands.json")
+        },
+        lua_ls = {},
+        vimls = {},
       }
-      -- cpp/c lsp
-      require'lspconfig'.clangd.setup{
-        single_file_support = false,
-        root_dir = nvim_lsp.util.root_pattern(".git", "compile_commands.json")
-      }
+
+      require('mason').setup()
+      require('mason-lspconfig').setup({
+        ensure_installed = vim.tbl_keys(servers),
+        automatic_enable = false
+      });
+
+      for _name, _settings in pairs(servers) do
+        vim.lsp.config(_name, {
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = _settings
+        })
+        vim.lsp.enable(_name)
+      end
     end
   }
-
-
-
-
-  -- this must be last
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+})
