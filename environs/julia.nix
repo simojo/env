@@ -29,8 +29,13 @@ in
         }"
       fi
       alias jr='julia --project=.' # short for "julia run"
-      julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer");'
-    '';
+      read -p "attempt to add LanguageServer.jl? (y/n) " -N 1 response
+      echo ""
+      if [[ $response == 'y' ]]; then
+        julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer");'
+      fi
+      '';
+
   }
 
 # [https://github.com/julia-vscode/julia-vscode](julia-vscode)

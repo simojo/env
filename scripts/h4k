@@ -10,7 +10,7 @@ run() {
     --off \
     --output DP-1 \
     --primary \
-    --rotate normal
+    --rotate normal \
     --mode 3840x2160 \
     --rate 60.00 \
     --dpi 150

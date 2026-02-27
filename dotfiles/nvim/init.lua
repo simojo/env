@@ -56,6 +56,24 @@ vim.o.hidden = true
 vim.o.ruler = false
 vim.o.rulerformat = "%6(%=%l%)"
 
+-- When editing a file, always jump to the last known cursor position.
+-- Don't do it when the position is invalid, when inside an event handler
+-- (happens when dropping a file on gvim) and for a commit message (it's
+-- likely a different one than last time).
+vim.g.user = vim.g.user or {}
+vim.g.user.event = vim.api.nvim_create_augroup('UserEvent', { clear = true })
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = vim.g.user.event,
+  callback = function(args)
+    local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line('$')
+    local not_commit = vim.b[args.buf].filetype ~= 'commit'
+
+    if valid_line and not_commit then
+      vim.cmd([[normal! g`"]])
+    end
+  end,
+})
+
 -- for colorscheming
 vim.o.background = "dark"
 
@@ -65,9 +83,9 @@ vim.g.mapleader = ';'
 
 -- markdown: linewidth guide and spell check
 -- https://vi.stackexchange.com/questions/11609/automatically-rewrap-lines-when-writing-markdown-in-vim
-vim.cmd("autocmd BufEnter *.md,*.qmd set spell")
-vim.cmd("autocmd BufEnter *.md,*.qmd set colorcolumn=81")
-vim.cmd("autocmd BufEnter *.md,*.qmd set textwidth=80")
+vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set spell")
+vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set colorcolumn=81")
+vim.cmd("autocmd BufEnter *.md,*.qmd,*.typ set textwidth=80")
 
 -- pio: set filetype automatically
 vim.cmd("autocmd BufEnter *.pio set filetype=pioasm")
@@ -98,8 +116,6 @@ vim.api.nvim_set_keymap('n', 'J', ':set scroll=2<cr><c-d>', { silent = true })
 vim.api.nvim_set_keymap('n', 'K', ':set scroll=2<cr><c-u>', { silent = true })
 
 -- keybinds pertaining to movements;
-vim.api.nvim_set_keymap('n', '<C-j>', 'zRddp==', {})
-vim.api.nvim_set_keymap('n', '<C-k>', 'zRddkP==', {})
 vim.api.nvim_set_keymap('v', '<C-j>', 'zR:m\'>+1<CR>gv=gv', {})
 vim.api.nvim_set_keymap('v', '<C-k>', 'zR:m\'<-2<CR>gv=gv', {})
 vim.api.nvim_set_keymap('v', '>', '><cr>gv', { noremap = true })
@@ -279,6 +295,19 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'skosulor/nibbler',
+    config = function()
+      require('nibbler').setup({
+        display_enabled = true, -- enable real-time display
+      })
+      vim.api.nvim_set_keymap("n", "<Leader>nh", ":NibblerToHex<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>nb", ":NibblerToBin<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>nd", ":NibblerToDec<cr>", {})
+      vim.api.nvim_set_keymap("n", "<Leader>nt", ":NibblerToggle<cr>", {})
+    end
+  }
+
   use "tpope/vim-fugitive"
   use {
     "evanleck/vim-svelte",
@@ -288,6 +317,7 @@ return require('packer').startup(function(use)
     end
   }
   use "gpanders/editorconfig.nvim"
+  use "godlygeek/tabular"
 
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -369,11 +399,20 @@ return require('packer').startup(function(use)
       })
       local nvim_lsp = require('lspconfig')
       -- typst lsp
-      require'lspconfig'.tinymist.setup{}
+      require'lspconfig'.tinymist.setup{
+        settings = {
+          exportPdf = "onSave",
+          outputPath = "$root/pdfs/$dir/$name"
+        }
+      }
       -- nix lsp
       require'lspconfig'.nil_ls.setup{}
       -- arduino lsp
-      require'lspconfig'.arduino_language_server.setup{}
+      require'lspconfig'.arduino_language_server.setup{
+        settings = {
+          cmd = { "arduino-language-server --cli-config ./arduino-cli.yaml" }
+        }
+      }
       -- julia lsp
       require'lspconfig'.julials.setup{}
       -- svelte lsp

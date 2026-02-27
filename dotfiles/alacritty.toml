@@ -1,0 +1,77 @@
+
+#        _                 _ _   _
+#       | |               (_) | | |
+#   __ _| | __ _  ___ _ __ _| |_| |_ _   _
+#  / _` | |/ _` |/ __| '__| | __| __| | | |
+# | (_| | | (_| | (__| |  | | |_| |_| |_| |
+#  \__,_|_|\__,_|\___|_|  |_|\__|\__|\__, |
+#                                     __/ |
+#                                    |___/
+
+[general]
+working_directory = "/_scratch"
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 1.0
+title = "Alacritty"
+padding = { x = 3, y = 3 }
+class = { instance = "Alacritty", general = "Alacritty" }
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 7.0
+offset = { x = 0, y = 0 }
+
+[font.normal]
+family = "Roboto Mono"
+style = "Regular"
+
+[font.bold]
+family = "Roboto Mono"
+style = "Bold"
+
+[font.italic]
+family = "Roboto Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "Roboto Mono"
+style = "Bold Italic"
+
+[colors.primary]
+background = "#000000"
+foreground = "#e6d4a3"
+
+[colors.normal]
+black = "#000000"
+red = "#be0f17"
+green = "#868715"
+yellow = "#cc881a"
+blue = "#377375"
+magenta = "#a04b73"
+cyan = "#578e57"
+white = "#978771"
+
+[colors.bright]
+black = "#7f7061"
+red = "#f73028"
+green = "#aab01e"
+yellow = "#f7b125"
+blue = "#719586"
+magenta = "#c77089"
+cyan = "#7db669"
+white = "#e6d4a3"
+
+[colors.cursor]
+cursor = "#e6d4a3"
+text = "#1e1e1e"
+
+[colors.selection]
+background = "#e6d4a3"
+text = "#534a42"

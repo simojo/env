@@ -10,14 +10,17 @@ in {
       pkgs.electron
       pkgs.feh
       pkgs.ffmpeg
+      pkgs.gimp
+      pkgs.gthumb
       pkgs.hsetroot
       pkgs.lguf-brightness
       pkgs.libGL
       pkgs.libguestfs
       pkgs.libvirt
       pkgs.logseq
+      pkgs.mplayer
       pkgs.neofetch
-      pkgs.polybar
+      (pkgs.polybar.override { pulseSupport = true; })
       pkgs.redshift
       pkgs.rofi
       pkgs.scrot
@@ -25,15 +28,15 @@ in {
       pkgs.unstable.cairomm
       pkgs.unstable.chromium
       pkgs.unstable.guile-cairo
-      pkgs.unstable.jdk
       pkgs.virt-manager
       pkgs.vscode
       pkgs.xorg.xev
+      pkgs.xorg.xhost
       pkgs.xorg.xmodmap
       pkgs.xorg.xset
     ];
     etc."sxhkdrc".text = builtins.readFile /env/dotfiles/sxhkdrc;
-    etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty.yml;
+    etc."alacritty".text = builtins.readFile /env/dotfiles/alacritty.toml;
   };
 
   fonts.fonts = [
@@ -42,10 +45,6 @@ in {
     pkgs.font-awesome
     pkgs.roboto-mono
   ];
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
 
   hardware.opengl.enable = true;
 
@@ -62,6 +61,10 @@ in {
     };
     unclutter = {
       enable = true;
+    };
+    pipewire = {
+      enable = true;
+      audio.enable = true;
     };
     xserver = {
       libinput.enable = true;
@@ -95,7 +98,6 @@ in {
         '';
       };
       enable = true;
-      layout = "us";
       windowManager = {
         bspwm = {
           enable = true;
@@ -105,7 +107,8 @@ in {
           };
         };
       };
-      xkbOptions = "caps:escape";
+      xkb.layout = "us";
+      xkb.options = "caps:escape";
       xrandrHeads = [
       ];
     };

@@ -16,6 +16,8 @@ in
       nixpkgs.protocol # used for libp2p
       nixpkgs.clang
       nixpkgs.llvmPackages.libclang.lib
+      nixpkgs.gcc
+      nixpkgs.gdb
     ];
     shellHook = ''
       export RUST_BACKTRACE=1 # is this important?

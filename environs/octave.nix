@@ -4,12 +4,11 @@ let
     url = "https://github.com/nixos/nixpkgs/";
     rev = "3635c3da55f74817efb43d4af48083d3aaade903";
   }) {};
-  shellname = "typst";
+  shellname = "octave";
 in
   unstable.mkShell {
     buildInputs = [
-      unstable.typst
-      unstable.tinymist
+      unstable.octave
     ];
     shellHook = ''
       export NIX_SHELL_NAME='${shellname}'

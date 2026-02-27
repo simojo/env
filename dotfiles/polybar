@@ -37,7 +37,7 @@ separator = "     "
 font-0 = Roboto Mono:style=Solid:size=11;2
 font-1 = Font Awesome 6 Free:style=Solid:size=12;2
 
-modules-right = wired-network wireless-network alsa backlight battery
+modules-right = wired-network wireless-network pipewire-pulse backlight battery
 modules-center = date
 modules-left = bspwm
 
@@ -163,8 +163,8 @@ label-connected-foreground = ${colors.foreground}
 
 
 
-[module/alsa]
-type = internal/alsa
+[module/pipewire-pulse]
+type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
 format-volume-padding = 1
 

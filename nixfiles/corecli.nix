@@ -45,7 +45,8 @@
       pkgs.eidolon
       pkgs.elixir
       pkgs.entr
-      pkgs.exa
+      pkgs.eza
+      pkgs.exiftool
       pkgs.fd
       pkgs.file
       pkgs.fzf
@@ -59,7 +60,6 @@
       pkgs.hdparm
       pkgs.htop
       pkgs.hyperfine
-      pkgs.jdk
       pkgs.killall
       pkgs.less
       pkgs.lm_sensors
@@ -108,11 +108,6 @@
     ssh = {
       startAgent = true;
     };
-    gnupg = {
-      agent= {
-        enable = true;
-        pinentryFlavor = "curses";
-      };
-    };
+    gnupg.agent.enable = true;
   };
 }

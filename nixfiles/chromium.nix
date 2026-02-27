@@ -9,6 +9,7 @@
       "aghfnjkcakhmadgdomlmlhhaocbkloab" # Just Black theme
       "dmghijelimhndkbmpgbldicpogfkceaj" # Dark Mode
       "ldipcbpaocekfooobnbcddclnhejkcpn" # Google Scholar button
+      "dahenjhkoodjbpjheillcadbppiidmhp" # Google Scholar PDF Reader
     ];
     extraOpts = {
       "DefaultInsecureContentSetting" = 2; # disallow

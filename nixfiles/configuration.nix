@@ -1,3 +1,18 @@
+/* FIXME
+
+evaluation warning: The option `services.openssh.permitRootLogin' defined in `/etc/nixos/configuration.nix' has been renamed to `services.openssh.settings.PermitRootLogin'.
+evaluation warning: The option `services.openssh.passwordAuthentication' defined in `/etc/nixos/configuration.nix' has been renamed to `services.openssh.settings.PasswordAuthentication'.
+evaluation warning: The option `services.openssh.kbdInteractiveAuthentication' defined in `/etc/nixos/configuration.nix' has been renamed to `services.openssh.settings.KbdInteractiveAuthentication'.
+evaluation warning: The option `services.xserver.libinput.touchpad' defined in `/etc/nixos/coregui.nix' has been renamed to `services.libinput.touchpad'.
+evaluation warning: The option `services.xserver.libinput.enable' defined in `/etc/nixos/coregui.nix' has been renamed to `services.libinput.enable'.
+evaluation warning: The option `services.xserver.displayManager.sddm.enable' defined in `/etc/nixos/coregui.nix' has been renamed to `services.displayManager.sddm.enable'.
+evaluation warning: The option `services.xserver.displayManager.sddm.autoLogin.relogin' defined in `/etc/nixos/coregui.nix' has been renamed to `services.displayManager.sddm.autoLogin.relogin'.
+evaluation warning: The option `services.xserver.displayManager.autoLogin' defined in `/etc/nixos/coregui.nix' has been renamed to `services.displayManager.autoLogin'.
+evaluation warning: The option `hardware.opengl.enable' defined in `/etc/nixos/coregui.nix' has been renamed to `hardware.graphics.enable'.
+evaluation warning: The option `fonts.fonts' defined in `/etc/nixos/coregui.nix' has been renamed to `fonts.packages'.
+
+*/
+
 # https://nixos.wiki/wiki/Cheatsheet
 { config, lib, pkgs, ... }:
 let
@@ -76,6 +91,11 @@ in
       };
     };
     networkmanager.enable = true;
+    # block harmful websites using steveblack's domain lists
+    stevenblack = {
+      enable = true;
+      block = [ "fakenews" "gambling" "porn" "social" ];
+    };
   };
 
   location = {
@@ -102,12 +122,11 @@ in
 
   users = {
     mutableUsers = true;
-    extraGroups.vboxusers.members = [ "simon" ];
     users = {
       simon = {
         isNormalUser = true;
         home = "/home/simon" ;
-        extraGroups = [ "wheel" "dialout" "audio" "video" "libvirtd" "docker" "vboxusers" ];
+        extraGroups = [ "wheel" "dialout" "audio" "video" "libvirtd" "docker" ];
         openssh = {
           authorizedKeys = {
             keys = [
@@ -122,7 +141,7 @@ in
 
   # enable nix-command, flakes
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nix;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -139,9 +158,6 @@ in
 
   virtualisation = {
     libvirtd = {
-      enable = true;
-    };
-    virtualbox.host = {
       enable = true;
     };
     docker ={
